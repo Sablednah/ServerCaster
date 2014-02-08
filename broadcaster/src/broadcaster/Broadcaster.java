@@ -3,20 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package broadcaster;
+
+import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  *
  * @author Patrick Beuks (s2288842) and Floris Huizinga (s2397617)
  */
-public class Broadcaster {
+public class Broadcaster extends JavaPlugin {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    @Override
+    public void onEnable() {
+        this.saveDefaultConfig();
+        int intervalInMin = 30;
+        int intervalInTicks = 20 * 60 * intervalInMin;
+        getServer().getScheduler().scheduleSyncRepeatingTask(this, new BroadcasterAnouncer(this), intervalInTicks, intervalInTicks);
     }
 
 }
