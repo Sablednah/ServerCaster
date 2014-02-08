@@ -71,6 +71,7 @@ public class BroadcastConverter {
             String value = entry.getValue();
             message = message.replaceAll(key, value);
         }
+        int index = 0;
         return message.split("&NEW_LINE");
     }
 }

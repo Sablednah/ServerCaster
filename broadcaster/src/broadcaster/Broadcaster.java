@@ -16,7 +16,7 @@ public class Broadcaster extends JavaPlugin {
     @Override
     public void onEnable() {
         this.saveDefaultConfig();
-        int intervalInMin = 30;
+        int intervalInMin = getConfig().getInt("Interval");
         int intervalInTicks = 20 * 60 * intervalInMin;
         getServer().getScheduler().scheduleSyncRepeatingTask(this, new BroadcasterAnouncer(this), intervalInTicks, intervalInTicks);
     }
