@@ -1,0 +1,5 @@
+name: BroadCaster
+author: [killje, Flexo013]
+description: a simple autoBroadcaster
+version: v1.0
+main: me.killje.bukkit.broadcaster.BroadCaster
