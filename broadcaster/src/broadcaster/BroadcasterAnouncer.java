@@ -25,7 +25,10 @@ public class BroadcasterAnouncer implements Runnable {
             lineIndex = 0;
         }
         String[] properMessages = converter.getProperMessage(messages.get(lineIndex));
-        String prefix = instance.getConfig().getString("prefix");
+        String prefix = instance.getConfig().getString("Prefix");
+        if (!prefix.equals("")) {
+            prefix = prefix + ": ";
+        }
         for (String message : properMessages) {
             instance.getServer().broadcastMessage(prefix + message);
         }

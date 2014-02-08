@@ -1,5 +1,7 @@
 
-prefix: [BroadCaster] 
+Prefix: [BroadCaster]
+Interval: 1
 Messages:
-    - test1
-    - test2
+    - you can add multiple lines with &NEW_LINE woot!
+    - you can add colors with &RED woot!
+    - you can underline with &UNDERLINE woot!
