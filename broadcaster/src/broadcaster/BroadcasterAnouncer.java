@@ -1,6 +1,7 @@
 package broadcaster;
 
 import java.util.List;
+import mkremins.fanciful.FancyMessage;
 
 /**
  *
@@ -29,6 +30,7 @@ public class BroadcasterAnouncer implements Runnable {
         if (!prefix.equals("")) {
             prefix = prefix + ": ";
         }
+        String test = new FancyMessage("").then("url").link(null).toJSONString();
         for (String message : properMessages) {
             instance.getServer().broadcastMessage(prefix + message);
         }
