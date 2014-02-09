@@ -18,7 +18,7 @@ public class Broadcaster extends JavaPlugin {
         this.saveDefaultConfig();
         int intervalInMin = getConfig().getInt("Interval");
         int intervalInTicks = 20 * 60 * intervalInMin;
-        getServer().getScheduler().scheduleSyncRepeatingTask(this, new BroadcasterAnouncer(this), intervalInTicks, intervalInTicks);
+        getServer().getScheduler().scheduleSyncRepeatingTask(this, new BroadcasterAnnouncer(this), intervalInTicks, intervalInTicks);
     }
 
 }
