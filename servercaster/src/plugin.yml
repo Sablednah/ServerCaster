@@ -1,0 +1,14 @@
+name: ServerCaster
+author: [killje, Flexo013]
+description: a broadcaster that can send clickable link and command in chat as well as colors
+version: 1.5
+main: servercaster.ServerCaster
+commands:
+   reloadservercast:
+      description: reloads the servercast file
+      usage: /reloadservercast
+      permission: servercaster.reload
+   cast:
+      description: broadcast the next message or the message with the specified message number
+      usage: /cast [message number]
+      permission: servercaster.now

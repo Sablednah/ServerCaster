@@ -1,0 +1,11 @@
+#Servercaster
+Prefix: '&RED;{[Broadcast]:}'
+Interval: 20
+InSeconds: false
+Debug: false
+Messages:
+    - 'you can add color very easy. &GREEN;{I am green!}'
+    - 'you can also spread a message on more lines &NEWLINE;notice how the prefix is also reprinted'
+    - '&GREEN;{you can let players execute commands!} &GREEN;&UNDERLINE;&COMMAND;{say I love commands!}{click here} &GREEN;{to activate a command}'
+    - '&AQUA;{Embeded links also work:} &BOLD;&AQUA;&UNDERLINE;&COMMAND;{"http://www.google.com/"}{click here} &AQUA;{and} &AQUA;{to go to a website}'
+    - 'You can use &COMMAND;{reloadservercast}{/reloadservercast} to reload the config file &NEWLINE;and use &COMMAND;{cast}{/cast} to cast the next message directly!'
