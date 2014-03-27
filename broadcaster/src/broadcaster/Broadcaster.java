@@ -18,6 +18,14 @@ public class Broadcaster extends JavaPlugin {
 
     private final BroadcasterAnnouncer anouncer = new BroadcasterAnnouncer(this);
 
+    private int getIntervalInTicks() {
+        int interval = getConfig().getInt("Interval");
+        if (!getConfig().getBoolean("InSeconds")) {
+            interval *= 60;
+        }
+        return 20 * interval;
+    }
+
     @Override
     public void onEnable() {
         this.saveDefaultConfig();
@@ -38,6 +46,9 @@ public class Broadcaster extends JavaPlugin {
             getServer().getScheduler().cancelTasks(this);
             int intervalInTicks = getIntervalInTicks();
             int message = 0;
+            if (args.length < 1) {
+                return false;
+            }
             if (args.length == 1) {
                 message = Integer.parseInt(args[0]);
                 if (message <= 0) {
@@ -51,14 +62,6 @@ public class Broadcaster extends JavaPlugin {
             return true;
         }
         return false;
-    }
-    
-    public int getIntervalInTicks(){
-        int interval = getConfig().getInt("Interval");
-        if (!getConfig().getBoolean("InSeconds")) {
-            interval *= 60;
-        }
-        return 20 * interval;
     }
 
 }

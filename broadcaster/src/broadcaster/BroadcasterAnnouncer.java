@@ -28,8 +28,11 @@ public class BroadcasterAnnouncer implements Runnable {
             lineIndex = 0;
         }
         String prefix = instance.getConfig().getString("Prefix");
+        if (!prefix.equals("")) {
+            prefix = prefix + " ";
+        }
         for (String string : messages.get(lineIndex).split("&NEWLINE;")) {
-            String properMessages = converter.getProperMessage(string, prefix);
+            String properMessages = converter.getProperMessage(prefix + string);
             if (instance.getConfig().getBoolean("Debug")) {
                 instance.getLogger().info(properMessages);
             }
