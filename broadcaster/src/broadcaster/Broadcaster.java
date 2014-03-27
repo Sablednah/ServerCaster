@@ -17,12 +17,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Broadcaster extends JavaPlugin {
 
     private final BroadcasterAnnouncer anouncer = new BroadcasterAnnouncer(this);
-    
+
     @Override
     public void onEnable() {
         this.saveDefaultConfig();
-        int intervalInMin = getConfig().getInt("Interval");
-        int intervalInTicks = 20 * 60 * intervalInMin;
+        int intervalInTicks = getIntervalInTicks();
         getServer().getScheduler().scheduleSyncRepeatingTask(this, anouncer, intervalInTicks, intervalInTicks);
     }
 
@@ -31,29 +30,35 @@ public class Broadcaster extends JavaPlugin {
         if (cmd.getName().equalsIgnoreCase("reloadbroadcast")) {
             reloadConfig();
             getServer().getScheduler().cancelTasks(this);
-            int intervalInMin = getConfig().getInt("Interval");
-            int intervalInTicks = 20 * 60 * intervalInMin;
+            int intervalInTicks = getIntervalInTicks();
             getServer().getScheduler().scheduleSyncRepeatingTask(this, anouncer, intervalInTicks, intervalInTicks);
             sender.sendMessage(ChatColor.GREEN + "Broad cast messages have been reloaded");
             return true;
-        }else if(cmd.getName().equalsIgnoreCase("cast")){
+        } else if (cmd.getName().equalsIgnoreCase("cast")) {
             getServer().getScheduler().cancelTasks(this);
-            int intervalInMin = getConfig().getInt("Interval");
-            int intervalInTicks = 20 * 60 * intervalInMin;
+            int intervalInTicks = getIntervalInTicks();
             int message = 0;
-            if (args.length == 1){
+            if (args.length == 1) {
                 message = Integer.parseInt(args[0]);
-                if(message <= 0){
+                if (message <= 0) {
                     sender.sendMessage(ChatColor.RED + "the number needs to be greater as zero");
                     return false;
                 }
-               
+
             }
             message--;
             getServer().getScheduler().scheduleSyncRepeatingTask(this, anouncer.getRunning(message), intervalInTicks, intervalInTicks);
             return true;
         }
         return false;
+    }
+    
+    public int getIntervalInTicks(){
+        int interval = getConfig().getInt("Interval");
+        if (!getConfig().getBoolean("InSeconds")) {
+            interval *= 60;
+        }
+        return 20 * interval;
     }
 
 }
