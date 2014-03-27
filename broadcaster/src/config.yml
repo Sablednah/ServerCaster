@@ -1,7 +1,7 @@
 
-Prefix: [BroadCaster]
-Interval: 1
+Prefix: ''
+Interval: 20
+Debug: false
 Messages:
-    - you can add multiple lines with &NEW_LINE woot!
-    - you can add colors with &RED woot!
-    - you can underline with &UNDERLINE woot!
+    - '&RED;{[Broadcast]:} &GREEN;{Every month we are holding an event.}&RED;{[Broadcast]:}&NEWLINE;&YELLOW;{this time it is going to be the enderdragon fight on sunday the second of March.}&NEWLINE;&RED;{[Broadcast]:} &YELLOW;{for dates and times} &UNDERLINE;&YELLOW;&URL;{"http://fieldsofzen.site.nfoservers.com/"}{Here}'
+    - '&RED;{[Broadcast]:} &UNDERLINE;&YELLOW;&URL;{"http://fieldsofzen.site.nfoservers.com/"}{Click Here} &YELLOW;{to go to our forums for information about maintenance and events!}'

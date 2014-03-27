@@ -3,17 +3,7 @@ package mkremins.fanciful;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.server.v1_7_R1.ChatSerializer;
-import net.minecraft.server.v1_7_R1.NBTTagCompound;
-import net.minecraft.server.v1_7_R1.PacketPlayOutChat;
-
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_7_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_7_R1.inventory.CraftItemStack;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.json.JSONException;
-import org.json.JSONStringer;
 
 public class FancyMessage {
 
@@ -72,10 +62,6 @@ public class FancyMessage {
         return this;
     }
 
-    public FancyMessage itemTooltip(final ItemStack itemStack) {
-        return itemTooltip(CraftItemStack.asNMSCopy(itemStack).save(new NBTTagCompound()).toString());
-    }
-
     public FancyMessage tooltip(final String text) {
         onHover("show_text", text);
         return this;
@@ -87,25 +73,20 @@ public class FancyMessage {
     }
 
     public String toJSONString() {
-        final JSONStringer json = new JSONStringer();
-        try {
-            if (messageParts.size() == 1) {
-                latest().writeJson(json);
-            } else {
-                json.object().key("text").value("").key("extra").array();
-                for (final MessagePart part : messageParts) {
-                    part.writeJson(json);
+        if (messageParts.size() == 1) {
+            return latest().toJSONString();
+        } else {
+            final StringBuilder JSON = new StringBuilder();
+            JSON.append("{text:'',extra:[");
+            for (int i = 0; i < messageParts.size(); i++) {
+                JSON.append(messageParts.get(i).toJSONString());
+                if (i < messageParts.size() - 1) {
+                    JSON.append(",");
                 }
-                json.endArray().endObject();
             }
-        } catch (final JSONException e) {
-            throw new RuntimeException("invalid message");
+            JSON.append("]}");
+            return JSON.toString();
         }
-        return json.toString();
-    }
-
-    public void send(Player player) {
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(toJSONString())));
     }
 
     private MessagePart latest() {

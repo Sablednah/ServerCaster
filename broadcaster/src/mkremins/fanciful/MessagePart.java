@@ -1,8 +1,6 @@
 package mkremins.fanciful;
 
 import org.bukkit.ChatColor;
-import org.json.JSONException;
-import org.json.JSONWriter;
 
 final class MessagePart {
 
@@ -16,31 +14,39 @@ final class MessagePart {
         this.text = text;
     }
 
-    JSONWriter writeJson(final JSONWriter json) throws JSONException {
-        json.object().key("text").value(text);
+    String toJSONString() {
+        final StringBuilder JSON = new StringBuilder();
+        JSON.append("{text:'").append(text).append("'");
         if (color != null) {
-            json.key("color").value(color.name().toLowerCase());
+            JSON.append(",color:'").append(color.name().toLowerCase()).append("'");
         }
         if (styles != null) {
             for (final ChatColor style : styles) {
-                json.key(style.name().toLowerCase()).value(true);
+                if (style == ChatColor.UNDERLINE) {
+                    JSON.append(",").append("underlined").append(":true");
+
+                } else {
+                    JSON.append(",").append(style.name().toLowerCase()).append(":true");
+
+                }
             }
         }
         if (clickActionName != null && clickActionData != null) {
-            json.key("clickEvent")
-                    .object()
-                    .key("action").value(clickActionName)
-                    .key("value").value(clickActionData)
-                    .endObject();
+            JSON.append(",")
+                    .append("clickEvent:{")
+                    .append("action:'").append(clickActionName).append("',")
+                    .append("value:'").append(clickActionData).append("'")
+                    .append("}");
         }
         if (hoverActionName != null && hoverActionData != null) {
-            json.key("hoverEvent")
-                    .object()
-                    .key("action").value(hoverActionName)
-                    .key("value").value(hoverActionData)
-                    .endObject();
+            JSON.append(",")
+                    .append("hoverEvent:{")
+                    .append("action:'").append(hoverActionName).append("',")
+                    .append("value:'").append(hoverActionData).append("'")
+                    .append("}");
         }
-        return json.endObject();
+        JSON.append("}");
+        return JSON.toString();
     }
 
 }

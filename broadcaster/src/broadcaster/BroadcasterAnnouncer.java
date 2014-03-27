@@ -1,7 +1,8 @@
 package broadcaster;
 
 import java.util.List;
-import mkremins.fanciful.FancyMessage;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 /**
  *
@@ -12,28 +13,46 @@ public class BroadcasterAnnouncer implements Runnable {
 
     private int lineIndex = 0;
     private final Broadcaster instance;
-    private final BroadcastConverter converter = new BroadcastConverter();
+    private final BroadcastConverter converter;
 
     BroadcasterAnnouncer(Broadcaster aThis) {
         instance = aThis;
-        converter.populateList();
+        lineIndex = 0;
+        converter = new BroadcastConverter();
     }
 
     @Override
     public void run() {
         List<String> messages = instance.getConfig().getStringList("Messages");
-        if (messages.size() == lineIndex) {
+        if (messages.size() <= lineIndex) {
             lineIndex = 0;
         }
-        String[] properMessages = converter.getProperMessage(messages.get(lineIndex));
         String prefix = instance.getConfig().getString("Prefix");
-        if (!prefix.equals("")) {
-            prefix = prefix + " ";
-        }
-        String test = new FancyMessage("").then("url").link(null).toJSONString();
-        for (String message : properMessages) {
-            instance.getServer().broadcastMessage(prefix + message);
+        for (String string : messages.get(lineIndex).split("&NEWLINE;")) {
+            String properMessages = converter.getProperMessage(string, prefix);
+            if (instance.getConfig().getBoolean("Debug")) {
+                instance.getLogger().info(properMessages);
+            }
+            sendmessage(instance.getServer().getOnlinePlayers(), properMessages);
         }
         lineIndex++;
+    }
+
+    private void sendmessage(Player[] players, String message) {
+
+        for (Player player : players) {
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getPlayerListName() + " " + message);
+
+        }
+    }
+
+    Runnable getRunning(int message) {
+        if (message == -1) {
+            run();
+        } else {
+            lineIndex = message;
+            run();
+        }
+        return this;
     }
 }
