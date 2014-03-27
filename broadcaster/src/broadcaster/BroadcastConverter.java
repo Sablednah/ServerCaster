@@ -11,11 +11,9 @@ public class BroadcastConverter {
     public BroadcastConverter() {
     }
 
-    String getProperMessage(String message, String prefix) {
-        if (!prefix.equals("")) {
-            prefix = prefix + " ";
-        }
-        FancyMessage fm = new FancyMessage(prefix);
+    String getProperMessage(String message) {
+        
+        FancyMessage fm = new FancyMessage();
         final int normalText = 0;
         final int bracketText = 1;
         final int codeText = 2;

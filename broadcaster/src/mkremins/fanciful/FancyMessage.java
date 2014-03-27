@@ -7,11 +7,9 @@ import org.bukkit.ChatColor;
 
 public class FancyMessage {
 
-    private final List<MessagePart> messageParts;
+    private final List<MessagePart> messageParts  = new ArrayList<>();
 
-    public FancyMessage(final String firstPartText) {
-        messageParts = new ArrayList<MessagePart>();
-        messageParts.add(new MessagePart(firstPartText));
+    public FancyMessage() {
     }
 
     public FancyMessage color(final ChatColor color) {
