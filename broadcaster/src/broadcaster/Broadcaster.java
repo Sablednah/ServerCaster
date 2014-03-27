@@ -46,7 +46,7 @@ public class Broadcaster extends JavaPlugin {
             getServer().getScheduler().cancelTasks(this);
             int intervalInTicks = getIntervalInTicks();
             int message = 0;
-            if (args.length < 1) {
+            if (args.length > 1) {
                 return false;
             }
             if (args.length == 1) {
