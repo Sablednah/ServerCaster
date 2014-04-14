@@ -2,6 +2,7 @@ package servercaster;
 
 import mkremins.fanciful.FancyMessage;
 
+
 /**
  *
  * @author Patrick Beuks (killje), Floris Huizinga (Flexo013)
@@ -10,7 +11,7 @@ public class ServercastConverter {
 
     String getProperMessage(String message) {
         
-        FancyMessage fm = new FancyMessage();
+        FancyMessage fm = new FancyMessage("");
         final int normalText = 0;
         final int bracketText = 1;
         final int codeText = 2;
