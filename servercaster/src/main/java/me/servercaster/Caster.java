@@ -1,5 +1,6 @@
 package me.servercaster;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,10 +17,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Caster implements Runnable, CommandExecutor {
 
     private int lineIndex = 0;
+    private int totalMessages;
     private final JavaPlugin instance = ServerCaster.getInstance();
     private final Builder converter = new Builder();
+    private final ArrayList<ArrayList<String>> messages = new ArrayList<>();
 
     public Caster() {
+        totalMessages = instance.getConfig().getStringList("Messages").size();
         init();
     }
 
@@ -35,27 +39,34 @@ public class Caster implements Runnable, CommandExecutor {
 
     @Override
     public void run() {
-        List<String> messages = instance.getConfig().getStringList("Messages");
-        if (messages.size() <= lineIndex) {
+        if (totalMessages <= lineIndex) {
             lineIndex = 0;
         }
-        String prefix = instance.getConfig().getString("Prefix");
-        if (!prefix.equals("")) {
-            prefix = prefix + " ";
-        }
-        for (String string : messages.get(lineIndex).split("&NEWLINE;")) {
-            String properMessages = converter.getProperMessage(prefix + string);
-            if (instance.getConfig().getBoolean("Debug")) {
-                instance.getLogger().info(properMessages);
+        if (totalMessages > messages.size()) {
+            List<String> storedMessages = instance.getConfig().getStringList("Messages");
+            String prefix = instance.getConfig().getString("Prefix");
+            if (!prefix.equals("")) {
+                prefix = prefix + " ";
             }
-            sendmessage(instance.getServer().getOnlinePlayers(), properMessages);
+            ArrayList<String> newMessage = new ArrayList<>();
+            for (String string : storedMessages.get(lineIndex).split("&NEWLINE;")) {
+                String properMessages = converter.getProperMessage(prefix + string);
+                if (instance.getConfig().getBoolean("Debug")) {
+                    instance.getLogger().info(properMessages);
+                }
+                newMessage.add(properMessages);
+            }
+            messages.add(newMessage);
         }
+        sendmessage(messages.get(lineIndex));
         lineIndex++;
     }
 
-    private void sendmessage(Player[] players, String message) {
-        for (Player player : players) {
-            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getPlayerListName() + " " + message);
+    private void sendmessage(ArrayList<String> message) {
+        for (Player player : instance.getServer().getOnlinePlayers()) {
+            for (String string : message) {
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getPlayerListName() + " " + string);
+            }
         }
     }
 
@@ -79,7 +90,9 @@ public class Caster implements Runnable, CommandExecutor {
     private void reset() {
         instance.reloadConfig();
         instance.getServer().getScheduler().cancelTasks(instance);
+        totalMessages = instance.getConfig().getStringList("Messages").size();
         lineIndex = 0;
+        messages.clear();
         init();
     }
 
