@@ -26,7 +26,7 @@ public class CodeConverter extends Converter {
         String savedString = getSavedString();
         if (savedString.equalsIgnoreCase("URL")) {
             WaitConverter wc = new WaitConverter(fm, sm); 
-            
+             
             wc.isUrl(true);
             return wc;
         }
