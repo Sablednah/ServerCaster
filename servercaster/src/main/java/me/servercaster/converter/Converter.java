@@ -17,8 +17,11 @@ public abstract class Converter {
         this.fm = fm;
         this.sm = sm;
     }
-
+    
     public Converter nextChar(char c) {
+        if (fm == null || sm == null) {
+            throw new NullPointerException("FancyMessage or ServercastMessage not declared");
+        }
         if (isEndChar(c)) {
             return end();
         } else {
@@ -32,14 +35,17 @@ public abstract class Converter {
     }
 
     protected abstract Converter end();
-
     protected abstract boolean isEndChar(char c);
-
+    
     protected String getSavedString() {
         return saver;
     }
 
     protected void addChar(char c) {
         saver = saver + c;
+    }
+    
+    protected void clearSavedString(){
+        saver = "";
     }
 }

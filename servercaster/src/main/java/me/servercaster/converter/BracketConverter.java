@@ -12,7 +12,7 @@ public class BracketConverter extends Converter {
     public BracketConverter(FancyMessage fm, ServercastMessage sm) {
         super(fm, sm);
     }
-
+    
     @Override
     protected boolean isEndChar(char c) {
         return c == '}';

@@ -1,7 +1,10 @@
 package me.servercaster;
 
+import me.servercaster.converter.CodeConverter;
 import me.servercaster.converter.Converter;
 import me.servercaster.converter.TextConverter;
+import me.servercaster.converter.code.CommandConverter;
+import me.servercaster.converter.code.UrlConverter;
 import mkremins.fanciful.FancyMessage;
 
 /**
@@ -16,6 +19,7 @@ public class ServercastConverter {
         FancyMessage fm = new FancyMessage("");
         ServercastMessage sm = new ServercastMessage();
         converter = new TextConverter(fm, sm);
+        init(sm);
         for (int i = 0; i < message.length(); i++) {
             char currentChar = message.charAt(i);
             converter = converter.nextChar(currentChar);
@@ -24,4 +28,8 @@ public class ServercastConverter {
         return fm.toJSONString();
     }
 
+    private void init(ServercastMessage sm) {
+        CodeConverter.addSpecialCode(new CommandConverter(sm));
+        CodeConverter.addSpecialCode(new UrlConverter(sm));
+    }
 }
