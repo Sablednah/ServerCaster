@@ -1,4 +1,4 @@
-package servercaster;
+package me.servercaster;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +8,7 @@ import org.bukkit.ChatColor;
 
 /**
  *
- * @author Patrick Beuks (killje), Floris Huizinga (Flexo013)
+ * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
 public class ServercastMessage {
 
@@ -16,8 +16,8 @@ public class ServercastMessage {
     private final Map<String, ChatColor> styles = new HashMap<>();
     private String text;
     private final ArrayList<String> textAditions = new ArrayList<>();
-    private boolean url;
-    private boolean command;
+    private boolean url = false;
+    private boolean command = false;
     private String link;
     private String commandString;
 
@@ -109,5 +109,14 @@ public class ServercastMessage {
         } else if (command) {
             fm.command(this.commandString);
         }
+    }
+
+    public void empty() {
+        text = "";
+        textAditions.clear();
+        url = false;
+        command = false;
+        link = "";
+        commandString = "";
     }
 }
