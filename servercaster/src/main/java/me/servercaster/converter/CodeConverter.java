@@ -32,10 +32,8 @@ public class CodeConverter extends Converter {
     protected Converter end() {
         nextChar = true;
         String savedString = getSavedString();
-        ServerCaster.getInstance().getLogger().info(savedString);
         if (codes.containsKey(savedString)) {
             specialCode.add(codes.get(savedString));
-            ServerCaster.getInstance().getLogger().info("i added a specialCode");
         } else {
             sm.addAdition(savedString);
         }
