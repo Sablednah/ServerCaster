@@ -1,6 +1,6 @@
 package me.servercaster.converter;
 
-import me.servercaster.ServercastMessage;
+import me.servercaster.BuilderPart;
 import mkremins.fanciful.FancyMessage;
 
 /**
@@ -9,7 +9,7 @@ import mkremins.fanciful.FancyMessage;
  */
 public class BracketConverter extends Converter {
 
-    public BracketConverter(FancyMessage fm, ServercastMessage sm) {
+    public BracketConverter(FancyMessage fm, BuilderPart sm) {
         super(fm, sm);
     }
     

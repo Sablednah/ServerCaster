@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import me.servercaster.ServerCaster;
-import me.servercaster.ServercastMessage;
+import me.servercaster.BuilderPart;
 import me.servercaster.converter.code.SpecialCodeConverter;
 import mkremins.fanciful.FancyMessage;
 
@@ -19,7 +19,7 @@ public class CodeConverter extends Converter {
     private boolean nextChar = false;
     private boolean inBracket = false;
 
-    public CodeConverter(FancyMessage fm, ServercastMessage sm) {
+    public CodeConverter(FancyMessage fm, BuilderPart sm) {
         super(fm, sm);
     }
 

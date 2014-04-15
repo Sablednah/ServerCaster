@@ -1,6 +1,6 @@
 package me.servercaster.converter.code;
 
-import me.servercaster.ServercastMessage;
+import me.servercaster.BuilderPart;
 
 /**
  *
@@ -8,10 +8,10 @@ import me.servercaster.ServercastMessage;
  */
 public class UrlConverter extends SpecialCodeConverter {
 
-    private final ServercastMessage sm;
+    private final BuilderPart sm;
     private int arguments = 1;
 
-    public UrlConverter(ServercastMessage sm) {
+    public UrlConverter(BuilderPart sm) {
         this.sm = sm;
     }
 

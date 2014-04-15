@@ -13,13 +13,13 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class ServercastAnnouncer implements Runnable, CommandExecutor {
+public class Caster implements Runnable, CommandExecutor {
 
     private int lineIndex = 0;
     private final JavaPlugin instance = ServerCaster.getInstance();
-    private final ServercastConverter converter = new ServercastConverter();
+    private final Builder converter = new Builder();
 
-    public ServercastAnnouncer() {
+    public Caster() {
         init();
     }
 
