@@ -4,7 +4,7 @@
 
     <groupId>me.servercaster</groupId>
     <artifactId>servercaster</artifactId>
-    <version>1.6-Alpha</version>
+    <version>1.7-Alpha</version>
     <packaging>jar</packaging>
 
     <name>ServerCaster</name>
@@ -40,7 +40,7 @@
                 </executions>
             </plugin>
         </plugins>
-        <finalName>ServerCaster-1.6-Alpha</finalName>
+        <finalName>ServerCaster-1.7-Alpha</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
