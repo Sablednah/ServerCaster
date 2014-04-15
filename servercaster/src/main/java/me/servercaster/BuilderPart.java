@@ -10,7 +10,7 @@ import org.bukkit.ChatColor;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class ServercastMessage {
+public class BuilderPart {
 
     private final Map<String, ChatColor> colors = new HashMap<>();
     private final Map<String, ChatColor> styles = new HashMap<>();
@@ -21,7 +21,7 @@ public class ServercastMessage {
     private String link;
     private String commandString;
 
-    public ServercastMessage() {
+    public BuilderPart() {
         colors.put("AQUA", ChatColor.AQUA);
         colors.put("BLACK", ChatColor.BLACK);
         colors.put("BLUE", ChatColor.BLUE);

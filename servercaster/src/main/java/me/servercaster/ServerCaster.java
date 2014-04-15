@@ -13,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class ServerCaster extends JavaPlugin {
 
-    private ServercastAnnouncer anouncer;
+    private Caster anouncer;
     private static JavaPlugin instance;
 
     public static JavaPlugin getInstance() {
@@ -23,7 +23,7 @@ public class ServerCaster extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        anouncer = new ServercastAnnouncer();
+        anouncer = new Caster();
         this.saveDefaultConfig();
         getCommand("cast").setExecutor(anouncer);
         getCommand("reloadservercast").setExecutor(anouncer);

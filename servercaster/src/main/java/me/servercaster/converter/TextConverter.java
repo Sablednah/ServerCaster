@@ -1,6 +1,6 @@
 package me.servercaster.converter;
 
-import me.servercaster.ServercastMessage;
+import me.servercaster.BuilderPart;
 import mkremins.fanciful.FancyMessage;
 
 /**
@@ -9,7 +9,7 @@ import mkremins.fanciful.FancyMessage;
  */
 public class TextConverter extends Converter {
 
-    public TextConverter(FancyMessage fm, ServercastMessage sm) {
+    public TextConverter(FancyMessage fm, BuilderPart sm) {
         super(fm, sm);
     }
 

@@ -1,6 +1,6 @@
 package me.servercaster.converter;
 
-import me.servercaster.ServercastMessage;
+import me.servercaster.BuilderPart;
 import mkremins.fanciful.FancyMessage;
 
 /**
@@ -11,9 +11,9 @@ public abstract class Converter {
 
     private String saver = "";
     protected final FancyMessage fm;
-    protected final ServercastMessage sm;
+    protected final BuilderPart sm;
 
-    public Converter(FancyMessage fm, ServercastMessage sm) {
+    public Converter(FancyMessage fm, BuilderPart sm) {
         this.fm = fm;
         this.sm = sm;
     }
