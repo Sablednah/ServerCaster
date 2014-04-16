@@ -1,7 +1,5 @@
 package me.servercaster.converter.code;
 
-import me.servercaster.BuilderPart;
-
 /**
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)

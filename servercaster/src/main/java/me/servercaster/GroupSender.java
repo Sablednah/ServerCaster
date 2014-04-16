@@ -27,8 +27,8 @@ public class GroupSender {
     public boolean addPlayer(Player player) {
         return players.add(player);
     }
-    
-    public void run(){
+
+    public void run() {
         if (totalMessages <= lineIndex) {
             lineIndex = 0;
         }
@@ -52,7 +52,7 @@ public class GroupSender {
         sendmessage(messages.get(lineIndex));
         lineIndex++;
     }
-    
+
     private void sendmessage(ArrayList<String> message) {
         for (Player player : players) {
             for (String string : message) {
@@ -60,8 +60,8 @@ public class GroupSender {
             }
         }
     }
-    
-    public String getGroup(){
+
+    public String getGroup() {
         return path;
     }
 
