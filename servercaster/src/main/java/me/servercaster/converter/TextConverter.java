@@ -9,8 +9,8 @@ import mkremins.fanciful.FancyMessage;
  */
 public class TextConverter extends Converter {
 
-    public TextConverter(FancyMessage fm, BuilderPart sm) {
-        super(fm, sm);
+    public TextConverter(FancyMessage fm, BuilderPart bp) {
+        super(fm, bp);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class TextConverter extends Converter {
     @Override
     protected Converter end() {
         fm.then(getSavedString());
-        return new CodeConverter(fm, sm);
+        return new CodeConverter(fm, bp);
     }
 
 }

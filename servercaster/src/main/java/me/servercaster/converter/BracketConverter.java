@@ -9,8 +9,8 @@ import mkremins.fanciful.FancyMessage;
  */
 public class BracketConverter extends Converter {
 
-    public BracketConverter(FancyMessage fm, BuilderPart sm) {
-        super(fm, sm);
+    public BracketConverter(FancyMessage fm, BuilderPart bp) {
+        super(fm, bp);
     }
     
     @Override
@@ -20,10 +20,10 @@ public class BracketConverter extends Converter {
 
     @Override
     protected Converter end() {
-        sm.setText(getSavedString());
-        sm.getMessage(fm);
-        sm.empty();
-        return new TextConverter(fm, sm);
+        bp.setText(getSavedString());
+        bp.getMessage(fm);
+        bp.empty();
+        return new TextConverter(fm, bp);
     }
 
 }
