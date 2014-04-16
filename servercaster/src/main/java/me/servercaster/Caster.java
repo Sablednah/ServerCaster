@@ -33,7 +33,6 @@ public class Caster implements Runnable, CommandExecutor, Listener {
         if (instance.getConfig().getBoolean("UseGroups")) {
             Set<String> groups = instance.getConfig().getConfigurationSection("Messages").getKeys(false);
             for (String string : groups) {
-                instance.getLogger().info("adding: Messages." + string);
                 senders.add(new GroupSender("Messages." + string));
             }
         } else {
@@ -111,10 +110,8 @@ public class Caster implements Runnable, CommandExecutor, Listener {
     }
 
     private void addPlayer(Player player) {
-        instance.getLogger().info("adding: " + player.getDisplayName());
         for (GroupSender groupSender : senders) {
             if (player.hasPermission("ServerCaster." + groupSender.getGroup())) {
-                instance.getLogger().info("added player: " + player.getDisplayName() + ", to: " + groupSender.getGroup());
                 groupSender.addPlayer(player);
                 return;
             }
