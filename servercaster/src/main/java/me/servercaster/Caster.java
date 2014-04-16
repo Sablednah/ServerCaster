@@ -71,12 +71,12 @@ public class Caster implements Runnable, CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (cmd.getName().equalsIgnoreCase("reloadservercast")) {
+        if (cmd.getName().equalsIgnoreCase("reloadservercaster")) {
             if (args.length > 0) {
                 return false;
             }
             reset();
-            sender.sendMessage(ChatColor.GREEN + "Servercast messages have been reloaded");
+            sender.sendMessage(ChatColor.GREEN + "ServerCaster messages have been reloaded");
             return true;
         } else if (cmd.getName().equalsIgnoreCase("cast")) {
             if (args.length > 0) {
