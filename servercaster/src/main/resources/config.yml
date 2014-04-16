@@ -22,9 +22,9 @@ Debug: false
 #        - 'message for Group2'        
 
 # Permissions without groups looks like ServerCaster.Messages
-# with groups they look like - ServerCaster.Messages.Group1
-# when using inherent groups make sure you remove the person from the previous group
-# you can do this by adding - - ServerCaster.Messages.Group1 to the desiret group
+# With groups they look like - ServerCaster.Messages.Group1
+# When using inherenting groups make sure you remove the person from the previous group
+# You can do this by adding - -ServerCaster.Messages.Group1 to the desired group
 UseGroups: false
 Messages:
     - 'Colors are very easy to add. &GREEN;{Here is some green text!}'
