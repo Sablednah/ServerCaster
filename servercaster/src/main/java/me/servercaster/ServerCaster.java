@@ -5,6 +5,9 @@
  */
 package me.servercaster;
 
+import me.servercaster.converter.CodeConverter;
+import me.servercaster.converter.code.CommandConverter;
+import me.servercaster.converter.code.UrlConverter;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -27,6 +30,8 @@ public class ServerCaster extends JavaPlugin {
         this.saveDefaultConfig();
         getCommand("cast").setExecutor(anouncer);
         getCommand("reloadservercast").setExecutor(anouncer);
+        CodeConverter.addSpecialCode(new CommandConverter());
+        CodeConverter.addSpecialCode(new UrlConverter());
     }
 
 }

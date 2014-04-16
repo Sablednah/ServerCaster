@@ -11,15 +11,15 @@ public abstract class Converter {
 
     private String saver = "";
     protected final FancyMessage fm;
-    protected final BuilderPart sm;
+    protected final BuilderPart bp;
 
-    public Converter(FancyMessage fm, BuilderPart sm) {
+    public Converter(FancyMessage fm, BuilderPart bp) {
         this.fm = fm;
-        this.sm = sm;
+        this.bp = bp;
     }
     
     public Converter nextChar(char c) {
-        if (fm == null || sm == null) {
+        if (fm == null || bp == null) {
             throw new NullPointerException("FancyMessage or ServercastMessage not declared");
         }
         if (isEndChar(c)) {
