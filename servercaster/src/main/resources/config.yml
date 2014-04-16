@@ -31,5 +31,5 @@ Messages:
     - 'You can also have broadcasts continue on the next line. &NEWLINE;Notice how the prefix &RED;{[Broadcast]:} was reprinted.'
     - 'You can have players execute commands by clicking chat! &GREEN;&UNDERLINE;&COMMAND;{say I love commands!}{Click here} to activate a test command!'
     - 'You can even use embedded links! &AQUA;&UNDERLINE;&URL;{"http://www.google.com/"}{Click here} to go to a website!'
-    - 'You can use &COMMAND;{reloadservercast}{/reloadservercast} to reload the config file &NEWLINE;and use &COMMAND;{cast}{/cast} to cast the next message directly!'
+    - 'You can use &COMMAND;{reloadservercaster}{/reloadservercaster} to reload the config file &NEWLINE;and use &COMMAND;{cast}{/cast} to cast the next message directly!'
 

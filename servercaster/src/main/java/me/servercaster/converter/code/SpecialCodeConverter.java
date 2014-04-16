@@ -11,16 +11,27 @@ public abstract class SpecialCodeConverter {
 
     protected FancyMessage fm;
     protected BuilderPart bp;
+    private final int arguments;
+    private int argumentsLeft;
+
+    public SpecialCodeConverter(int arguments) {
+        this.arguments = arguments;
+        this.argumentsLeft = arguments;
+    }
 
     public abstract String getCode();
 
     public abstract void doAction(String s);
 
-    protected abstract int getArgumentsLeft();
-
     public boolean isEnd(String s) {
         doAction(s);
-        return getArgumentsLeft() == 0;
+        argumentsLeft--;
+        if (argumentsLeft == 0) {
+            argumentsLeft = arguments;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void addBuilders(FancyMessage fm, BuilderPart bp) {

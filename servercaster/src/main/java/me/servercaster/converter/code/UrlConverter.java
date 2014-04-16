@@ -6,7 +6,9 @@ package me.servercaster.converter.code;
  */
 public class UrlConverter extends SpecialCodeConverter {
 
-    private int arguments = 1;
+    public UrlConverter() {
+        super(1);
+    }
 
     @Override
     public String getCode() {
@@ -16,12 +18,6 @@ public class UrlConverter extends SpecialCodeConverter {
     @Override
     public void doAction(String s) {
         bp.addUrl(s.substring(1, s.length() - 2));
-        arguments--;
-    }
-
-    @Override
-    protected int getArgumentsLeft() {
-        return arguments;
     }
 
 }

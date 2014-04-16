@@ -6,8 +6,10 @@ package me.servercaster.converter.code;
  */
 public class CommandConverter extends SpecialCodeConverter {
 
-    private int arguments = 1;
-
+    public CommandConverter() {
+        super(1);
+    }    
+    
     @Override
     public String getCode() {
         return "COMMAND";
@@ -16,12 +18,5 @@ public class CommandConverter extends SpecialCodeConverter {
     @Override
     public void doAction(String s) {
         bp.addCommand("/" + s);
-        arguments--;
     }
-
-    @Override
-    protected int getArgumentsLeft() {
-        return arguments;
-    }
-
 }
