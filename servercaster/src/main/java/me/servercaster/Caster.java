@@ -56,6 +56,7 @@ public class Caster implements Runnable, CommandExecutor, Listener {
     }
 
     private void reset() {
+        instance.saveDefaultConfig();
         instance.reloadConfig();
         instance.getServer().getScheduler().cancelTasks(instance);
         senders.clear();
