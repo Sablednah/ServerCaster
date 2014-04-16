@@ -29,7 +29,7 @@ public class ServerCaster extends JavaPlugin {
         anouncer = new Caster();
         this.saveDefaultConfig();
         getCommand("cast").setExecutor(anouncer);
-        getCommand("reloadservercast").setExecutor(anouncer);
+        getCommand("reloadservercaster").setExecutor(anouncer);
         CodeConverter.addSpecialCode(new CommandConverter());
         CodeConverter.addSpecialCode(new UrlConverter());
         getServer().getPluginManager().registerEvents(anouncer, this);
