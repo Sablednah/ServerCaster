@@ -41,8 +41,8 @@ public class Caster implements Runnable, CommandExecutor, Listener {
         }
         addToScheduler();
     }
-    
-    private void addToScheduler(){
+
+    private void addToScheduler() {
         int intervalInTicks = getIntervalInTicks();
         instance.getServer().getScheduler().scheduleSyncRepeatingTask(instance, this, intervalInTicks, intervalInTicks);
     }
@@ -106,8 +106,8 @@ public class Caster implements Runnable, CommandExecutor, Listener {
     public void kickEvent(PlayerKickEvent e) {
         removePlayer(e.getPlayer());
     }
-    
-    private void addPlayer(Player player){
+
+    private void addPlayer(Player player) {
         for (GroupSender groupSender : senders) {
             if (player.hasPermission("ServerCaster." + groupSender.getGroup())) {
                 groupSender.addPlayer(player);

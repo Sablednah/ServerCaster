@@ -17,7 +17,11 @@ public abstract class Converter {
         this.fm = fm;
         this.bp = bp;
     }
-    
+
+    protected abstract Converter end();
+
+    protected abstract boolean isEndChar(char c);
+
     public Converter nextChar(char c) {
         if (fm == null || bp == null) {
             throw new NullPointerException("FancyMessage or ServercastMessage not declared");
@@ -34,9 +38,6 @@ public abstract class Converter {
         fm.then(saver);
     }
 
-    protected abstract Converter end();
-    protected abstract boolean isEndChar(char c);
-    
     protected String getSavedString() {
         return saver;
     }
@@ -44,8 +45,8 @@ public abstract class Converter {
     protected void addChar(char c) {
         saver = saver + c;
     }
-    
-    protected void clearSavedString(){
+
+    protected void clearSavedString() {
         saver = "";
     }
 }
