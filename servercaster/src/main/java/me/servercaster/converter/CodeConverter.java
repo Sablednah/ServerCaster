@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import me.servercaster.BuilderPart;
+import me.servercaster.ServerCaster;
 import me.servercaster.converter.code.SpecialCodeConverter;
 import mkremins.fanciful.FancyMessage;
 
@@ -20,8 +21,11 @@ public class CodeConverter extends Converter {
 
     public CodeConverter(FancyMessage fm, BuilderPart bp) {
         super(fm, bp);
-        for (SpecialCodeConverter specialCodeConverter : specialCode) {
+        for (Map.Entry<String, SpecialCodeConverter> entry : codes.entrySet()) {
+            ServerCaster.getInstance().getLogger().info("i am adding builders");
+            SpecialCodeConverter specialCodeConverter = entry.getValue();
             specialCodeConverter.addBuilders(fm, bp);
+            
         }
     }
 

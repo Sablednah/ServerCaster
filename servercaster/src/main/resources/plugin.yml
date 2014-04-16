@@ -10,5 +10,5 @@ commands:
       permission: servercaster.reload
    cast:
       description: broadcast the next message or the message with the specified message number
-      usage: /cast [message number]
+      usage: /cast
       permission: servercaster.now
