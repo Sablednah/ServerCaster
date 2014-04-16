@@ -33,10 +33,7 @@ public class GroupSender {
             lineIndex = 0;
         }
         if (totalMessages > messages.size()) {
-            instance.getLogger().info("opening: " + path);
             List<String> storedMessages = instance.getConfig().getStringList(path);
-            instance.getLogger().info("this is null: " + (storedMessages == null));
-            instance.getLogger().info("this is empty: " + (storedMessages.isEmpty()));
             String prefix = instance.getConfig().getString("Prefix");
             Builder builder = new Builder();
             if (!prefix.equals("")) {
