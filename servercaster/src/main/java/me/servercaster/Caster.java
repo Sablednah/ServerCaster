@@ -2,7 +2,6 @@ package me.servercaster;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,9 +9,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,6 +24,7 @@ public class Caster implements Runnable, CommandExecutor, Listener {
 
     private final JavaPlugin instance = ServerCaster.getInstance();
     private final List<GroupSender> senders = new LinkedList<>();
+    private boolean firstRun = true;
 
     public Caster() {
         init();
@@ -37,9 +38,6 @@ public class Caster implements Runnable, CommandExecutor, Listener {
             }
         } else {
             senders.add(new GroupSender("Messages"));
-        }
-        for (Player player : instance.getServer().getOnlinePlayers()) {
-            addPlayer(player);
         }
         addToScheduler();
     }
@@ -58,9 +56,11 @@ public class Caster implements Runnable, CommandExecutor, Listener {
     }
 
     private void reset() {
+        instance.saveDefaultConfig();
         instance.reloadConfig();
         instance.getServer().getScheduler().cancelTasks(instance);
         senders.clear();
+        firstRun = true;
         init();
     }
 
@@ -73,6 +73,12 @@ public class Caster implements Runnable, CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (firstRun) {
+            firstRun = false;
+            for (Player player : instance.getServer().getOnlinePlayers()) {
+                addPlayer(player);
+            }
+        }
         if (cmd.getName().equalsIgnoreCase("reloadservercaster")) {
             if (args.length > 0) {
                 return false;
@@ -93,8 +99,11 @@ public class Caster implements Runnable, CommandExecutor, Listener {
         return false;
     }
 
-    @EventHandler
-    public void loginEvent(PlayerLoginEvent e) {
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void loginEvent(PlayerJoinEvent e) {
+        if (firstRun) {
+            return;
+        }
         Player player = e.getPlayer();
         addPlayer(player);
     }
@@ -111,6 +120,10 @@ public class Caster implements Runnable, CommandExecutor, Listener {
 
     private void addPlayer(Player player) {
         for (GroupSender groupSender : senders) {
+            if (player.isPermissionSet("ServerCaster." + groupSender.getGroup()) && !instance.getConfig().getBoolean("UseGroups")) {
+                groupSender.addPlayer(player);
+                return;
+            }
             if (player.hasPermission("ServerCaster." + groupSender.getGroup())) {
                 groupSender.addPlayer(player);
                 return;
