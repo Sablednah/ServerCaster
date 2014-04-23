@@ -35,11 +35,10 @@ public class CodeConverter extends Converter {
     protected Converter end() {
         nextChar = true;
         String savedString = getSavedString();
-        if (codes.containsKey(savedString)) {
+        if (codes.containsKey(savedString.toLowerCase())) {
             SpecialCodeConverter scc = codes.get(savedString);
             if (scc.hasArgumentsLeft()) {
                 specialCode.add(scc);
-                //TODO make this a color/style converter
             }
         } else {
             throw new IllegalArgumentException("Code unknown");
