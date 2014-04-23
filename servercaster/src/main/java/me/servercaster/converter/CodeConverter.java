@@ -3,7 +3,6 @@ package me.servercaster.converter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import me.servercaster.BuilderPart;
 import me.servercaster.converter.code.SpecialCodeConverter;
 import mkremins.fanciful.FancyMessage;
 
@@ -18,11 +17,11 @@ public class CodeConverter extends Converter {
     private boolean nextChar = false;
     private boolean inBracket = false;
 
-    public CodeConverter(FancyMessage fm, BuilderPart bp) {
-        super(fm, bp);
+    public CodeConverter(FancyMessage fm) {
+        super(fm);
         for (Map.Entry<String, SpecialCodeConverter> entry : codes.entrySet()) {
             SpecialCodeConverter specialCodeConverter = entry.getValue();
-            specialCodeConverter.addBuilders(fm, bp);
+            specialCodeConverter.addBuilders(fm);
 
         }
     }
@@ -37,18 +36,23 @@ public class CodeConverter extends Converter {
         nextChar = true;
         String savedString = getSavedString();
         if (codes.containsKey(savedString)) {
-            specialCode.add(codes.get(savedString));
+            SpecialCodeConverter scc = codes.get(savedString);
+            if (scc.hasArgumentsLeft()) {
+                specialCode.add(scc);
+                //TODO make this a color/style converter
+            }
         } else {
-            bp.addAdition(savedString);
+            throw new IllegalArgumentException("Code unknown");
         }
+
         clearSavedString();
         return this;
     }
 
     @Override
     public Converter nextChar(char c) {
-        if (fm == null || bp == null) {
-            throw new NullPointerException("FancyMessage or ServercastMessage not declared");
+        if (fm == null) {
+            throw new NullPointerException("FancyMessage not declared");
         }
         if (inBracket) {
             if (specialCode.get(0).isEndChar(c)) {
@@ -63,7 +67,7 @@ public class CodeConverter extends Converter {
         if (nextChar) {
             if (c == '{') {
                 if (specialCode.isEmpty()) {
-                    return new BracketConverter(fm, bp);
+                    return new BracketConverter(fm);
                 }
                 inBracket = true;
                 return this;

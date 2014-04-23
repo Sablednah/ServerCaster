@@ -1,6 +1,5 @@
 package me.servercaster.converter;
 
-import me.servercaster.BuilderPart;
 import mkremins.fanciful.FancyMessage;
 
 /**
@@ -11,11 +10,9 @@ public abstract class Converter {
 
     private String saver = "";
     protected final FancyMessage fm;
-    protected final BuilderPart bp;
 
-    public Converter(FancyMessage fm, BuilderPart bp) {
+    public Converter(FancyMessage fm) {
         this.fm = fm;
-        this.bp = bp;
     }
 
     protected abstract Converter end();
@@ -23,8 +20,8 @@ public abstract class Converter {
     protected abstract boolean isEndChar(char c);
 
     public Converter nextChar(char c) {
-        if (fm == null || bp == null) {
-            throw new NullPointerException("FancyMessage or ServercastMessage not declared");
+        if (fm == null) {
+            throw new NullPointerException("FancyMessage not declared");
         }
         if (isEndChar(c)) {
             return end();

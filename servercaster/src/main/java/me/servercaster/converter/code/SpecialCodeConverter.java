@@ -1,6 +1,5 @@
 package me.servercaster.converter.code;
 
-import me.servercaster.BuilderPart;
 import mkremins.fanciful.FancyMessage;
 
 /**
@@ -10,7 +9,6 @@ import mkremins.fanciful.FancyMessage;
 public abstract class SpecialCodeConverter {
 
     protected FancyMessage fm;
-    protected BuilderPart bp;
     private final int arguments;
     private int argumentsLeft;
 
@@ -23,10 +21,14 @@ public abstract class SpecialCodeConverter {
 
     public abstract void doAction(String s);
 
+    public boolean hasArgumentsLeft(){
+        return argumentsLeft != 0;
+    }
+    
     public boolean isEnd(String s) {
         doAction(s);
         argumentsLeft--;
-        if (argumentsLeft == 0) {
+        if (!hasArgumentsLeft()) {
             argumentsLeft = arguments;
             return true;
         } else {
@@ -34,9 +36,8 @@ public abstract class SpecialCodeConverter {
         }
     }
 
-    public void addBuilders(FancyMessage fm, BuilderPart bp) {
+    public void addBuilders(FancyMessage fm) {
         this.fm = fm;
-        this.bp = bp;
     }
 
     public boolean isEndChar(char c) {

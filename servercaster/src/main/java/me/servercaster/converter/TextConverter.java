@@ -1,6 +1,5 @@
 package me.servercaster.converter;
 
-import me.servercaster.BuilderPart;
 import mkremins.fanciful.FancyMessage;
 
 /**
@@ -9,8 +8,8 @@ import mkremins.fanciful.FancyMessage;
  */
 public class TextConverter extends Converter {
 
-    public TextConverter(FancyMessage fm, BuilderPart bp) {
-        super(fm, bp);
+    public TextConverter(FancyMessage fm) {
+        super(fm);
     }
 
     @Override
@@ -21,7 +20,7 @@ public class TextConverter extends Converter {
     @Override
     protected Converter end() {
         fm.then(getSavedString());
-        return new CodeConverter(fm, bp);
+        return new CodeConverter(fm);
     }
 
 }
