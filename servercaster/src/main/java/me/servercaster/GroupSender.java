@@ -40,7 +40,7 @@ public class GroupSender {
                 prefix = prefix + " ";
             }
             ArrayList<String> newMessage = new ArrayList<>();
-            for (String string : storedMessages.get(lineIndex).split("&NEWLINE;")) {
+            for (String string : storedMessages.get(lineIndex).toLowerCase().split(("&NEWLINE;").toLowerCase())) {
                 String properMessages = builder.getProperMessage(prefix + string);
                 if (instance.getConfig().getBoolean("Debug")) {
                     instance.getLogger().info(properMessages);
