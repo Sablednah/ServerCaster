@@ -66,6 +66,12 @@ public class Caster implements Runnable, CommandExecutor, Listener {
 
     @Override
     public void run() {
+        if (firstRun) {
+            firstRun = false;
+            for (Player player : instance.getServer().getOnlinePlayers()) {
+                addPlayer(player);
+            }
+        }
         for (GroupSender groupSender : senders) {
             groupSender.run();
         }
@@ -73,12 +79,6 @@ public class Caster implements Runnable, CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (firstRun) {
-            firstRun = false;
-            for (Player player : instance.getServer().getOnlinePlayers()) {
-                addPlayer(player);
-            }
-        }
         if (cmd.getName().equalsIgnoreCase("reloadservercaster")) {
             if (args.length > 0) {
                 return false;
