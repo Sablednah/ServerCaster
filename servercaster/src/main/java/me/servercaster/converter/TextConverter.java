@@ -19,7 +19,8 @@ public class TextConverter extends Converter {
 
     @Override
     protected Converter end() {
-        fm.then(getSavedString());
+        fm.text(getSavedString());
+        fm.then();
         return new CodeConverter(fm);
     }
 
