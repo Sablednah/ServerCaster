@@ -11,7 +11,7 @@ public class SuggestConverter extends SpecialCodeConverter {
     }    
     
     @Override
-    public String getCode() {
+    protected String getKeyword() {
         return "SUGGEST";
     }
 
