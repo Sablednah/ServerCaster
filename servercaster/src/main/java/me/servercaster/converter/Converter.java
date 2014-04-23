@@ -32,7 +32,7 @@ public abstract class Converter {
     }
 
     public void done() {
-        fm.then(saver);
+        fm.text(saver);
     }
 
     protected String getSavedString() {
