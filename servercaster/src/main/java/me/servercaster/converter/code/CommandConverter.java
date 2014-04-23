@@ -11,7 +11,7 @@ public class CommandConverter extends SpecialCodeConverter {
     }    
     
     @Override
-    public String getCode() {
+    protected String getKeyword() {
         return "COMMAND";
     }
 
