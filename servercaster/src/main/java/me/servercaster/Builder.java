@@ -14,8 +14,7 @@ public class Builder {
 
     public String getProperMessage(String message) {
         FancyMessage fm = new FancyMessage("");
-        BuilderPart bp = new BuilderPart();
-        converter = new TextConverter(fm, bp);
+        converter = new TextConverter(fm);
         for (int i = 0; i < message.length(); i++) {
             char currentChar = message.charAt(i);
             converter = converter.nextChar(currentChar);

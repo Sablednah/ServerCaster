@@ -17,6 +17,6 @@ public class CommandConverter extends SpecialCodeConverter {
 
     @Override
     public void doAction(String s) {
-        bp.addCommand("/" + s);
+        fm.command("/" + s);
     }
 }

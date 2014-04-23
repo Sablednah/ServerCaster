@@ -17,7 +17,7 @@ public class UrlConverter extends SpecialCodeConverter {
 
     @Override
     public void doAction(String s) {
-        bp.addUrl(s.substring(1, s.length() - 2));
+        fm.link(s.substring(1, s.length() - 2));
     }
 
 }
