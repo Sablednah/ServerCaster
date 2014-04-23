@@ -21,13 +21,14 @@ public abstract class SpecialCodeConverter {
 
     public abstract void doAction(String s);
 
-    public String getCode(){
+    public String getCode() {
         return getKeyword().toLowerCase();
     }
-    public boolean hasArgumentsLeft(){
+
+    public boolean hasArgumentsLeft() {
         return argumentsLeft != 0;
     }
-    
+
     public boolean isEnd(String s) {
         doAction(s);
         argumentsLeft--;
