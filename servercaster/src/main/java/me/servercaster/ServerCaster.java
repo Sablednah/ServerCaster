@@ -21,6 +21,7 @@ public class ServerCaster extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        instance.saveDefaultConfig();
         anouncer = new Caster();
         getCommand("cast").setExecutor(anouncer);
         getCommand("reloadservercaster").setExecutor(anouncer);
