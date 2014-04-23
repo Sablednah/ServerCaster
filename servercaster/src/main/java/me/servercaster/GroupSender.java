@@ -2,7 +2,10 @@ package me.servercaster;
 
 import java.util.ArrayList;
 import java.util.List;
+import net.minecraft.server.v1_7_R3.ChatSerializer;
+import net.minecraft.server.v1_7_R3.PacketPlayOutChat;
 import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_7_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -56,7 +59,8 @@ public class GroupSender {
     private void sendmessage(ArrayList<String> message) {
         for (Player player : players) {
             for (String string : message) {
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " " + string);
+                ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(string), true));
+                //Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " " + string);
             }
         }
     }
