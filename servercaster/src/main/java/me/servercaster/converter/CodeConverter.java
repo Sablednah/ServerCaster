@@ -39,6 +39,8 @@ public class CodeConverter extends Converter {
             SpecialCodeConverter scc = codes.get(savedString.toLowerCase());
             if (scc.hasArgumentsLeft()) {
                 specialCode.add(scc);
+            }else{
+                scc.doAction(savedString);
             }
         } else {
             throw new IllegalArgumentException("Code unknown");
