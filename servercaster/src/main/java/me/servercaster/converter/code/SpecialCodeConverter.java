@@ -17,10 +17,13 @@ public abstract class SpecialCodeConverter {
         this.argumentsLeft = arguments;
     }
 
-    public abstract String getCode();
+    protected abstract String getKeyword();
 
     public abstract void doAction(String s);
 
+    public String getCode(){
+        return getKeyword().toLowerCase();
+    }
     public boolean hasArgumentsLeft(){
         return argumentsLeft != 0;
     }

@@ -11,7 +11,7 @@ public class UrlConverter extends SpecialCodeConverter {
     }
 
     @Override
-    public String getCode() {
+    protected String getKeyword() {
         return "URL";
     }
 

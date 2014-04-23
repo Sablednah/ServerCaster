@@ -18,7 +18,7 @@ public class ColorConverter extends SpecialCodeConverter{
     }
 
     @Override
-    public String getCode() {
+    protected String getKeyword() {
         return name;
     }
 
