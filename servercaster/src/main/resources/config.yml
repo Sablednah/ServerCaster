@@ -4,7 +4,8 @@
 # |Created by: Killje and Flexo013                                             |
 # +----------------------------------------------------------------------------+
 # |Make sure that you NEVER use tabs. Always use spaces or bukkit will complain|
-# |Do not use apostrophes (') in you messages. The line will break if you do so|
+# |If you want to use (') inside a text line you will                          |
+# |     need to escape it with a second (')                                    |
 # |When using links make sure to use " "!                                      |
 # +----------------------------------------------------------------------------+
 Prefix: '&RED;{[Broadcast]:}'
