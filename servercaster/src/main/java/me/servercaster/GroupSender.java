@@ -56,7 +56,7 @@ public class GroupSender {
     private void sendmessage(ArrayList<String> message) {
         for (Player player : players) {
             for (String string : message) {
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getPlayerListName() + " " + string);
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " " + string);
             }
         }
     }
