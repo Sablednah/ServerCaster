@@ -4,6 +4,7 @@ import me.servercaster.converter.CodeConverter;
 import me.servercaster.converter.code.ColorConverter;
 import me.servercaster.converter.code.CommandConverter;
 import me.servercaster.converter.code.StyleConverter;
+import me.servercaster.converter.code.SuggestConverter;
 import me.servercaster.converter.code.UrlConverter;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -30,6 +31,7 @@ public class ServerCaster extends JavaPlugin {
         getCommand("reloadservercaster").setExecutor(anouncer);
         CodeConverter.addSpecialCode(new CommandConverter());
         CodeConverter.addSpecialCode(new UrlConverter());
+        CodeConverter.addSpecialCode(new SuggestConverter());
         CodeConverter.addSpecialCode(new ColorConverter("AQUA", ChatColor.AQUA));
         CodeConverter.addSpecialCode(new ColorConverter("BLACK", ChatColor.BLACK));
         CodeConverter.addSpecialCode(new ColorConverter("BLUE", ChatColor.BLUE));
