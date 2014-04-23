@@ -36,7 +36,7 @@ public class CodeConverter extends Converter {
         nextChar = true;
         String savedString = getSavedString();
         if (codes.containsKey(savedString.toLowerCase())) {
-            SpecialCodeConverter scc = codes.get(savedString);
+            SpecialCodeConverter scc = codes.get(savedString.toLowerCase());
             if (scc.hasArgumentsLeft()) {
                 specialCode.add(scc);
             }
