@@ -13,7 +13,7 @@ public class Builder {
     private Converter converter;
 
     public String getProperMessage(String message) {
-        FancyMessage fm = new FancyMessage("");
+        FancyMessage fm = new FancyMessage();
         converter = new TextConverter(fm);
         for (int i = 0; i < message.length(); i++) {
             char currentChar = message.charAt(i);
