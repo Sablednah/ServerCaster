@@ -1,4 +1,4 @@
-package me.servercaster.converter.code;
+package me.servercaster.main.converter.code;
 
 /**
  *
@@ -16,7 +16,7 @@ public class SuggestConverter extends SpecialCodeConverter {
     }
 
     @Override
-    public void doAction(String s) {
-        fm.suggest(s);
+    public void doAction(String argument) {
+        getJSONSaver().suggest(argument);
     }
 }

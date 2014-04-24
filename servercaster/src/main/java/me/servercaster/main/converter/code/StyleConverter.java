@@ -1,4 +1,4 @@
-package me.servercaster.converter.code;
+package me.servercaster.main.converter.code;
 
 import org.bukkit.ChatColor;
 
@@ -23,8 +23,8 @@ public class StyleConverter extends SpecialCodeConverter{
     }
 
     @Override
-    public void doAction(String s) {
-        fm.style(style);
+    public void doAction(String argument) {
+        getJSONSaver().style(style);
     }
     
     
