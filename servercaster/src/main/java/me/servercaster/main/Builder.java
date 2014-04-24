@@ -1,7 +1,7 @@
-package me.servercaster;
+package me.servercaster.main;
 
-import me.servercaster.converter.Converter;
-import me.servercaster.converter.TextConverter;
+import me.servercaster.main.converter.Converter;
+import me.servercaster.main.converter.TextConverter;
 import mkremins.fanciful.FancyMessage;
 
 /**

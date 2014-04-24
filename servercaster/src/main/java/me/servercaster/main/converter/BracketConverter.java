@@ -1,4 +1,4 @@
-package me.servercaster.converter;
+package me.servercaster.main.converter;
 
 import mkremins.fanciful.FancyMessage;
 
@@ -6,22 +6,22 @@ import mkremins.fanciful.FancyMessage;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class TextConverter extends Converter {
+public class BracketConverter extends Converter {
 
-    public TextConverter(FancyMessage fm) {
+    public BracketConverter(FancyMessage fm) {
         super(fm);
     }
 
     @Override
     protected boolean isEndChar(char c) {
-        return c == '&';
+        return c == '}';
     }
 
     @Override
     protected Converter end() {
         fm.text(getSavedString());
         fm.then();
-        return new CodeConverter(fm);
+        return new TextConverter(fm);
     }
 
 }

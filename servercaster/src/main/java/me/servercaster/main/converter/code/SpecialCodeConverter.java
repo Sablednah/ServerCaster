@@ -1,4 +1,4 @@
-package me.servercaster.converter.code;
+package me.servercaster.main.converter.code;
 
 import mkremins.fanciful.FancyMessage;
 
@@ -8,7 +8,7 @@ import mkremins.fanciful.FancyMessage;
  */
 public abstract class SpecialCodeConverter {
 
-    protected FancyMessage fm;
+    private FancyMessage fm;
     private final int arguments;
     private int argumentsLeft;
 
@@ -29,8 +29,8 @@ public abstract class SpecialCodeConverter {
         return argumentsLeft != 0;
     }
 
-    public boolean isEnd(String s) {
-        doAction(s);
+    public boolean isEnd(String argument) {
+        doAction(argument);
         argumentsLeft--;
         if (!hasArgumentsLeft()) {
             argumentsLeft = arguments;
@@ -40,11 +40,15 @@ public abstract class SpecialCodeConverter {
         }
     }
 
-    public void addBuilders(FancyMessage fm) {
+    public void addBuilder(FancyMessage fm) {
         this.fm = fm;
     }
 
     public boolean isEndChar(char c) {
         return c == '}';
+    }
+    
+    protected FancyMessage getJSONSaver(){
+        return fm;
     }
 }

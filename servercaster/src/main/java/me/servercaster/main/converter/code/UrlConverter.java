@@ -1,4 +1,4 @@
-package me.servercaster.converter.code;
+package me.servercaster.main.converter.code;
 
 /**
  *
@@ -16,8 +16,8 @@ public class UrlConverter extends SpecialCodeConverter {
     }
 
     @Override
-    public void doAction(String s) {
-        fm.link(s.substring(1, s.length() - 2));
+    public void doAction(String argument) {
+        getJSONSaver().link(argument.substring(1, argument.length() - 2));
     }
 
 }

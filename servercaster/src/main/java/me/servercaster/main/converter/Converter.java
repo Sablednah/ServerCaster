@@ -1,4 +1,4 @@
-package me.servercaster.converter;
+package me.servercaster.main.converter;
 
 import mkremins.fanciful.FancyMessage;
 

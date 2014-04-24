@@ -1,4 +1,4 @@
-package me.servercaster.converter.code;
+package me.servercaster.main.converter.code;
 
 /**
  *
@@ -16,7 +16,7 @@ public class CommandConverter extends SpecialCodeConverter {
     }
 
     @Override
-    public void doAction(String s) {
-        fm.command("/" + s);
+    public void doAction(String argument) {
+        getJSONSaver().command("/" + argument);
     }
 }

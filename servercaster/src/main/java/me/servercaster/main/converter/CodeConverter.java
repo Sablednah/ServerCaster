@@ -1,9 +1,9 @@
-package me.servercaster.converter;
+package me.servercaster.main.converter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import me.servercaster.converter.code.SpecialCodeConverter;
+import me.servercaster.main.converter.code.SpecialCodeConverter;
 import mkremins.fanciful.FancyMessage;
 
 /**
@@ -21,8 +21,7 @@ public class CodeConverter extends Converter {
         super(fm);
         for (Map.Entry<String, SpecialCodeConverter> entry : codes.entrySet()) {
             SpecialCodeConverter specialCodeConverter = entry.getValue();
-            specialCodeConverter.addBuilders(fm);
-
+            specialCodeConverter.addBuilder(fm);
         }
     }
 
@@ -39,13 +38,12 @@ public class CodeConverter extends Converter {
             SpecialCodeConverter scc = codes.get(savedString.toLowerCase());
             if (scc.hasArgumentsLeft()) {
                 specialCode.add(scc);
-            }else{
+            } else {
                 scc.doAction(savedString);
             }
         } else {
             throw new IllegalArgumentException("Code unknown");
         }
-
         clearSavedString();
         return this;
     }
