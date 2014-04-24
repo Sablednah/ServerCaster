@@ -1,8 +1,10 @@
 package me.servercaster;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,6 +24,14 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Caster implements Runnable, CommandExecutor, Listener {
 
+    public void sendMessage(ArrayList<String> message, ArrayList<Player> players) {
+        for (Player player : players) {
+            for (String string : message) {
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " " + string);
+            }
+        }
+    }
+
     private final JavaPlugin instance = ServerCaster.getInstance();
     private final List<GroupSender> senders = new LinkedList<>();
     private boolean firstRun = true;
@@ -34,10 +44,10 @@ public class Caster implements Runnable, CommandExecutor, Listener {
         if (instance.getConfig().getBoolean("UseGroups")) {
             Set<String> groups = instance.getConfig().getConfigurationSection("Messages").getKeys(false);
             for (String string : groups) {
-                senders.add(new GroupSender("Messages." + string));
+                senders.add(new GroupSender("Messages." + string, this));
             }
         } else {
-            senders.add(new GroupSender("Messages"));
+            senders.add(new GroupSender("Messages", this));
         }
         addToScheduler();
     }
@@ -137,4 +147,16 @@ public class Caster implements Runnable, CommandExecutor, Listener {
         }
     }
 
+    public static ArrayList<String> ToJsonString(String prefix, String message) {
+        Builder builder = new Builder();
+        if (!prefix.equals("")) {
+            prefix = prefix + " ";
+        }
+        ArrayList<String> newMessage = new ArrayList<>();
+        for (String string : message.toLowerCase().split(("&NEWLINE;").toLowerCase())) {
+            String properMessages = builder.getProperMessage(prefix + string);
+            newMessage.add(properMessages);
+        }
+        return newMessage;
+    }
 }

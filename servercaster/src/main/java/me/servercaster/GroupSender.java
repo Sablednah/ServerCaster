@@ -2,10 +2,6 @@ package me.servercaster;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.server.v1_7_R3.ChatSerializer;
-import net.minecraft.server.v1_7_R3.PacketPlayOutChat;
-import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_7_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,10 +17,12 @@ public class GroupSender {
     private final int totalMessages;
     private final ArrayList<ArrayList<String>> messages = new ArrayList<>();
     private final ArrayList<Player> players = new ArrayList<>();
+    private final Caster caster;
 
-    public GroupSender(String path) {
+    public GroupSender(String path, Caster caster) {
         totalMessages = instance.getConfig().getStringList(path).size();
         this.path = path;
+        this.caster = caster;
     }
 
     public boolean addPlayer(Player player) {
@@ -38,33 +36,16 @@ public class GroupSender {
         if (totalMessages > messages.size()) {
             List<String> storedMessages = instance.getConfig().getStringList(path);
             String prefix = instance.getConfig().getString("Prefix");
-            Builder builder = new Builder();
-            if (!prefix.equals("")) {
-                prefix = prefix + " ";
+            ArrayList<String> JSONStrings = Caster.ToJsonString(prefix, storedMessages.get(lineIndex));
+            if (instance.getConfig().getBoolean("Debug")) {
+                instance.getLogger().info(messages.toString());
             }
-            ArrayList<String> newMessage = new ArrayList<>();
-            for (String string : storedMessages.get(lineIndex).toLowerCase().split(("&NEWLINE;").toLowerCase())) {
-                String properMessages = builder.getProperMessage(prefix + string);
-                if (instance.getConfig().getBoolean("Debug")) {
-                    instance.getLogger().info(properMessages);
-                }
-                newMessage.add(properMessages);
-            }
-            messages.add(newMessage);
+            messages.add(JSONStrings);
         }
-        sendmessage(messages.get(lineIndex));
+        caster.sendMessage(messages.get(lineIndex), players);
         lineIndex++;
     }
-
-    private void sendmessage(ArrayList<String> message) {
-        for (Player player : players) {
-            for (String string : message) {
-                ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(string), true));
-                //Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " " + string);
-            }
-        }
-    }
-
+    
     public String getGroup() {
         return path;
     }
