@@ -83,8 +83,8 @@ public class ServerCaster extends JavaPlugin {
         addSpecialConverter(new StyleConverter("o", ChatColor.ITALIC));
         getServer().getPluginManager().registerEvents(anouncer, this);
     }
-    
-    void addSpecialConverter(SpecialCodeConverter scc){
+
+    void addSpecialConverter(SpecialCodeConverter scc) {
         CodeConverter.addSpecialCode(scc);
     }
 
@@ -93,7 +93,7 @@ public class ServerCaster extends JavaPlugin {
     }
 
     public static void castMessage(JavaPlugin plugin, String message) {
-        ServerCaster.castMessage(plugin, message, "", plugin.getServer().getOnlinePlayers());
+        ServerCaster.castMessage(plugin, message, plugin.getServer().getOnlinePlayers());
     }
 
     public static void castMessage(JavaPlugin plugin, String message, String prefix) {
@@ -101,7 +101,8 @@ public class ServerCaster extends JavaPlugin {
     }
 
     public static void castMessage(JavaPlugin plugin, String message, Player[] players) {
-        ServerCaster.castMessage(plugin, message, "", players);
+        ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
+        ServerCaster.castMessage(plugin, message, parent.getConfig().getString("Prefix"), players);
     }
 
     public static void castMessage(JavaPlugin plugin, String message, String prefix, Player[] players) {
@@ -112,7 +113,7 @@ public class ServerCaster extends JavaPlugin {
         caster.sendMessage(Caster.ToJsonString(prefix, message), lPlayers);
     }
 
-    public static void addConverter(JavaPlugin plugin, SpecialCodeConverter scc){
+    public static void addConverter(JavaPlugin plugin, SpecialCodeConverter scc) {
         ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
         parent.addSpecialConverter(scc);
     }
