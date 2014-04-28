@@ -9,6 +9,7 @@ import me.servercaster.main.converter.code.SpecialCodeConverter;
 import me.servercaster.main.converter.code.StyleConverter;
 import me.servercaster.main.converter.code.SuggestConverter;
 import me.servercaster.main.converter.code.UrlConverter;
+import me.servercaster.main.event.SendingJSONListner;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,6 +22,7 @@ public class ServerCaster extends JavaPlugin {
 
     private Caster anouncer;
     private static JavaPlugin instance;
+    private final SendingMessage sendingMessageHandler = new SendingMessage();
 
     public static JavaPlugin getInstance() {
         return instance;
@@ -30,7 +32,7 @@ public class ServerCaster extends JavaPlugin {
     public void onEnable() {
         instance = this;
         instance.saveDefaultConfig();
-        anouncer = new Caster();
+        anouncer = new Caster(sendingMessageHandler);
         getCommand("cast").setExecutor(anouncer);
         getCommand("reloadservercaster").setExecutor(anouncer);
         addSpecialConverter(new CommandConverter());
@@ -87,6 +89,10 @@ public class ServerCaster extends JavaPlugin {
     void addSpecialConverter(SpecialCodeConverter scc) {
         CodeConverter.addSpecialCode(scc);
     }
+    
+    SendingMessage getSendingMessageHandler(){
+        return sendingMessageHandler;
+    }
 
     Caster getCaster() {
         return anouncer;
@@ -116,5 +122,10 @@ public class ServerCaster extends JavaPlugin {
     public static void addConverter(JavaPlugin plugin, SpecialCodeConverter scc) {
         ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
         parent.addSpecialConverter(scc);
+    }
+    
+    public static void addSendingMessageListner(JavaPlugin plugin, SendingJSONListner listener){
+        ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
+        parent.getSendingMessageHandler().addEventListener(listener);
     }
 }

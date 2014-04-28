@@ -25,18 +25,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Caster implements Runnable, CommandExecutor, Listener {
 
     public void sendMessage(ArrayList<String> message, ArrayList<Player> players) {
-        for (Player player : players) {
-            for (String string : message) {
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " " + string);
-            }
-        }
+        sendingMessageHandler.sendMessages(players, message);
     }
 
     private final JavaPlugin instance = ServerCaster.getInstance();
     private final List<GroupSender> senders = new LinkedList<>();
     private boolean firstRun = true;
+    private final SendingMessage sendingMessageHandler;
 
-    public Caster() {
+    public Caster(SendingMessage sendingMessageHandler) {
+        this.sendingMessageHandler = sendingMessageHandler;
         init();
     }
 
