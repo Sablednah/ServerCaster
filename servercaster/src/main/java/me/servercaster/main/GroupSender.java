@@ -15,7 +15,6 @@ public class GroupSender {
     private final JavaPlugin instance = ServerCaster.getInstance();
     private final String path;
     private final int totalMessages;
-    private final ArrayList<ArrayList<String>> messages = new ArrayList<>();
     private final ArrayList<Player> players = new ArrayList<>();
     private final Caster caster;
 
@@ -33,19 +32,16 @@ public class GroupSender {
         if (totalMessages <= lineIndex) {
             lineIndex = 0;
         }
-        if (totalMessages > messages.size()) {
-            List<String> storedMessages = instance.getConfig().getStringList(path);
-            String prefix = instance.getConfig().getString("Prefix");
-            ArrayList<String> JSONStrings = Caster.ToJsonString(prefix, storedMessages.get(lineIndex));
-            if (instance.getConfig().getBoolean("Debug")) {
-                instance.getLogger().info(messages.toString());
-            }
-            messages.add(JSONStrings);
+        List<String> storedMessages = instance.getConfig().getStringList(path);
+        String prefix = instance.getConfig().getString("Prefix");
+        ArrayList<String> JSONStrings = Caster.ToJsonString(prefix, storedMessages.get(lineIndex));
+        if (instance.getConfig().getBoolean("Debug")) {
+            instance.getLogger().info(JSONStrings.toString());
         }
-        caster.sendMessage(messages.get(lineIndex), players);
+        caster.sendMessage(JSONStrings, players);
         lineIndex++;
     }
-    
+
     public String getGroup() {
         return path;
     }
