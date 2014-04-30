@@ -33,7 +33,9 @@ public abstract class SpecialCodeConverter {
         doAction(argument);
         argumentsLeft--;
         if (!hasArgumentsLeft()) {
-            argumentsLeft = arguments;
+            if (!reset()) {
+                argumentsLeft = arguments;
+            }
             return true;
         } else {
             return false;
@@ -52,10 +54,31 @@ public abstract class SpecialCodeConverter {
         return fm;
     }
 
+    /**
+     * with this function you can set the amount of arguments used in this
+     * special code
+     *
+     * @param arguments how many arguments this class should have
+     * @param reset if the remaining arguments should be reset to the given
+     * amount
+     */
     protected void setArguments(int arguments, boolean reset) {
         this.arguments = arguments;
         if (reset) {
             argumentsLeft = arguments;
         }
+    }
+
+    /**
+     * when a special code has no arguments left the class wont make a new
+     * instance. the number of arguments are automatically set back but if there
+     * are any more steps to take before its reset so that the program can
+     * continue you can specify them here.
+     *
+     * @return return true if you don't want to reset argumentsLeft, default is
+     * false.
+     */
+    protected boolean reset() {
+        return false;
     }
 }
