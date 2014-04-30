@@ -1,4 +1,4 @@
-package me.servercaster.main.converter.code;
+package me.servercaster.main.converter;
 
 import mkremins.fanciful.FancyMessage;
 
@@ -12,24 +12,40 @@ public abstract class SpecialCodeConverter {
     private int arguments;
     private int argumentsLeft;
 
+    /**
+     *
+     * @param arguments the amount of arguments this code needs (how many
+     * brackets it needs)
+     */
     public SpecialCodeConverter(int arguments) {
         this.arguments = arguments;
         this.argumentsLeft = arguments;
     }
 
+    /**
+     *
+     * @return String that represent the code word that needs to be found in the
+     * config.yml
+     */
     protected abstract String getKeyword();
 
-    public abstract void doAction(String s);
+    /**
+     * when a bracket is totally read doAction is called
+     *
+     * @param argument the text inside a bracket (is KeyWord found when
+     * arguments are 0)
+     */
+    public abstract void doAction(String argument);
 
-    public String getCode() {
+    String getCode() {
         return getKeyword().toLowerCase();
     }
 
-    public boolean hasArgumentsLeft() {
+    boolean hasArgumentsLeft() {
         return argumentsLeft != 0;
     }
 
-    public boolean isEnd(String argument) {
+    boolean isEnd(String argument) {
         doAction(argument);
         argumentsLeft--;
         if (!hasArgumentsLeft()) {
@@ -42,14 +58,18 @@ public abstract class SpecialCodeConverter {
         }
     }
 
-    public void addBuilder(FancyMessage fm) {
+    void addBuilder(FancyMessage fm) {
         this.fm = fm;
     }
 
-    public boolean isEndChar(char c) {
+    boolean isEndChar(char c) {
         return c == '}';
     }
 
+    /**
+     *
+     * @return the JSON lib handler
+     */
     protected FancyMessage getJSONSaver() {
         return fm;
     }

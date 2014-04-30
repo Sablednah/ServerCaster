@@ -1,5 +1,7 @@
 package me.servercaster.main.converter.code;
 
+import me.servercaster.main.converter.SpecialCodeConverter;
+
 /**
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)

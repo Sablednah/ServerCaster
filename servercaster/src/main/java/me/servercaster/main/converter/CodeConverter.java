@@ -3,7 +3,6 @@ package me.servercaster.main.converter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import me.servercaster.main.converter.code.SpecialCodeConverter;
 import mkremins.fanciful.FancyMessage;
 
 /**
@@ -49,7 +48,7 @@ public class CodeConverter extends Converter {
     }
 
     @Override
-    public Converter nextChar(char c) {
+    Converter nextChar(char c) {
         if (fm == null) {
             throw new NullPointerException("FancyMessage not declared");
         }

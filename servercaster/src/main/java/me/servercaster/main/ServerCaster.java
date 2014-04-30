@@ -5,7 +5,7 @@ import java.util.Arrays;
 import me.servercaster.main.converter.CodeConverter;
 import me.servercaster.main.converter.code.ColorConverter;
 import me.servercaster.main.converter.code.CommandConverter;
-import me.servercaster.main.converter.code.SpecialCodeConverter;
+import me.servercaster.main.converter.SpecialCodeConverter;
 import me.servercaster.main.converter.code.StyleConverter;
 import me.servercaster.main.converter.code.SuggestConverter;
 import me.servercaster.main.converter.code.UrlConverter;

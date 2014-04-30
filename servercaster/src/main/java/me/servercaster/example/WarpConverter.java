@@ -1,6 +1,6 @@
 package me.servercaster.example;
 
-import me.servercaster.main.converter.code.SpecialCodeConverter;
+import me.servercaster.main.converter.SpecialCodeConverter;
 
 /**
  *
