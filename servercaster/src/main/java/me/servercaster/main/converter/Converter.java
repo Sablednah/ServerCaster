@@ -15,9 +15,9 @@ public abstract class Converter {
         this.fm = fm;
     }
 
-    protected abstract Converter end();
+    abstract Converter end();
 
-    protected abstract boolean isEndChar(char c);
+    abstract boolean isEndChar(char c);
 
     Converter nextChar(char c) {
         if (fm == null) {
