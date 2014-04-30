@@ -13,12 +13,12 @@ public class BracketConverter extends Converter {
     }
 
     @Override
-    protected boolean isEndChar(char c) {
+    boolean isEndChar(char c) {
         return c == '}';
     }
 
     @Override
-    protected Converter end() {
+    Converter end() {
         fm.text(getSavedString());
         fm.then();
         return new TextConverter(fm);

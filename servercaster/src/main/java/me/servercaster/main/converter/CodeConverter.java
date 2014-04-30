@@ -25,12 +25,12 @@ public class CodeConverter extends Converter {
     }
 
     @Override
-    protected boolean isEndChar(char c) {
+    boolean isEndChar(char c) {
         return c == ';';
     }
 
     @Override
-    protected Converter end() {
+    Converter end() {
         nextChar = true;
         String savedString = getSavedString();
         if (codes.containsKey(savedString.toLowerCase())) {
