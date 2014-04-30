@@ -9,7 +9,7 @@ import mkremins.fanciful.FancyMessage;
 public abstract class SpecialCodeConverter {
 
     private FancyMessage fm;
-    private final int arguments;
+    private int arguments;
     private int argumentsLeft;
 
     public SpecialCodeConverter(int arguments) {
@@ -47,8 +47,15 @@ public abstract class SpecialCodeConverter {
     public boolean isEndChar(char c) {
         return c == '}';
     }
-    
-    protected FancyMessage getJSONSaver(){
+
+    protected FancyMessage getJSONSaver() {
         return fm;
+    }
+
+    protected void setArguments(int arguments, boolean reset) {
+        this.arguments = arguments;
+        if (reset) {
+            argumentsLeft = arguments;
+        }
     }
 }
