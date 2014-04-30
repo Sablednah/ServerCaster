@@ -28,7 +28,7 @@ public class SendingMessage {
 
     public void sendMessages(ArrayList<Player> players, ArrayList<String> messages){
         this.messages = messages;
-        firePreServer();
+        firePreServer(players);
         for (Player player : players) {
             firePrePlayer(player);
         }
@@ -47,8 +47,8 @@ public class SendingMessage {
         }
     }
     
-    private synchronized void firePreServer() {
-        PreSendingJSONToServerEvent event = new PreSendingJSONToServerEvent(messages, this);
+    private synchronized void firePreServer(ArrayList<Player> players) {
+        PreSendingJSONToServerEvent event = new PreSendingJSONToServerEvent(messages, players, this);
         Iterator i = _listeners.iterator();
         while (i.hasNext()) {
             ((SendingJSONListner) i.next()).sendingPreServerHandler(event);
