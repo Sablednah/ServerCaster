@@ -17,6 +17,7 @@ public class SendingMessage {
 
     private final List _listeners = new ArrayList();
     private ArrayList<String> messages;
+    private ArrayList<String> old;
 
     public synchronized void addEventListener(SendingJSONListner listener) {
         _listeners.add(listener);
@@ -26,32 +27,34 @@ public class SendingMessage {
         _listeners.remove(listener);
     }
 
-    public void sendMessages(ArrayList<Player> players, ArrayList<String> messages){
+    public void sendMessages(ArrayList<Player> players, ArrayList<String> messages) {
         this.messages = messages;
+        this.old = messages;
         firePreServer(players);
         for (Player player : players) {
             firePrePlayer(player);
-        }
-        for (Player player : players) {
-            for (String string : messages) {
+            for (String string : this.messages) {
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " " + string);
             }
+            this.messages = this.old;
         }
     }
-    
+
     private synchronized void firePrePlayer(Player player) {
         PreSendingJSONToPlayerEvent event = new PreSendingJSONToPlayerEvent(messages, player, this);
         Iterator i = _listeners.iterator();
         while (i.hasNext()) {
             ((SendingJSONListner) i.next()).sendingPrePlayerHandler(event);
         }
+        this.messages = event.getMessages();
     }
-    
+
     private synchronized void firePreServer(ArrayList<Player> players) {
         PreSendingJSONToServerEvent event = new PreSendingJSONToServerEvent(messages, players, this);
         Iterator i = _listeners.iterator();
         while (i.hasNext()) {
             ((SendingJSONListner) i.next()).sendingPreServerHandler(event);
         }
+        this.messages = event.getMessages();
     }
 }
