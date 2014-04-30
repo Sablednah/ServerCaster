@@ -3,7 +3,8 @@ package me.servercaster.main;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import me.servercaster.main.event.SendingJSONEvent;
+import me.servercaster.main.event.PreSendingJSONToPlayerEvent;
+import me.servercaster.main.event.PreSendingJSONToServerEvent;
 import me.servercaster.main.event.SendingJSONListner;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -27,8 +28,9 @@ public class SendingMessage {
 
     public void sendMessages(ArrayList<Player> players, ArrayList<String> messages){
         this.messages = messages;
+        firePreServer();
         for (Player player : players) {
-            fireEvent(player);
+            firePrePlayer(player);
         }
         for (Player player : players) {
             for (String string : messages) {
@@ -36,13 +38,20 @@ public class SendingMessage {
             }
         }
     }
-    //call this method whenever you want to notify
-    //the event listeners of the particular event
-    private synchronized void fireEvent(Player player) {
-        SendingJSONEvent event = new SendingJSONEvent(messages, player, this);
+    
+    private synchronized void firePrePlayer(Player player) {
+        PreSendingJSONToPlayerEvent event = new PreSendingJSONToPlayerEvent(messages, player, this);
         Iterator i = _listeners.iterator();
         while (i.hasNext()) {
-            ((SendingJSONListner) i.next()).sendingJsonHandler(event);
+            ((SendingJSONListner) i.next()).sendingPrePlayerHandler(event);
+        }
+    }
+    
+    private synchronized void firePreServer() {
+        PreSendingJSONToServerEvent event = new PreSendingJSONToServerEvent(messages, this);
+        Iterator i = _listeners.iterator();
+        while (i.hasNext()) {
+            ((SendingJSONListner) i.next()).sendingPreServerHandler(event);
         }
     }
 }
