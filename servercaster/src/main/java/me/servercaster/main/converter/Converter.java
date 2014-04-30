@@ -19,7 +19,7 @@ public abstract class Converter {
 
     protected abstract boolean isEndChar(char c);
 
-    public Converter nextChar(char c) {
+    Converter nextChar(char c) {
         if (fm == null) {
             throw new NullPointerException("FancyMessage not declared");
         }
@@ -31,7 +31,7 @@ public abstract class Converter {
         }
     }
 
-    public void done() {
+    void done() {
         fm.text(saver);
     }
 
