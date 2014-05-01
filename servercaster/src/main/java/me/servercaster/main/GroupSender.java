@@ -36,7 +36,9 @@ public class GroupSender {
         String prefix = instance.getConfig().getString("Prefix");
         ArrayList<String> JSONStrings = Caster.ToJsonString(prefix, storedMessages.get(lineIndex));
         if (instance.getConfig().getBoolean("Debug")) {
-            instance.getLogger().info(JSONStrings.toString());
+            for (String string : JSONStrings) {
+                instance.getLogger().info(string);
+            }
         }
         caster.sendMessage(JSONStrings, players);
         lineIndex++;

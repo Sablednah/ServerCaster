@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -152,7 +153,7 @@ public class Caster implements Runnable, CommandExecutor, Listener {
             prefix = prefix + " ";
         }
         ArrayList<String> newMessage = new ArrayList<>();
-        for (String string : message.toLowerCase().split(("&NEWLINE;").toLowerCase())) {
+        for (String string : message.split("(?i)&NEWLINE;")) {
             String properMessages = builder.getProperMessage(prefix + string);
             newMessage.add(properMessages);
         }
