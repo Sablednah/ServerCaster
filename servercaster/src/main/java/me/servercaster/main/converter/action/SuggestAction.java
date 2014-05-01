@@ -1,14 +1,14 @@
-package me.servercaster.main.converter.code;
+package me.servercaster.main.converter.action;
 
-import me.servercaster.main.converter.SpecialCodeConverter;
+import me.servercaster.main.converter.CodeAction;
 
 /**
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class SuggestConverter extends SpecialCodeConverter {
+public class SuggestAction extends CodeAction {
 
-    public SuggestConverter() {
+    public SuggestAction() {
         super(1);
     }    
     

@@ -11,7 +11,7 @@ public class AddWarp extends JavaPlugin{
 
     @Override
     public void onEnable() {
-        ServerCaster.addConverter(this, new WarpConverter());
+        ServerCaster.addConverter(this, new WarpAction());
     }
     
 }

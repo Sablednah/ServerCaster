@@ -1,21 +1,21 @@
-package me.servercaster.main.converter.code;
+package me.servercaster.main.converter.action;
 
-import me.servercaster.main.converter.SpecialCodeConverter;
+import me.servercaster.main.converter.CodeAction;
 import org.bukkit.ChatColor;
 
 /**
  *
  * @author Patrick Beuks (killje) And Floris Huizinga(Flexo013)
  */
-public class StyleConverter extends SpecialCodeConverter{
+public class ColorAction extends CodeAction{
 
     private final String name;
-    private final ChatColor style;
+    private final ChatColor color;
 
-    public StyleConverter(String name, ChatColor style) {
+    public ColorAction(String name, ChatColor color) {
         super(0);
         this.name = name;
-        this.style = style;
+        this.color = color;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class StyleConverter extends SpecialCodeConverter{
 
     @Override
     public void doAction(String argument) {
-        getJSONSaver().style(style);
+        getJSONSaver().color(color);
     }
     
     

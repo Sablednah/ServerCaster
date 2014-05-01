@@ -1,14 +1,14 @@
 package me.servercaster.example;
 
-import me.servercaster.main.converter.SpecialCodeConverter;
+import me.servercaster.main.converter.CodeAction;
 
 /**
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class WarpConverter extends SpecialCodeConverter {
+public class WarpAction extends CodeAction {
 
-    public WarpConverter() {
+    public WarpAction() {
         super(1); //amount of arguments this converter needs
     }
 
