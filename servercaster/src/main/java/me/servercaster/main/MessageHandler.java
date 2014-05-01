@@ -52,7 +52,7 @@ public class MessageHandler {
             }
         }
         this.messages = event.getMessages();
-        return false;
+        return true;
     }
 
     private synchronized boolean firePrePlayer(Player player) {

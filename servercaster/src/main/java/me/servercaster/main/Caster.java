@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Pattern;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -129,12 +127,12 @@ public class Caster implements Runnable, CommandExecutor, Listener {
     }
 
     private void addPlayer(Player player) {
+        instance.getLogger().info(player.getName() + " | " + player.getDisplayName());
         for (GroupSender groupSender : senders) {
-            if (player.isPermissionSet("ServerCaster." + groupSender.getGroup()) && !instance.getConfig().getBoolean("UseGroups")) {
-                groupSender.addPlayer(player);
-                return;
-            }
+            instance.getLogger().info(groupSender.getGroup());
+            instance.getLogger().info(player.hasPermission("ServerCaster." + groupSender.getGroup())+ "");
             if (player.hasPermission("ServerCaster." + groupSender.getGroup())) {
+                instance.getLogger().info("player joined");
                 groupSender.addPlayer(player);
                 return;
             }
