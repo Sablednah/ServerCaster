@@ -3,13 +3,13 @@ package me.servercaster.main;
 import java.util.ArrayList;
 import java.util.Arrays;
 import me.servercaster.main.converter.CodeConverter;
-import me.servercaster.main.converter.code.ColorConverter;
-import me.servercaster.main.converter.code.CommandConverter;
-import me.servercaster.main.converter.SpecialCodeConverter;
-import me.servercaster.main.converter.code.StyleConverter;
-import me.servercaster.main.converter.code.SuggestConverter;
-import me.servercaster.main.converter.code.UrlConverter;
-import me.servercaster.main.event.SendingJSONListner;
+import me.servercaster.main.converter.action.ColorAction;
+import me.servercaster.main.converter.action.CommandAction;
+import me.servercaster.main.converter.CodeAction;
+import me.servercaster.main.converter.action.StyleAction;
+import me.servercaster.main.converter.action.SuggestAction;
+import me.servercaster.main.converter.action.UrlAction;
+import me.servercaster.main.event.CastListener;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,7 +22,7 @@ public class ServerCaster extends JavaPlugin {
 
     private Caster anouncer;
     private static JavaPlugin instance;
-    private final SendingMessage sendingMessageHandler = new SendingMessage();
+    private final MessageHandler messageHandler = new MessageHandler();
 
     public static JavaPlugin getInstance() {
         return instance;
@@ -32,66 +32,66 @@ public class ServerCaster extends JavaPlugin {
     public void onEnable() {
         instance = this;
         instance.saveDefaultConfig();
-        anouncer = new Caster(sendingMessageHandler);
+        anouncer = new Caster(messageHandler);
         getCommand("cast").setExecutor(anouncer);
         getCommand("reloadservercaster").setExecutor(anouncer);
-        addSpecialConverter(new CommandConverter());
-        addSpecialConverter(new UrlConverter());
-        addSpecialConverter(new SuggestConverter());
-        addSpecialConverter(new ColorConverter("AQUA", ChatColor.AQUA));
-        addSpecialConverter(new ColorConverter("BLACK", ChatColor.BLACK));
-        addSpecialConverter(new ColorConverter("BLUE", ChatColor.BLUE));
-        addSpecialConverter(new ColorConverter("DARK_AQUA", ChatColor.DARK_AQUA));
-        addSpecialConverter(new ColorConverter("DARK_BLUE", ChatColor.DARK_BLUE));
-        addSpecialConverter(new ColorConverter("DARK_GRAY", ChatColor.DARK_GRAY));
-        addSpecialConverter(new ColorConverter("DARK_GREEN", ChatColor.DARK_GREEN));
-        addSpecialConverter(new ColorConverter("DARK_PURPLE", ChatColor.DARK_PURPLE));
-        addSpecialConverter(new ColorConverter("DARK_RED", ChatColor.DARK_RED));
-        addSpecialConverter(new ColorConverter("GOLD", ChatColor.GOLD));
-        addSpecialConverter(new ColorConverter("GRAY", ChatColor.GRAY));
-        addSpecialConverter(new ColorConverter("GREEN", ChatColor.GREEN));
-        addSpecialConverter(new ColorConverter("LIGHT_PURPLE", ChatColor.LIGHT_PURPLE));
-        addSpecialConverter(new ColorConverter("RED", ChatColor.RED));
-        addSpecialConverter(new ColorConverter("WHITE", ChatColor.WHITE));
-        addSpecialConverter(new ColorConverter("YELLOW", ChatColor.YELLOW));
+        addCodeAction(new CommandAction());
+        addCodeAction(new UrlAction());
+        addCodeAction(new SuggestAction());
+        addCodeAction(new ColorAction("AQUA", ChatColor.AQUA));
+        addCodeAction(new ColorAction("BLACK", ChatColor.BLACK));
+        addCodeAction(new ColorAction("BLUE", ChatColor.BLUE));
+        addCodeAction(new ColorAction("DARK_AQUA", ChatColor.DARK_AQUA));
+        addCodeAction(new ColorAction("DARK_BLUE", ChatColor.DARK_BLUE));
+        addCodeAction(new ColorAction("DARK_GRAY", ChatColor.DARK_GRAY));
+        addCodeAction(new ColorAction("DARK_GREEN", ChatColor.DARK_GREEN));
+        addCodeAction(new ColorAction("DARK_PURPLE", ChatColor.DARK_PURPLE));
+        addCodeAction(new ColorAction("DARK_RED", ChatColor.DARK_RED));
+        addCodeAction(new ColorAction("GOLD", ChatColor.GOLD));
+        addCodeAction(new ColorAction("GRAY", ChatColor.GRAY));
+        addCodeAction(new ColorAction("GREEN", ChatColor.GREEN));
+        addCodeAction(new ColorAction("LIGHT_PURPLE", ChatColor.LIGHT_PURPLE));
+        addCodeAction(new ColorAction("RED", ChatColor.RED));
+        addCodeAction(new ColorAction("WHITE", ChatColor.WHITE));
+        addCodeAction(new ColorAction("YELLOW", ChatColor.YELLOW));
 
-        addSpecialConverter(new ColorConverter("0", ChatColor.BLACK));
-        addSpecialConverter(new ColorConverter("1", ChatColor.DARK_BLUE));
-        addSpecialConverter(new ColorConverter("2", ChatColor.DARK_GREEN));
-        addSpecialConverter(new ColorConverter("3", ChatColor.DARK_AQUA));
-        addSpecialConverter(new ColorConverter("4", ChatColor.DARK_RED));
-        addSpecialConverter(new ColorConverter("5", ChatColor.DARK_PURPLE));
-        addSpecialConverter(new ColorConverter("6", ChatColor.GOLD));
-        addSpecialConverter(new ColorConverter("7", ChatColor.GRAY));
-        addSpecialConverter(new ColorConverter("8", ChatColor.DARK_GRAY));
-        addSpecialConverter(new ColorConverter("9", ChatColor.BLUE));
-        addSpecialConverter(new ColorConverter("a", ChatColor.GREEN));
-        addSpecialConverter(new ColorConverter("b", ChatColor.AQUA));
-        addSpecialConverter(new ColorConverter("c", ChatColor.RED));
-        addSpecialConverter(new ColorConverter("d", ChatColor.LIGHT_PURPLE));
-        addSpecialConverter(new ColorConverter("e", ChatColor.YELLOW));
-        addSpecialConverter(new ColorConverter("f", ChatColor.WHITE));
+        addCodeAction(new ColorAction("0", ChatColor.BLACK));
+        addCodeAction(new ColorAction("1", ChatColor.DARK_BLUE));
+        addCodeAction(new ColorAction("2", ChatColor.DARK_GREEN));
+        addCodeAction(new ColorAction("3", ChatColor.DARK_AQUA));
+        addCodeAction(new ColorAction("4", ChatColor.DARK_RED));
+        addCodeAction(new ColorAction("5", ChatColor.DARK_PURPLE));
+        addCodeAction(new ColorAction("6", ChatColor.GOLD));
+        addCodeAction(new ColorAction("7", ChatColor.GRAY));
+        addCodeAction(new ColorAction("8", ChatColor.DARK_GRAY));
+        addCodeAction(new ColorAction("9", ChatColor.BLUE));
+        addCodeAction(new ColorAction("a", ChatColor.GREEN));
+        addCodeAction(new ColorAction("b", ChatColor.AQUA));
+        addCodeAction(new ColorAction("c", ChatColor.RED));
+        addCodeAction(new ColorAction("d", ChatColor.LIGHT_PURPLE));
+        addCodeAction(new ColorAction("e", ChatColor.YELLOW));
+        addCodeAction(new ColorAction("f", ChatColor.WHITE));
 
-        addSpecialConverter(new StyleConverter("MAGIC", ChatColor.MAGIC));
-        addSpecialConverter(new StyleConverter("BOLD", ChatColor.BOLD));
-        addSpecialConverter(new StyleConverter("STRIKE", ChatColor.STRIKETHROUGH));
-        addSpecialConverter(new StyleConverter("UNDERLINE", ChatColor.UNDERLINE));
-        addSpecialConverter(new StyleConverter("ITALIC", ChatColor.ITALIC));
+        addCodeAction(new StyleAction("MAGIC", ChatColor.MAGIC));
+        addCodeAction(new StyleAction("BOLD", ChatColor.BOLD));
+        addCodeAction(new StyleAction("STRIKE", ChatColor.STRIKETHROUGH));
+        addCodeAction(new StyleAction("UNDERLINE", ChatColor.UNDERLINE));
+        addCodeAction(new StyleAction("ITALIC", ChatColor.ITALIC));
 
-        addSpecialConverter(new StyleConverter("k", ChatColor.MAGIC));
-        addSpecialConverter(new StyleConverter("l", ChatColor.BOLD));
-        addSpecialConverter(new StyleConverter("m", ChatColor.STRIKETHROUGH));
-        addSpecialConverter(new StyleConverter("n", ChatColor.UNDERLINE));
-        addSpecialConverter(new StyleConverter("o", ChatColor.ITALIC));
+        addCodeAction(new StyleAction("k", ChatColor.MAGIC));
+        addCodeAction(new StyleAction("l", ChatColor.BOLD));
+        addCodeAction(new StyleAction("m", ChatColor.STRIKETHROUGH));
+        addCodeAction(new StyleAction("n", ChatColor.UNDERLINE));
+        addCodeAction(new StyleAction("o", ChatColor.ITALIC));
         getServer().getPluginManager().registerEvents(anouncer, this);
     }
 
-    void addSpecialConverter(SpecialCodeConverter scc) {
-        CodeConverter.addSpecialCode(scc);
+    void addCodeAction(CodeAction scc) {
+        CodeConverter.addCodeAction(scc);
     }
     
-    SendingMessage getSendingMessageHandler(){
-        return sendingMessageHandler;
+    MessageHandler getMessageHandler(){
+        return messageHandler;
     }
 
     Caster getCaster() {
@@ -119,13 +119,13 @@ public class ServerCaster extends JavaPlugin {
         caster.sendMessage(Caster.ToJsonString(prefix, message), lPlayers);
     }
 
-    public static void addConverter(JavaPlugin plugin, SpecialCodeConverter scc) {
+    public static void addConverter(JavaPlugin plugin, CodeAction scc) {
         ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
-        parent.addSpecialConverter(scc);
+        parent.addCodeAction(scc);
     }
     
-    public static void addSendingMessageListner(JavaPlugin plugin, SendingJSONListner listener){
+    public static void addMessageListener(JavaPlugin plugin, CastListener listener){
         ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
-        parent.getSendingMessageHandler().addEventListener(listener);
+        parent.getMessageHandler().addEventListener(listener);
     }
 }

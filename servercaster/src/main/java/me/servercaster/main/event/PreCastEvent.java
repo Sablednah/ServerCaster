@@ -8,10 +8,11 @@ import org.bukkit.entity.Player;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class PreSendingJSONToServerEvent extends EventObject {
+public class PreCastEvent extends EventObject {
 
     private ArrayList<String> messages;
     private final ArrayList<Player> players;
+    private Boolean cancelled = false;
 
     /**
      *
@@ -19,7 +20,7 @@ public class PreSendingJSONToServerEvent extends EventObject {
      * @param players the players that will receive the messages
      * @param source source class of the event
      */
-    public PreSendingJSONToServerEvent(ArrayList<String> messages, ArrayList<Player> players, Object source) {
+    public PreCastEvent(ArrayList<String> messages, ArrayList<Player> players, Object source) {
         super(source);
         this.messages = messages;
         this.players = players;
@@ -50,5 +51,13 @@ public class PreSendingJSONToServerEvent extends EventObject {
      */
     public void setMessages(ArrayList<String> messages) {
         this.messages = messages;
+    }
+        
+    public void setCancelled(Boolean cancelled){
+        this.cancelled = cancelled;
+    }
+
+    public Boolean isCancelled() {
+        return cancelled;
     }
 }

@@ -1,14 +1,14 @@
-package me.servercaster.main.converter.code;
+package me.servercaster.main.converter.action;
 
-import me.servercaster.main.converter.SpecialCodeConverter;
+import me.servercaster.main.converter.CodeAction;
 
 /**
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class CommandConverter extends SpecialCodeConverter {
+public class CommandAction extends CodeAction {
 
-    public CommandConverter() {
+    public CommandAction() {
         super(1);
     }    
     

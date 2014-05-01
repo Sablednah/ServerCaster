@@ -3,10 +3,11 @@ package me.servercaster.main.converter;
 import mkremins.fanciful.FancyMessage;
 
 /**
+ * This class can be used to create new Converters
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public abstract class SpecialCodeConverter {
+public abstract class CodeAction {
 
     private FancyMessage fm;
     private int arguments;
@@ -17,7 +18,7 @@ public abstract class SpecialCodeConverter {
      * @param arguments the amount of arguments this code needs (how many
      * brackets it needs)
      */
-    public SpecialCodeConverter(int arguments) {
+    public CodeAction(int arguments) {
         this.arguments = arguments;
         this.argumentsLeft = arguments;
     }

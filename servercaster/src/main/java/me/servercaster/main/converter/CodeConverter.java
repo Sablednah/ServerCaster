@@ -11,16 +11,16 @@ import mkremins.fanciful.FancyMessage;
  */
 public class CodeConverter extends Converter {
 
-    private static final Map<String, SpecialCodeConverter> codes = new HashMap<>();
-    private final ArrayList<SpecialCodeConverter> specialCode = new ArrayList<>();
+    private static final Map<String, CodeAction> codes = new HashMap<>();
+    private final ArrayList<CodeAction> actionCode = new ArrayList<>();
     private boolean nextChar = false;
     private boolean inBracket = false;
 
     public CodeConverter(FancyMessage fm) {
         super(fm);
-        for (Map.Entry<String, SpecialCodeConverter> entry : codes.entrySet()) {
-            SpecialCodeConverter specialCodeConverter = entry.getValue();
-            specialCodeConverter.addBuilder(fm);
+        for (Map.Entry<String, CodeAction> entry : codes.entrySet()) {
+            CodeAction codeAction = entry.getValue();
+            codeAction.addBuilder(fm);
         }
     }
 
@@ -34,9 +34,9 @@ public class CodeConverter extends Converter {
         nextChar = true;
         String savedString = getSavedString();
         if (codes.containsKey(savedString.toLowerCase())) {
-            SpecialCodeConverter scc = codes.get(savedString.toLowerCase());
+            CodeAction scc = codes.get(savedString.toLowerCase());
             if (scc.hasArgumentsLeft()) {
-                specialCode.add(scc);
+                actionCode.add(scc);
             } else {
                 scc.doAction(savedString);
             }
@@ -53,9 +53,9 @@ public class CodeConverter extends Converter {
             throw new NullPointerException("FancyMessage not declared");
         }
         if (inBracket) {
-            if (specialCode.get(0).isEndChar(c)) {
-                if (specialCode.get(0).isEnd(getSavedString())) {
-                    specialCode.remove(0);
+            if (actionCode.get(0).isEndChar(c)) {
+                if (actionCode.get(0).isEnd(getSavedString())) {
+                    actionCode.remove(0);
                     inBracket = false;
                 }
             }
@@ -64,7 +64,7 @@ public class CodeConverter extends Converter {
         }
         if (nextChar) {
             if (c == '{') {
-                if (specialCode.isEmpty()) {
+                if (actionCode.isEmpty()) {
                     return new BracketConverter(fm);
                 }
                 inBracket = true;
@@ -78,7 +78,7 @@ public class CodeConverter extends Converter {
         }
     }
 
-    public static void addSpecialCode(SpecialCodeConverter scc) {
+    public static void addCodeAction(CodeAction scc) {
         codes.put(scc.getCode(), scc);
     }
 }

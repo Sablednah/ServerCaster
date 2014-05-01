@@ -32,9 +32,9 @@ public class Caster implements Runnable, CommandExecutor, Listener {
     private final JavaPlugin instance = ServerCaster.getInstance();
     private final List<GroupSender> senders = new LinkedList<>();
     private boolean firstRun = true;
-    private final SendingMessage sendingMessageHandler;
+    private final MessageHandler sendingMessageHandler;
 
-    public Caster(SendingMessage sendingMessageHandler) {
+    public Caster(MessageHandler sendingMessageHandler) {
         this.sendingMessageHandler = sendingMessageHandler;
         init();
     }
