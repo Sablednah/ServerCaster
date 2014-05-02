@@ -34,30 +34,30 @@ public class ServerExtension extends JavaPlugin implements CastListener {
             Random rand = new Random();
             Player[] onlinePlayers = this.getServer().getOnlinePlayers();
             if (onlinePlayers.length != 0) {
-                string = string.toLowerCase().replace(("%RDMPLAYER%").toLowerCase(), onlinePlayers[rand.nextInt(onlinePlayers.length)].getName());
+                string = string.replaceAll("(?i)%RDMPLAYER%", onlinePlayers[rand.nextInt(onlinePlayers.length)].getName());
             }
             getLogger().info(string);
             string = string.replaceAll("(?i)%SLOTS%", this.getServer().getMaxPlayers() + "");
             getLogger().info(string);
-            string = string.toLowerCase().replace(("%PLAYERS%").toLowerCase(), onlinePlayers.length + "");
-            if (string.toLowerCase().contains(("%ONLINEPLAYERS%").toLowerCase())) {
+            string = string.replaceAll("(?i)%PLAYERS%", onlinePlayers.length + "");
+            if (string.contains("(?i)%ONLINEPLAYERS%")) {
                 String players = "";
                 for (Player player : onlinePlayers) {
                     players += player.getDisplayName() + ", ";
                 }
                 players = players.substring(0, players.length() - 2);
-                string = string.replace("%ONLINEPLAYERS%", players);
+                string = string.replaceAll("(?i)%ONLINEPLAYERS%", players);
             }
             List<String> staff = getConfig().getStringList("Staff");
-            if (string.toLowerCase().contains(("%LISTALLSTAFF%").toLowerCase())) {
+            if (string.contains("(?i)%LISTALLSTAFF%")) {
                 String allStaff = "";
                 for (String staffName : staff) {
                     allStaff += staffName + ", ";
                 }
                 allStaff = allStaff.substring(0, allStaff.length() - 2);
-                string = string.replace("%LISTALLSTAFF%", allStaff);
+                string = string.replaceAll("(?i)%LISTALLSTAFF%", allStaff);
             }
-            if (string.toLowerCase().contains(("%ONLINESTAFF%").toLowerCase())) {
+            if (string.contains("(?i)%ONLINESTAFF%")) {
                 String onlineStaff = "";
                 for (String staffName : staff) {
                     if (getServer().getPlayer(staffName).isOnline()) {
@@ -65,7 +65,7 @@ public class ServerExtension extends JavaPlugin implements CastListener {
                     }
                 }
                 onlineStaff = onlineStaff.substring(0, onlineStaff.length() - 2);
-                string = string.replace("%ONLINESTAFF%", onlineStaff);
+                string = string.replaceAll("(?i)%ONLINESTAFF%", onlineStaff);
             }
             newMessages.add(string);
         }
@@ -77,8 +77,8 @@ public class ServerExtension extends JavaPlugin implements CastListener {
         ArrayList<String> messages = e.getMessages();
         ArrayList<String> newMessages = new ArrayList<>();
         for (String string : messages) {
-            string = string.toLowerCase().replace(("%PLAYER%").toLowerCase(), e.getPlayer().getName());
-            string = string.toLowerCase().replace(("%PING%").toLowerCase(), getPing(e.getPlayer()) + "");
+            string = string.replaceAll("(?i)%PLAYER%", e.getPlayer().getName());
+            string = string.replaceAll("(?i)%PING%", getPing(e.getPlayer()) + "");
             newMessages.add(string);
         }
         e.setMessages(newMessages);
