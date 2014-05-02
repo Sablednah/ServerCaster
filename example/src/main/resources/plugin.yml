@@ -1,0 +1,6 @@
+name: ServerCasterExample
+author: [killje, Flexo013]
+description: examples of how to use the ServerCaster API
+version: 1.8-SNAPSHOT
+main: me.servercaster.example.AddWarp
+depend: [ServerCaster]
