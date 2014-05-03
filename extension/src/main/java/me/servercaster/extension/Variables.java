@@ -6,6 +6,7 @@ import java.util.Random;
 import me.servercaster.core.event.CastListener;
 import me.servercaster.core.event.PreCastEvent;
 import me.servercaster.core.event.PreCastPlayerEvent;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -29,6 +30,12 @@ public class Variables implements CastListener {
         for (String string : messages) {
             Random rand = new Random();
             Player[] onlinePlayers = instance.getServer().getOnlinePlayers();
+            if (string.toLowerCase().contains(("%PLING%").toLowerCase())) {
+                for (Player player : e.getPlayers()) {
+                    player.playSound(player.getLocation(), Sound.NOTE_PLING, 100f, 100f);
+                }
+                string = string.replaceAll("(?i)PLING", "");
+            }
             if (onlinePlayers.length != 0) {
                 string = string.replaceAll("(?i)%RDMPLAYER%", onlinePlayers[rand.nextInt(onlinePlayers.length)].getName());
             }

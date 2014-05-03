@@ -13,6 +13,5 @@ public class ServerExtension extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
         ServerCaster.addMessageListener(this, new Variables(this));
-        ServerCaster.addConverter(this, new Pling(this));
     }
 }
