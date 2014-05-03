@@ -21,7 +21,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ServerCaster extends JavaPlugin {
 
     private Caster anouncer;
-    private static JavaPlugin instance;
+    private static ServerCaster instance;
     private final MessageHandler messageHandler = new MessageHandler();
 
     public static JavaPlugin getInstance() {
@@ -111,35 +111,29 @@ public class ServerCaster extends JavaPlugin {
     }
 
     public static void castMessage(JavaPlugin plugin, String message, Player[] players) {
-        ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
-        ServerCaster.castMessage(plugin, message, parent.getConfig().getString("Prefix"), players);
+        ServerCaster.castMessage(plugin, message, instance.getConfig().getString("Prefix"), players);
     }
 
     public static void castMessage(JavaPlugin plugin, String message, String prefix, Player[] players) {
-        ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
-        Caster caster = parent.getCaster();
+        Caster caster = instance.getCaster();
         ArrayList<Player> lPlayers = new ArrayList<>();
         lPlayers.addAll(Arrays.asList(players));
         caster.sendMessage(Caster.ToJsonString(prefix, message), lPlayers);
     }
 
     public static void addAction(JavaPlugin plugin, CodeAction ca) {
-        ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
-        parent.addCodeAction(ca);
+        instance.addCodeAction(ca);
     }
     
     public static void removeAction(JavaPlugin plugin, CodeAction ca) {
-        ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
-        parent.removeCodeAction(ca);
+        instance.removeCodeAction(ca);
     }
     
     public static void addMessageListener(JavaPlugin plugin, CastListener listener){
-        ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
-        parent.getMessageHandler().addEventListener(listener);
+        instance.getMessageHandler().addEventListener(listener);
     }
     
     public static void removeMessageListener(JavaPlugin plugin, CastListener listener){
-        ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
-        parent.getMessageHandler().removeEventListener(listener);
+        instance.getMessageHandler().removeEventListener(listener);
     }
 }
