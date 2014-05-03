@@ -81,4 +81,8 @@ public class CodeConverter extends Converter {
     public static void addCodeAction(CodeAction ca) {
         codes.put(ca.getCode(), ca);
     }
+    
+    public static void removeCodeAction(CodeAction ca) {
+        codes.remove(ca.getCode());
+    }
 }

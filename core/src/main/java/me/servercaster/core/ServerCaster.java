@@ -90,6 +90,10 @@ public class ServerCaster extends JavaPlugin {
         CodeConverter.addCodeAction(ca);
     }
     
+    void removeCodeAction(CodeAction ca) {
+        CodeConverter.removeCodeAction(ca);
+    }
+    
     MessageHandler getMessageHandler(){
         return messageHandler;
     }
@@ -124,8 +128,18 @@ public class ServerCaster extends JavaPlugin {
         parent.addCodeAction(ca);
     }
     
+    public static void removeConverter(JavaPlugin plugin, CodeAction ca) {
+        ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
+        parent.removeCodeAction(ca);
+    }
+    
     public static void addMessageListener(JavaPlugin plugin, CastListener listener){
         ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
         parent.getMessageHandler().addEventListener(listener);
+    }
+    
+    public static void removeMessageListener(JavaPlugin plugin, CastListener listener){
+        ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
+        parent.getMessageHandler().removeEventListener(listener);
     }
 }
