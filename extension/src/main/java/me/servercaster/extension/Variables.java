@@ -34,7 +34,7 @@ public class Variables implements CastListener {
                 for (Player player : e.getPlayers()) {
                     player.playSound(player.getLocation(), Sound.NOTE_PLING, 100f, 100f);
                 }
-                string = string.replaceAll("(?i)PLING", "");
+                string = string.replaceAll("(?i)%PLING%", "");
             }
             if (onlinePlayers.length != 0) {
                 string = string.replaceAll("(?i)%RDMPLAYER%", onlinePlayers[rand.nextInt(onlinePlayers.length)].getName());

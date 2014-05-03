@@ -10,6 +10,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class AddWarp {
 
     public AddWarp(JavaPlugin instance) {
-        ServerCaster.addConverter(instance, new WarpAction());
+        ServerCaster.addAction(instance, new WarpAction());
     }
 }
