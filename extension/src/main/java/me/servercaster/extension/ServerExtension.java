@@ -36,9 +36,7 @@ public class ServerExtension extends JavaPlugin implements CastListener {
             if (onlinePlayers.length != 0) {
                 string = string.replaceAll("(?i)%RDMPLAYER%", onlinePlayers[rand.nextInt(onlinePlayers.length)].getName());
             }
-            getLogger().info(string);
             string = string.replaceAll("(?i)%SLOTS%", this.getServer().getMaxPlayers() + "");
-            getLogger().info(string);
             string = string.replaceAll("(?i)%PLAYERS%", onlinePlayers.length + "");
             if (string.contains("(?i)%ONLINEPLAYERS%")) {
                 String players = "";
