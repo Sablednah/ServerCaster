@@ -86,8 +86,8 @@ public class ServerCaster extends JavaPlugin {
         getServer().getPluginManager().registerEvents(anouncer, this);
     }
 
-    void addCodeAction(CodeAction scc) {
-        CodeConverter.addCodeAction(scc);
+    void addCodeAction(CodeAction ca) {
+        CodeConverter.addCodeAction(ca);
     }
     
     MessageHandler getMessageHandler(){
@@ -119,9 +119,9 @@ public class ServerCaster extends JavaPlugin {
         caster.sendMessage(Caster.ToJsonString(prefix, message), lPlayers);
     }
 
-    public static void addConverter(JavaPlugin plugin, CodeAction scc) {
+    public static void addConverter(JavaPlugin plugin, CodeAction ca) {
         ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
-        parent.addCodeAction(scc);
+        parent.addCodeAction(ca);
     }
     
     public static void addMessageListener(JavaPlugin plugin, CastListener listener){

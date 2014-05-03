@@ -34,11 +34,11 @@ public class CodeConverter extends Converter {
         nextChar = true;
         String savedString = getSavedString();
         if (codes.containsKey(savedString.toLowerCase())) {
-            CodeAction scc = codes.get(savedString.toLowerCase());
-            if (scc.hasArgumentsLeft()) {
-                actionCode.add(scc);
+            CodeAction ca = codes.get(savedString.toLowerCase());
+            if (ca.hasArgumentsLeft()) {
+                actionCode.add(ca);
             } else {
-                scc.doAction(savedString);
+                ca.doAction(savedString);
             }
         } else {
             throw new IllegalArgumentException("Code unknown");
@@ -78,7 +78,7 @@ public class CodeConverter extends Converter {
         }
     }
 
-    public static void addCodeAction(CodeAction scc) {
-        codes.put(scc.getCode(), scc);
+    public static void addCodeAction(CodeAction ca) {
+        codes.put(ca.getCode(), ca);
     }
 }
