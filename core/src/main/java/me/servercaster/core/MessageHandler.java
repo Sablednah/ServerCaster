@@ -52,6 +52,7 @@ public class MessageHandler {
             }
         }
         this.messages = event.getMessages();
+        this.old = messages;
         return true;
     }
 
