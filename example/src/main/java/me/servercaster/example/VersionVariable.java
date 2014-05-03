@@ -28,7 +28,7 @@ class VersionVariable implements CastListener {
             string = string.replaceAll("(?i)%VERSION%", instance.getServer().getVersion());
             newMessages.add(string);
         }
-        pce.setMessages(messages);
+        pce.setMessages(newMessages);
     }
 
     @Override
