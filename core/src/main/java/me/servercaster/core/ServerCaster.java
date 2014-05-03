@@ -123,12 +123,12 @@ public class ServerCaster extends JavaPlugin {
         caster.sendMessage(Caster.ToJsonString(prefix, message), lPlayers);
     }
 
-    public static void addConverter(JavaPlugin plugin, CodeAction ca) {
+    public static void addAction(JavaPlugin plugin, CodeAction ca) {
         ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
         parent.addCodeAction(ca);
     }
     
-    public static void removeConverter(JavaPlugin plugin, CodeAction ca) {
+    public static void removeAction(JavaPlugin plugin, CodeAction ca) {
         ServerCaster parent = (ServerCaster) plugin.getServer().getPluginManager().getPlugin("ServerCaster");
         parent.removeCodeAction(ca);
     }
