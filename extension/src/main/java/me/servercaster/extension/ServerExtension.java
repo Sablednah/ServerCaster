@@ -38,31 +38,39 @@ public class ServerExtension extends JavaPlugin implements CastListener {
             }
             string = string.replaceAll("(?i)%SLOTS%", this.getServer().getMaxPlayers() + "");
             string = string.replaceAll("(?i)%PLAYERS%", onlinePlayers.length + "");
-            if (string.contains("(?i)%ONLINEPLAYERS%")) {
+            if (string.toLowerCase().contains(("%ONLINEPLAYERS%").toLowerCase())) {
                 String players = "";
                 for (Player player : onlinePlayers) {
                     players += player.getDisplayName() + ", ";
                 }
-                players = players.substring(0, players.length() - 2);
+                if (!players.equals("")) {
+                    players = players.substring(0, players.length() - 2);
+                }
                 string = string.replaceAll("(?i)%ONLINEPLAYERS%", players);
             }
             List<String> staff = getConfig().getStringList("Staff");
-            if (string.contains("(?i)%LISTALLSTAFF%")) {
+            if (string.toLowerCase().contains(("%LISTALLSTAFF%").toLowerCase())) {
                 String allStaff = "";
                 for (String staffName : staff) {
                     allStaff += staffName + ", ";
                 }
-                allStaff = allStaff.substring(0, allStaff.length() - 2);
+                if (!allStaff.equals("")) {
+                    allStaff = allStaff.substring(0, allStaff.length() - 2);
+                }
                 string = string.replaceAll("(?i)%LISTALLSTAFF%", allStaff);
             }
-            if (string.contains("(?i)%ONLINESTAFF%")) {
+            if (string.toLowerCase().contains(("%ONLINESTAFF%").toLowerCase())) {
                 String onlineStaff = "";
                 for (String staffName : staff) {
-                    if (getServer().getPlayer(staffName).isOnline()) {
+                    getLogger().info(staffName);
+                    if (getServer().getPlayer(staffName) != null && getServer().getPlayer(staffName).isOnline()) {
                         onlineStaff += staffName + ", ";
+                        getLogger().info(onlineStaff);
                     }
                 }
-                onlineStaff = onlineStaff.substring(0, onlineStaff.length() - 2);
+                if (!onlineStaff.equals("")) {
+                    onlineStaff = onlineStaff.substring(0, onlineStaff.length() - 2);
+                }
                 string = string.replaceAll("(?i)%ONLINESTAFF%", onlineStaff);
             }
             newMessages.add(string);

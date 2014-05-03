@@ -19,7 +19,7 @@ public class UrlAction extends CodeAction {
 
     @Override
     public void doAction(String argument) {
-        getJSONSaver().link(argument.substring(1, argument.length() - 2));
+        getJSONSaver().link(argument.substring(1, argument.length() - 1));
     }
 
 }

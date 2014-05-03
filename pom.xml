@@ -36,7 +36,7 @@
         <dependency>
             <groupId>mkremins</groupId>
             <artifactId>fanciful</artifactId>
-            <version>0.1.6-SNAPSHOT</version>
+            <version>0.1.6-20140424.153625-1</version>
         </dependency>
     </dependencies>
     <build>
