@@ -127,12 +127,8 @@ public class Caster implements Runnable, CommandExecutor, Listener {
     }
 
     private void addPlayer(Player player) {
-        instance.getLogger().info(player.getName() + " | " + player.getDisplayName());
         for (GroupSender groupSender : senders) {
-            instance.getLogger().info(groupSender.getGroup());
-            instance.getLogger().info(player.hasPermission("ServerCaster." + groupSender.getGroup())+ "");
             if (player.hasPermission("ServerCaster." + groupSender.getGroup())) {
-                instance.getLogger().info("player joined");
                 groupSender.addPlayer(player);
                 return;
             }
