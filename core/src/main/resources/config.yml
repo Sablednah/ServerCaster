@@ -1,36 +1,8 @@
 # +----------------------------------------------------------------------------+
-# | ServerCaster Config |
+# | ServerCaster Config                                                        |
 # +----------------------------------------------------------------------------+
-# |Created by: Killje and Flexo013 |
+# |Created by: Killje and Flexo013                                             |
 # +----------------------------------------------------------------------------+
 # |Make sure that you NEVER use tabs. Always use spaces or bukkit will complain|
-# |If you want to use (') inside a text line you will |
-# | need to escape it with a second (') |
-# |When using links make sure to use " "! |
 # +----------------------------------------------------------------------------+
 Prefix: '&RED;{[Broadcast]:}'
-Interval: 20
-InSeconds: false
-Debug: false
-
-
-# When Using groups make a extra layer
-# you will get something like:
-# Messages:
-# Group1:
-# - 'message for Group1'
-# Group2:
-# - 'message for Group2'
-
-# Permissions without groups looks like ServerCaster.Messages
-# With groups they look like - ServerCaster.Messages.Group1
-# When using inherenting groups make sure you remove the person from the previous group
-# You can do this by adding - -ServerCaster.Messages.Group1 to the desired group
-UseGroups: false
-Messages:
-    - 'Colors are very easy to add. &GREEN;{Here is some green text!}'
-    - 'You can also have broadcasts continue on the next line. &NEWLINE;Notice how the prefix &RED;{[Broadcast]:} was reprinted.'
-    - 'You can have players execute commands by clicking chat! &GREEN;&UNDERLINE;&COMMAND;{say I love commands!}{Click here} to activate a test command!'
-    - 'You can even use embedded links! &AQUA;&UNDERLINE;&URL;{"http://www.google.com/"}{Click here} to go to a website!'
-    - 'You can have broadcasts suggest text and commands. &LIGHT_PURPLE;&SUGGEST;{/say Hello world!}{Click here.}'
-    - 'You can use &COMMAND;{reloadservercaster}{/reloadservercaster} to reload the config file &NEWLINE;and use &COMMAND;{cast}{/cast} to cast the next message directly!'

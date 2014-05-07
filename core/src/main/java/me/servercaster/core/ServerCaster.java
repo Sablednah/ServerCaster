@@ -23,6 +23,7 @@ public class ServerCaster extends JavaPlugin {
     private Caster anouncer;
     private static ServerCaster instance;
     private final MessageHandler messageHandler = new MessageHandler();
+    private final ReloadHandler reloadHandler = new ReloadHandler();
 
     public static JavaPlugin getInstance() {
         return instance;
@@ -31,9 +32,8 @@ public class ServerCaster extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        instance.saveDefaultConfig();
-        anouncer = new Caster(messageHandler);
-        getCommand("cast").setExecutor(anouncer);
+        saveDefaultConfig();
+        anouncer = new Caster(messageHandler, reloadHandler);
         getCommand("reloadservercaster").setExecutor(anouncer);
         addCodeAction(new CommandAction());
         addCodeAction(new UrlAction());
@@ -83,7 +83,6 @@ public class ServerCaster extends JavaPlugin {
         addCodeAction(new StyleAction("m", ChatColor.STRIKETHROUGH));
         addCodeAction(new StyleAction("n", ChatColor.UNDERLINE));
         addCodeAction(new StyleAction("o", ChatColor.ITALIC));
-        getServer().getPluginManager().registerEvents(anouncer, this);
     }
 
     void addCodeAction(CodeAction ca) {

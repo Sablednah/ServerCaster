@@ -8,7 +8,3 @@ commands:
       description: Reloads the ServerCaster config file.
       usage: §cThe correct format is /reloadservercaster
       permission: servercaster.reload
-   cast:
-      description: Broadcast the next message to all groups.
-      usage: §cThe correct format is /cast
-      permission: servercaster.cast

@@ -9,6 +9,7 @@
         <module>Core</module>
         <module>example</module>
         <module>extension</module>
+        <module>BroadCaster</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
