@@ -1,4 +1,4 @@
-package me.servercaster.broadcaster;
+package me.servercaster.autocaster;
 
 import java.util.ArrayList;
 import me.servercaster.core.ServerCaster;
@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class GroupSender {
 
     private int lineIndex = 0;
-    private final JavaPlugin instance = BroadCaster.getInstance();
+    private final JavaPlugin instance = AutoCaster.getInstance();
     private final String path;
     private final int totalMessages;
     private final ArrayList<Player> players = new ArrayList<>();

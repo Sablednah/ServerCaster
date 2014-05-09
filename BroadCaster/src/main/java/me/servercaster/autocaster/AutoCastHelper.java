@@ -1,4 +1,4 @@
-package me.servercaster.broadcaster;
+package me.servercaster.autocaster;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,13 +22,13 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class BroadCastHelper implements Listener, Runnable, CommandExecutor, CastReloadListener{
+public class AutoCastHelper implements Listener, Runnable, CommandExecutor, CastReloadListener{
     
-    private final JavaPlugin instance = BroadCaster.getInstance();
+    private final JavaPlugin instance = AutoCaster.getInstance();
     private final List<GroupSender> senders = new LinkedList<>();
     private boolean firstRun = true;
 
-    public BroadCastHelper() {
+    public AutoCastHelper() {
         init();
     }
     

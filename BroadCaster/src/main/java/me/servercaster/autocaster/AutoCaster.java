@@ -1,4 +1,4 @@
-package me.servercaster.broadcaster;
+package me.servercaster.autocaster;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class BroadCaster extends JavaPlugin {
+public class AutoCaster extends JavaPlugin {
 
     public static JavaPlugin getInstance() {
         return instance;
@@ -18,7 +18,7 @@ public class BroadCaster extends JavaPlugin {
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
-        BroadCastHelper broadCastHelper = new BroadCastHelper();
+        AutoCastHelper broadCastHelper = new AutoCastHelper();
         getServer().getPluginManager().registerEvents(broadCastHelper, this);
         getCommand("cast").setExecutor(broadCastHelper);
     }
