@@ -6,9 +6,9 @@ import mkremins.fanciful.FancyMessage;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class BracketConverter extends Converter {
+class BracketConverter extends Converter {
 
-    public BracketConverter(FancyMessage fm) {
+    BracketConverter(FancyMessage fm) {
         super(fm);
     }
 

@@ -13,21 +13,21 @@ import org.bukkit.entity.Player;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class MessageHandler {
+class MessageHandler {
 
     private final List _listeners = new ArrayList();
     private ArrayList<String> messages;
     private ArrayList<String> old;
 
-    public synchronized void addEventListener(CastListener listener) {
+    synchronized void addEventListener(CastListener listener) {
         _listeners.add(listener);
     }
 
-    public synchronized void removeEventListener(CastListener listener) {
+    synchronized void removeEventListener(CastListener listener) {
         _listeners.remove(listener);
     }
 
-    public void sendMessages(Player[] players, ArrayList<String> messages) {
+    void sendMessages(Player[] players, ArrayList<String> messages) {
         this.messages = messages;
         this.old = messages;
         if (firePreServer(players)) {

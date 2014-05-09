@@ -9,22 +9,22 @@ import me.servercaster.core.event.ReloadEvent;
 import org.bukkit.command.CommandSender;
 
 /**
- *
- * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
- */
-public class ReloadHandler {
+*
+* @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
+*/
+class ReloadHandler {
 
     private final List _listeners = new ArrayList();
 
-    public synchronized void addEventListener(CastListener listener) {
+    synchronized void addEventListener(CastListener listener) {
         _listeners.add(listener);
     }
 
-    public synchronized void removeEventListener(CastListener listener) {
+    synchronized void removeEventListener(CastListener listener) {
         _listeners.remove(listener);
     }
 
-    public void fireEvent(CommandSender commandSender) {
+    void fireEvent(CommandSender commandSender) {
         fireReloadEvent(commandSender);
     }
 

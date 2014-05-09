@@ -13,20 +13,20 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class Caster implements CommandExecutor {
-
-    public void sendMessage(ArrayList<String> message, Player[] players) {
-        sendingMessageHandler.sendMessages(players, message);
-    }
+class Caster implements CommandExecutor {
 
     private final JavaPlugin instance = ServerCaster.getInstance();
     private final MessageHandler sendingMessageHandler;
     private final ReloadHandler reloadHandler;
 
-    public Caster(MessageHandler sendingMessageHandler, ReloadHandler reloadHandler) {
+    Caster(MessageHandler sendingMessageHandler, ReloadHandler reloadHandler) {
         this.sendingMessageHandler = sendingMessageHandler;
         this.reloadHandler = reloadHandler;
         this.reloadHandler.fireEvent(instance.getServer().getConsoleSender());
+    }
+    
+    void sendMessage(ArrayList<String> message, Player[] players) {
+        sendingMessageHandler.sendMessages(players, message);
     }
 
     private void reset(CommandSender sender) {

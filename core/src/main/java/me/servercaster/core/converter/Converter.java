@@ -6,12 +6,12 @@ import mkremins.fanciful.FancyMessage;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public abstract class Converter {
+abstract class Converter {
 
     private String saver = "";
     protected final FancyMessage fm;
 
-    public Converter(FancyMessage fm) {
+    Converter(FancyMessage fm) {
         this.fm = fm;
     }
 

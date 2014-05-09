@@ -16,7 +16,7 @@ public class CodeConverter extends Converter {
     private boolean nextChar = false;
     private boolean inBracket = false;
 
-    public CodeConverter(FancyMessage fm) {
+    CodeConverter(FancyMessage fm) {
         super(fm);
         for (Map.Entry<String, CodeAction> entry : codes.entrySet()) {
             CodeAction codeAction = entry.getValue();
