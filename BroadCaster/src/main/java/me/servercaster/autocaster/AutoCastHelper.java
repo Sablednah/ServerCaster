@@ -22,8 +22,8 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class AutoCastHelper implements Listener, Runnable, CommandExecutor, CastReloadListener{
-    
+public class AutoCastHelper implements Listener, Runnable, CommandExecutor, CastReloadListener {
+
     private final JavaPlugin instance = AutoCaster.getInstance();
     private final List<GroupSender> senders = new LinkedList<>();
     private boolean firstRun = true;
@@ -31,7 +31,7 @@ public class AutoCastHelper implements Listener, Runnable, CommandExecutor, Cast
     public AutoCastHelper() {
         init();
     }
-    
+
     private void init() {
         if (instance.getConfig().getBoolean("UseGroups")) {
             Set<String> groups = instance.getConfig().getConfigurationSection("Messages").getKeys(false);
@@ -42,14 +42,13 @@ public class AutoCastHelper implements Listener, Runnable, CommandExecutor, Cast
             senders.add(new GroupSender("Messages"));
         }
     }
-    
+
     @EventHandler(priority = EventPriority.HIGHEST)
     public void loginEvent(PlayerJoinEvent e) {
         if (firstRun) {
             return;
         }
-        Player player = e.getPlayer();
-        addPlayer(player);
+        addPlayer(e.getPlayer());
     }
 
     @EventHandler
@@ -61,12 +60,11 @@ public class AutoCastHelper implements Listener, Runnable, CommandExecutor, Cast
     public void kickEvent(PlayerKickEvent e) {
         removePlayer(e.getPlayer());
     }
-    
+
     private void addPlayer(Player player) {
         for (GroupSender groupSender : senders) {
             if (player.hasPermission("ServerCaster." + groupSender.getGroup())) {
                 groupSender.addPlayer(player);
-                return;
             }
         }
     }
@@ -76,7 +74,7 @@ public class AutoCastHelper implements Listener, Runnable, CommandExecutor, Cast
             groupSender.removePlayer(player);
         }
     }
-    
+
     @Override
     public void run() {
         if (firstRun) {
@@ -92,11 +90,12 @@ public class AutoCastHelper implements Listener, Runnable, CommandExecutor, Cast
 
     @Override
     public void castReloadHandler(ReloadEvent e) {
+        stop();
         firstRun = true;
         senders.clear();
         addToScheduler();
     }
-    
+
     private void addToScheduler() {
         int intervalInTicks = getIntervalInTicks();
         instance.getServer().getScheduler().scheduleSyncRepeatingTask(instance, this, intervalInTicks, intervalInTicks);
@@ -109,19 +108,49 @@ public class AutoCastHelper implements Listener, Runnable, CommandExecutor, Cast
         }
         return 20 * interval;
     }
-    
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("cast")) {
             if (args.length > 0) {
                 return false;
             }
-            instance.getServer().getScheduler().cancelTasks(instance);
+            stop();
             run();
             sender.sendMessage(ChatColor.GREEN + "All messages have been send");
-            addToScheduler();
+            start(false);
+            return true;
+        } else if (cmd.getName().equalsIgnoreCase("startAutoCaster")) {
+            if (args.length > 1) {
+                return false;
+            }
+            boolean reset = false;
+            if (args.length == 1) {
+                reset = Boolean.parseBoolean(args[0]);
+            }
+            start(reset);
+            return true;
+        } else if (cmd.getName().equalsIgnoreCase("stopAutoCaster")) {
+            if (args.length > 0) {
+                return false;
+            }
+            stop();
             return true;
         }
         return false;
     }
+
+    void start(boolean reset) {
+        if (reset) {
+            for (GroupSender groupSender : senders) {
+                groupSender.setLineIndex(0);
+            }
+        }
+        addToScheduler();
+    }
+
+    void stop() {
+        instance.getServer().getScheduler().cancelTasks(instance);
+    }
+
 }

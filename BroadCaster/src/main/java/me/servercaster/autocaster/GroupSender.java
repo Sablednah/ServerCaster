@@ -43,7 +43,7 @@ public class GroupSender {
         players.remove(player);
     }
 
-    public void setLineIndex(int message) {
-        lineIndex = message;
+    public void setLineIndex(int line) {
+        lineIndex = line;
     }
 }

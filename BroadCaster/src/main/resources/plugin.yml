@@ -1,11 +1,19 @@
-name: BroadCaster
+name: AutoCaster
 author: [killje, Flexo013]
-description: A broadcaster that can send messages at specified interval
+description: A auto caster that can send messages at specified interval
 version: 1.9-SNAPSHOT
-main: me.servercaster.broadcaster.BroadCaster
+main: me.servercaster.autocaster.AutoCaster
 depend: [ServerCaster]
 commands:
    cast:
       description: Broadcast the next message to all groups.
       usage: §cThe correct format is /cast
+      permission: servercaster.cast
+   startAutoCaster:
+      description: Starts the autocaster back up (can reset to 0)
+      usage: §cThe correct format is /startAutoCaster [boolean reset]
+      permission: servercaster.cast
+   stopAutoCaster:
+      description: Stops the auto caster
+      usage: §cThe correct format is /stopAutoCaster
       permission: servercaster.cast

@@ -9,20 +9,30 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class AutoCaster extends JavaPlugin {
 
-    public static JavaPlugin getInstance() {
-        return instance;
-    }
-
     private static JavaPlugin instance;
-    
+    private static final AutoCastHelper ach = new AutoCastHelper();
+
     @Override
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
-        AutoCastHelper broadCastHelper = new AutoCastHelper();
-        getServer().getPluginManager().registerEvents(broadCastHelper, this);
-        getCommand("cast").setExecutor(broadCastHelper);
-        ServerCaster.addReloadListener(this, broadCastHelper);
+        getServer().getPluginManager().registerEvents(ach, this);
+        getCommand("cast").setExecutor(ach);
+        getCommand("startAutoCaster").setExecutor(ach);
+        getCommand("stopAutoCaster").setExecutor(ach);
+        ServerCaster.addReloadListener(this, ach);
     }
-   
+
+    public static JavaPlugin getInstance() {
+        return instance;
+    }
+
+    public static void startAutoCaster(boolean reset) {
+        ach.start(reset);
+    }
+
+    public static void stopAutoCaster() {
+        ach.stop();
+    }
+
 }
