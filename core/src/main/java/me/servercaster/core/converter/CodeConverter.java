@@ -3,6 +3,7 @@ package me.servercaster.core.converter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import me.servercaster.core.ServerCaster;
 import mkremins.fanciful.FancyMessage;
 
 /**
@@ -41,7 +42,9 @@ public class CodeConverter extends Converter {
                 ca.doAction(savedString);
             }
         } else {
-            throw new IllegalArgumentException("Code unknown");
+            ServerCaster.getInstance().getLogger().throwing(
+                    this.getClass().getName(), "end()",
+                    new IllegalArgumentException("Code Action Unknown (" + savedString + ")"));
         }
         clearSavedString();
         return this;
@@ -81,7 +84,7 @@ public class CodeConverter extends Converter {
     public static void addCodeAction(CodeAction ca) {
         codes.put(ca.getCode(), ca);
     }
-    
+
     public static void removeCodeAction(CodeAction ca) {
         codes.remove(ca.getCode());
     }
