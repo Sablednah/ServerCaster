@@ -15,6 +15,7 @@ public class CodeConverter extends Converter {
 
     private static final Map<String, CodeAction> codes = new HashMap<>();
     private final ArrayList<CodeAction> actionCode = new ArrayList<>();
+    private final ArrayList<CodeAction> emptyCodes = new ArrayList<>();
     private boolean nextChar = false;
     private boolean inBracket = false;
 
@@ -40,7 +41,7 @@ public class CodeConverter extends Converter {
             if (ca.hasArgumentsLeft()) {
                 actionCode.add(ca);
             } else {
-                ca.doAction(savedString);
+                emptyCodes.add(ca);
             }
         } else {
             ServerCaster.getInstance().getLogger().logp(
@@ -69,7 +70,7 @@ public class CodeConverter extends Converter {
         if (nextChar) {
             if (c == '{') {
                 if (actionCode.isEmpty()) {
-                    return new BracketConverter(fm);
+                    return new BracketConverter(fm, emptyCodes);
                 }
                 inBracket = true;
                 return this;

@@ -1,5 +1,6 @@
 package me.servercaster.core.converter;
 
+import java.util.ArrayList;
 import mkremins.fanciful.FancyMessage;
 
 /**
@@ -8,8 +9,11 @@ import mkremins.fanciful.FancyMessage;
  */
 class BracketConverter extends Converter {
 
-    BracketConverter(FancyMessage fm) {
+    private final ArrayList<CodeAction> emptyCodes;
+    
+    BracketConverter(FancyMessage fm, ArrayList<CodeAction> emptyCodes) {
         super(fm);
+        this.emptyCodes = emptyCodes;
     }
 
     @Override
@@ -19,6 +23,9 @@ class BracketConverter extends Converter {
 
     @Override
     Converter end() {
+        for (CodeAction codeAction : emptyCodes) {
+            codeAction.doAction(getSavedString());
+        }
         fm.text(getSavedString());
         fm.then();
         return new TextConverter(fm);
