@@ -1,5 +1,6 @@
 package me.servercaster.autocaster;
 
+import me.servercaster.core.ServerCaster;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -21,6 +22,7 @@ public class AutoCaster extends JavaPlugin {
         AutoCastHelper broadCastHelper = new AutoCastHelper();
         getServer().getPluginManager().registerEvents(broadCastHelper, this);
         getCommand("cast").setExecutor(broadCastHelper);
+        ServerCaster.addReloadListener(this, broadCastHelper);
     }
    
 }

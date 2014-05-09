@@ -3,7 +3,6 @@ package me.servercaster.core;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import me.servercaster.core.event.CastListener;
 import me.servercaster.core.event.CastReloadListener;
 import me.servercaster.core.event.ReloadEvent;
 import org.bukkit.command.CommandSender;
@@ -16,11 +15,11 @@ class ReloadHandler {
 
     private final List _listeners = new ArrayList();
 
-    synchronized void addEventListener(CastListener listener) {
+    synchronized void addEventListener(CastReloadListener listener) {
         _listeners.add(listener);
     }
 
-    synchronized void removeEventListener(CastListener listener) {
+    synchronized void removeEventListener(CastReloadListener listener) {
         _listeners.remove(listener);
     }
 

@@ -1,13 +1,14 @@
 package me.servercaster.core;
 
+import me.servercaster.core.converter.CodeAction;
 import me.servercaster.core.converter.CodeConverter;
 import me.servercaster.core.converter.action.ColorAction;
 import me.servercaster.core.converter.action.CommandAction;
-import me.servercaster.core.converter.CodeAction;
 import me.servercaster.core.converter.action.StyleAction;
 import me.servercaster.core.converter.action.SuggestAction;
 import me.servercaster.core.converter.action.UrlAction;
 import me.servercaster.core.event.CastListener;
+import me.servercaster.core.event.CastReloadListener;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -86,13 +87,17 @@ public class ServerCaster extends JavaPlugin {
     void addCodeAction(CodeAction ca) {
         CodeConverter.addCodeAction(ca);
     }
-    
+
     void removeCodeAction(CodeAction ca) {
         CodeConverter.removeCodeAction(ca);
     }
-    
-    MessageHandler getMessageHandler(){
+
+    MessageHandler getMessageHandler() {
         return messageHandler;
+    }
+    
+    ReloadHandler getReloadHandler() {
+        return reloadHandler;
     }
 
     Caster getCaster() {
@@ -118,16 +123,24 @@ public class ServerCaster extends JavaPlugin {
     public static void addAction(JavaPlugin plugin, CodeAction ca) {
         instance.addCodeAction(ca);
     }
-    
+
     public static void removeAction(JavaPlugin plugin, CodeAction ca) {
         instance.removeCodeAction(ca);
     }
-    
-    public static void addMessageListener(JavaPlugin plugin, CastListener listener){
+
+    public static void addMessageListener(JavaPlugin plugin, CastListener listener) {
         instance.getMessageHandler().addEventListener(listener);
     }
-    
-    public static void removeMessageListener(JavaPlugin plugin, CastListener listener){
+
+    public static void removeMessageListener(JavaPlugin plugin, CastListener listener) {
         instance.getMessageHandler().removeEventListener(listener);
+    }
+
+    public static void addReloadListener(JavaPlugin plugin, CastReloadListener listener) {
+        instance.getReloadHandler().addEventListener(listener);
+    }
+
+    public static void removeReloadListener(JavaPlugin plugin, CastReloadListener listener) {
+        instance.getReloadHandler().removeEventListener(listener);
     }
 }
