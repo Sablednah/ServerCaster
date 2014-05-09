@@ -3,6 +3,7 @@ author: [killje, Flexo013]
 description: A broadcaster that can send messages at specified interval
 version: 1.9-SNAPSHOT
 main: me.servercaster.broadcaster.BroadCaster
+depend: [ServerCaster]
 commands:
    cast:
       description: Broadcast the next message to all groups.
