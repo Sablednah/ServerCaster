@@ -1,7 +1,5 @@
 package me.servercaster.core;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import me.servercaster.core.converter.CodeConverter;
 import me.servercaster.core.converter.action.ColorAction;
 import me.servercaster.core.converter.action.CommandAction;
@@ -114,10 +112,7 @@ public class ServerCaster extends JavaPlugin {
     }
 
     public static void castMessage(JavaPlugin plugin, String message, String prefix, Player[] players) {
-        Caster caster = instance.getCaster();
-        ArrayList<Player> lPlayers = new ArrayList<>();
-        lPlayers.addAll(Arrays.asList(players));
-        caster.sendMessage(Caster.ToJsonString(prefix, message), lPlayers);
+        instance.getCaster().sendMessage(Caster.ToJsonString(prefix, message), players);
     }
 
     public static void addAction(JavaPlugin plugin, CodeAction ca) {

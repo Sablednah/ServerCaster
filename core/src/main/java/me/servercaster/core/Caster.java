@@ -15,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Caster implements CommandExecutor {
 
-    public void sendMessage(ArrayList<String> message, ArrayList<Player> players) {
+    public void sendMessage(ArrayList<String> message, Player[] players) {
         sendingMessageHandler.sendMessages(players, message);
     }
 
