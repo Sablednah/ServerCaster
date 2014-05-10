@@ -2,6 +2,7 @@ package me.servercaster.core.converter;
 
 import java.util.ArrayList;
 import mkremins.fanciful.FancyMessage;
+import org.bukkit.entity.Player;
 
 /**
  *
@@ -10,10 +11,12 @@ import mkremins.fanciful.FancyMessage;
 class BracketConverter extends Converter {
 
     private final ArrayList<CodeAction> emptyCodes;
+    private final Player[] players;
     
-    BracketConverter(FancyMessage fm, ArrayList<CodeAction> emptyCodes) {
+    BracketConverter(FancyMessage fm, ArrayList<CodeAction> emptyCodes, Player[] players) {
         super(fm);
         this.emptyCodes = emptyCodes;
+        this.players = players;
     }
 
     @Override
@@ -28,7 +31,7 @@ class BracketConverter extends Converter {
         }
         fm.text(getSavedString());
         fm.then();
-        return new TextConverter(fm);
+        return new TextConverter(fm, players);
     }
 
 }

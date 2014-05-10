@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import me.servercaster.core.ServerCaster;
 import mkremins.fanciful.FancyMessage;
+import org.bukkit.entity.Player;
 
 /**
  *
@@ -18,13 +19,15 @@ public class CodeConverter extends Converter {
     private final ArrayList<CodeAction> emptyCodes = new ArrayList<>();
     private boolean nextChar = false;
     private boolean inBracket = false;
+    private final Player[] players;
 
-    CodeConverter(FancyMessage fm) {
+    CodeConverter(FancyMessage fm, Player[] players) {
         super(fm);
         for (Map.Entry<String, CodeAction> entry : codes.entrySet()) {
             CodeAction codeAction = entry.getValue();
-            codeAction.addBuilder(fm);
+            codeAction.setBuilders(fm, players);
         }
+        this.players = players;
     }
 
     @Override
@@ -70,7 +73,7 @@ public class CodeConverter extends Converter {
         if (nextChar) {
             if (c == '{') {
                 if (actionCode.isEmpty()) {
-                    return new BracketConverter(fm, emptyCodes);
+                    return new BracketConverter(fm, emptyCodes, players);
                 }
                 inBracket = true;
                 return this;

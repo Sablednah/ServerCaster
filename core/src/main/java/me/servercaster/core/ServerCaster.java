@@ -117,7 +117,7 @@ public class ServerCaster extends JavaPlugin {
     }
 
     public static void castMessage(JavaPlugin plugin, String message, String prefix, Player[] players) {
-        instance.getCaster().sendMessage(Caster.ToJsonString(prefix, message), players);
+        instance.getCaster().sendMessage(Caster.ToJsonString(prefix, message, players), players);
     }
 
     public static void addAction(JavaPlugin plugin, CodeAction ca) {

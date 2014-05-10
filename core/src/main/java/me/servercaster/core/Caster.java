@@ -49,8 +49,8 @@ class Caster implements CommandExecutor {
         return false;
     }
 
-    static ArrayList<String> ToJsonString(String prefix, String message) {
-        Builder builder = new Builder();
+    static ArrayList<String> ToJsonString(String prefix, String message, Player[] players) {
+        Builder builder = new Builder(players);
         if (!prefix.equals("")) {
             prefix = prefix + " ";
         }

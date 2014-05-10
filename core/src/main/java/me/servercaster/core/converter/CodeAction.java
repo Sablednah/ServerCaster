@@ -1,6 +1,7 @@
 package me.servercaster.core.converter;
 
 import mkremins.fanciful.FancyMessage;
+import org.bukkit.entity.Player;
 
 /**
  * This class can be used to add actions when extended.
@@ -12,6 +13,7 @@ public abstract class CodeAction {
     private FancyMessage fm;
     private int arguments;
     private int argumentsLeft;
+    private Player[] players;
 
     /**
      *
@@ -60,7 +62,7 @@ public abstract class CodeAction {
         }
     }
 
-    void addBuilder(FancyMessage fm) {
+    void setBuilders(FancyMessage fm, Player[] players) {
         this.fm = fm;
     }
 
@@ -74,6 +76,14 @@ public abstract class CodeAction {
      */
     protected FancyMessage getJSONSaver() {
         return fm;
+    }
+    
+    /**
+     *
+     * @return The players where this message is going to be send to.
+     */
+    protected Player[] getPlayers() {
+        return players;
     }
 
     /**
