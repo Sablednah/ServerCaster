@@ -5,17 +5,30 @@
     <artifactId>ServerCaster</artifactId>
     <version>1.9-SNAPSHOT</version>
     <packaging>pom</packaging>
+    
     <modules>
         <module>Core</module>
         <module>example</module>
         <module>extension</module>
         <module>BroadCaster</module>
+        <module>Groups</module>
     </modules>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
+    
+    <profiles>
+        <profile>
+            <id>Download_Sources</id>
+            <properties>
+                <downloadSources>true</downloadSources>
+                <downloadJavadocs>true</downloadJavadocs>           
+            </properties>
+        </profile>
+    </profiles>
     
     <dependencies>
         <dependency>
@@ -40,6 +53,7 @@
             <version>0.1.6-20140424.153625-1</version>
         </dependency>
     </dependencies>
+    
     <build>
         <plugins>
             <plugin>
@@ -49,12 +63,18 @@
                     <outputDirectory>../target</outputDirectory>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.17</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
         <finalName>ServerCaster-${project.artifactId}-${project.version}</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
-                
                 <targetPath>.</targetPath>
                 <filtering>true</filtering>
                 <directory>${basedir}/src/main/resources/</directory>
@@ -65,6 +85,7 @@
             </resource>
         </resources>
     </build>
+    
     <repositories>
         <repository>
             <id>bukkit-repo</id>
