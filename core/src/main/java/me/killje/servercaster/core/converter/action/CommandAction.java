@@ -1,4 +1,4 @@
-package me.killje.servercaster.example;
+package me.killje.servercaster.core.converter.action;
 
 import me.killje.servercaster.core.converter.CodeAction;
 
@@ -6,20 +6,19 @@ import me.killje.servercaster.core.converter.CodeAction;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class WarpAction extends CodeAction {
+public class CommandAction extends CodeAction {
 
-    public WarpAction() {
-        super(1); //amount of arguments this converter needs
-    }
-
+    public CommandAction() {
+        super(1);
+    }    
+    
     @Override
     protected String getKeyword() {
-        return "WARP";
+        return "COMMAND";
     }
 
     @Override
     public void doAction(String argument) {
-        getJSONSaver().command("/warp " + argument);
+        getJSONSaver().command("/" + argument);
     }
-
 }

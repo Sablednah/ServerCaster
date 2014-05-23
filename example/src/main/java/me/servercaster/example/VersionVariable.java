@@ -1,10 +1,10 @@
-package me.servercaster.example;
+package me.killje.servercaster.example;
 
 import java.util.ArrayList;
-import me.servercaster.core.ServerCaster;
-import me.servercaster.core.event.CastListener;
-import me.servercaster.core.event.PreCastEvent;
-import me.servercaster.core.event.PreCastPlayerEvent;
+import me.killje.servercaster.core.ServerCaster;
+import me.killje.servercaster.core.event.CastListener;
+import me.killje.servercaster.core.event.PreCastEvent;
+import me.killje.servercaster.core.event.PreCastPlayerEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**

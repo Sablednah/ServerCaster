@@ -1,6 +1,6 @@
-package me.servercaster.example;
+package me.killje.servercaster.example;
 
-import me.servercaster.core.ServerCaster;
+import me.killje.servercaster.core.ServerCaster;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**

@@ -2,5 +2,5 @@ name: ServerCasterExample
 author: [killje, Flexo013]
 description: examples of how to use the ServerCaster API
 version: 1.9-SNAPSHOT
-main: me.servercaster.example.Example
+main: me.killje.servercaster.example.Example
 depend: [ServerCaster]

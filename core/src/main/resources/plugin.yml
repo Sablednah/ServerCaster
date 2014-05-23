@@ -2,7 +2,7 @@ name: ServerCaster
 author: [killje, Flexo013]
 description: A broadcaster that can send clickable links and commands in chat as well as other chat effects
 version: 1.9-SNAPSHOT
-main: me.servercaster.core.ServerCaster
+main: me.killje.servercaster.core.ServerCaster
 commands:
    reloadservercaster:
       description: Reloads the ServerCaster config file.

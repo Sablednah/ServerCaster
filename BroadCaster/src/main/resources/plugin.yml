@@ -2,7 +2,7 @@ name: AutoCaster
 author: [killje, Flexo013]
 description: A auto caster that can send messages at specified interval
 version: 1.9-SNAPSHOT
-main: me.servercaster.autocaster.AutoCaster
+main: me.killje.servercaster.autocaster.AutoCaster
 depend: [ServerCaster]
 commands:
    cast:
