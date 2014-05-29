@@ -19,7 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class ServerCaster extends JavaPlugin {
 
-    private Caster anouncer;
+    private Caster announcer;
     private static ServerCaster instance;
     private final MessageHandler messageHandler = new MessageHandler();
     private final ReloadHandler reloadHandler = new ReloadHandler();
@@ -32,8 +32,8 @@ public class ServerCaster extends JavaPlugin {
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
-        anouncer = new Caster(messageHandler, reloadHandler);
-        getCommand("reloadservercaster").setExecutor(anouncer);
+        announcer = new Caster(messageHandler, reloadHandler);
+        getCommand("reloadservercaster").setExecutor(announcer);
         addCodeAction(new CommandAction());
         addCodeAction(new UrlAction());
         addCodeAction(new SuggestAction());
@@ -101,7 +101,7 @@ public class ServerCaster extends JavaPlugin {
     }
 
     Caster getCaster() {
-        return anouncer;
+        return announcer;
     }
 
     public static void castMessage(JavaPlugin plugin, String message) {
