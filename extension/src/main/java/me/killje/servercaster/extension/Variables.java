@@ -1,11 +1,13 @@
 package me.killje.servercaster.extension;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import me.killje.servercaster.core.event.CastListener;
 import me.killje.servercaster.core.event.PreCastEvent;
 import me.killje.servercaster.core.event.PreCastPlayerEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,13 +17,12 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author Patrick Beuks (s2288842), Floris Huizinga (s2397617)
  */
 public class Variables implements CastListener {
-    
+
     private final JavaPlugin instance;
 
     public Variables(JavaPlugin instance) {
         this.instance = instance;
     }
-    
 
     @Override
     public void castHandler(PreCastEvent e) {
@@ -29,18 +30,18 @@ public class Variables implements CastListener {
         ArrayList<String> newMessages = new ArrayList<>();
         for (String string : messages) {
             Random rand = new Random();
-            Player[] onlinePlayers = instance.getServer().getOnlinePlayers();
+            ArrayList<Player> onlinePlayers = (ArrayList<Player>) Bukkit.getOnlinePlayers();
             if (string.toLowerCase().contains(("%PLING%").toLowerCase())) {
                 for (Player player : e.getPlayers()) {
                     player.playSound(player.getLocation(), Sound.NOTE_PLING, 100f, 100f);
                 }
                 string = string.replaceAll("(?i)%PLING%", "");
             }
-            if (onlinePlayers.length != 0) {
-                string = string.replaceAll("(?i)%RDMPLAYER%", onlinePlayers[rand.nextInt(onlinePlayers.length)].getName());
+            if (!onlinePlayers.isEmpty()) {
+                string = string.replaceAll("(?i)%RDMPLAYER%", onlinePlayers.get(rand.nextInt(onlinePlayers.size())).getName());
             }
             string = string.replaceAll("(?i)%SLOTS%", instance.getServer().getMaxPlayers() + "");
-            string = string.replaceAll("(?i)%PLAYERS%", onlinePlayers.length + "");
+            string = string.replaceAll("(?i)%PLAYERS%", onlinePlayers.size() + "");
             if (string.toLowerCase().contains(("%ONLINEPLAYERS%").toLowerCase())) {
                 String players = "";
                 for (Player player : onlinePlayers) {

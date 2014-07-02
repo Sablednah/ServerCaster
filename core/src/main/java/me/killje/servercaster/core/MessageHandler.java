@@ -28,7 +28,7 @@ class MessageHandler {
         _listeners.remove(listener);
     }
 
-    void sendMessages(Collection<Player> players, ArrayList<String> messages) {
+    void sendMessages(Collection<? extends Player> players, ArrayList<String> messages) {
         this.messages = messages;
         this.old = messages;
         if (firePreServer(players)) {
@@ -43,7 +43,7 @@ class MessageHandler {
         }
     }
 
-    private synchronized boolean firePreServer(Collection<Player> players) {
+    private synchronized boolean firePreServer(Collection<? extends Player> players) {
         PreCastEvent event = new PreCastEvent(messages, players, this);
         Iterator i = _listeners.iterator();
         while (i.hasNext()) {

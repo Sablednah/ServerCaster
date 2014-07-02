@@ -26,7 +26,7 @@ class Caster implements CommandExecutor {
         this.reloadHandler.fireEvent(instance.getServer().getConsoleSender());
     }
     
-    void sendMessage(ArrayList<String> message, Collection<Player> players) {
+    void sendMessage(ArrayList<String> message, Collection<? extends Player> players) {
         sendingMessageHandler.sendMessages(players, message);
     }
 
@@ -50,7 +50,7 @@ class Caster implements CommandExecutor {
         return false;
     }
 
-    static ArrayList<String> ToJsonString(String prefix, String message, Collection<Player> players) {
+    static ArrayList<String> ToJsonString(String prefix, String message, Collection<? extends Player> players) {
         Builder builder = new Builder(players);
         if (!prefix.equals("")) {
             prefix = prefix + " ";

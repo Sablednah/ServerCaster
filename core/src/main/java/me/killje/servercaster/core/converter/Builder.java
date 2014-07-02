@@ -11,9 +11,9 @@ import org.bukkit.entity.Player;
 public class Builder {
 
     private Converter converter;
-    private final Collection<Player> players;
+    private final Collection<? extends Player> players;
 
-    public Builder(Collection<Player> players) {
+    public Builder(Collection<? extends Player> players) {
         this.players = players;
     }
 

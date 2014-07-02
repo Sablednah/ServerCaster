@@ -63,7 +63,7 @@ public abstract class CodeAction {
         }
     }
 
-    void setBuilders(FancyMessage fm, Collection<Player> players) {
+    void setBuilders(FancyMessage fm, Collection<? extends Player> players) {
         this.fm = fm;
     }
 
