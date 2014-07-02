@@ -1,5 +1,6 @@
 package me.killje.servercaster.core;
 
+import java.util.Collection;
 import me.killje.servercaster.core.converter.CodeAction;
 import me.killje.servercaster.core.converter.CodeConverter;
 import me.killje.servercaster.core.converter.action.ColorAction;
@@ -9,6 +10,7 @@ import me.killje.servercaster.core.converter.action.SuggestAction;
 import me.killje.servercaster.core.converter.action.UrlAction;
 import me.killje.servercaster.core.event.CastListener;
 import me.killje.servercaster.core.event.CastReloadListener;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -95,7 +97,7 @@ public class ServerCaster extends JavaPlugin {
     MessageHandler getMessageHandler() {
         return messageHandler;
     }
-    
+
     ReloadHandler getReloadHandler() {
         return reloadHandler;
     }
@@ -105,18 +107,18 @@ public class ServerCaster extends JavaPlugin {
     }
 
     public static void castMessage(JavaPlugin plugin, String message) {
-        ServerCaster.castMessage(plugin, message, plugin.getServer().getOnlinePlayers());
+        ServerCaster.castMessage(plugin, message, (Collection<Player>) Bukkit.getOnlinePlayers());
     }
 
     public static void castMessage(JavaPlugin plugin, String message, String prefix) {
-        ServerCaster.castMessage(plugin, message, prefix, plugin.getServer().getOnlinePlayers());
+        ServerCaster.castMessage(plugin, message, prefix, (Collection<Player>) Bukkit.getOnlinePlayers());
     }
 
-    public static void castMessage(JavaPlugin plugin, String message, Player[] players) {
+    public static void castMessage(JavaPlugin plugin, String message, Collection<Player> players) {
         ServerCaster.castMessage(plugin, message, instance.getConfig().getString("Prefix"), players);
     }
 
-    public static void castMessage(JavaPlugin plugin, String message, String prefix, Player[] players) {
+    public static void castMessage(JavaPlugin plugin, String message, String prefix, Collection<Player> players) {
         instance.getCaster().sendMessage(Caster.ToJsonString(prefix, message, players), players);
     }
 

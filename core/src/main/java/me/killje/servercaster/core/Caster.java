@@ -2,6 +2,7 @@ package me.killje.servercaster.core;
 
 import me.killje.servercaster.core.converter.Builder;
 import java.util.ArrayList;
+import java.util.Collection;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -25,7 +26,7 @@ class Caster implements CommandExecutor {
         this.reloadHandler.fireEvent(instance.getServer().getConsoleSender());
     }
     
-    void sendMessage(ArrayList<String> message, Player[] players) {
+    void sendMessage(ArrayList<String> message, Collection<Player> players) {
         sendingMessageHandler.sendMessages(players, message);
     }
 
@@ -49,7 +50,7 @@ class Caster implements CommandExecutor {
         return false;
     }
 
-    static ArrayList<String> ToJsonString(String prefix, String message, Player[] players) {
+    static ArrayList<String> ToJsonString(String prefix, String message, Collection<Player> players) {
         Builder builder = new Builder(players);
         if (!prefix.equals("")) {
             prefix = prefix + " ";

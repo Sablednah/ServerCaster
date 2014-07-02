@@ -1,6 +1,7 @@
 package me.killje.servercaster.core.event;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.EventObject;
 import org.bukkit.entity.Player;
 
@@ -11,7 +12,7 @@ import org.bukkit.entity.Player;
 public class PreCastEvent extends EventObject {
 
     private ArrayList<String> messages;
-    private final Player[] players;
+    private final Collection<Player> players;
     private Boolean cancelled = false;
 
     /**
@@ -20,7 +21,7 @@ public class PreCastEvent extends EventObject {
      * @param players the players that will receive the messages
      * @param source source class of the event
      */
-    public PreCastEvent(ArrayList<String> messages, Player[] players, Object source) {
+    public PreCastEvent(ArrayList<String> messages, Collection<Player> players, Object source) {
         super(source);
         this.messages = messages;
         this.players = players;
@@ -39,7 +40,7 @@ public class PreCastEvent extends EventObject {
      *
      * @return players that these messages are going to receive
      */
-    public Player[] getPlayers() {
+    public Collection<Player> getPlayers() {
         return players;
     }
 

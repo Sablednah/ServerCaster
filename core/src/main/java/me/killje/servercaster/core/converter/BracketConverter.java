@@ -1,6 +1,7 @@
 package me.killje.servercaster.core.converter;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import mkremins.fanciful.FancyMessage;
 import org.bukkit.entity.Player;
 
@@ -11,9 +12,9 @@ import org.bukkit.entity.Player;
 class BracketConverter extends Converter {
 
     private final ArrayList<CodeAction> emptyCodes;
-    private final Player[] players;
+    private final Collection<Player> players;
     
-    BracketConverter(FancyMessage fm, ArrayList<CodeAction> emptyCodes, Player[] players) {
+    BracketConverter(FancyMessage fm, ArrayList<CodeAction> emptyCodes, Collection<Player> players) {
         super(fm);
         this.emptyCodes = emptyCodes;
         this.players = players;

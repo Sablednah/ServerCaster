@@ -1,5 +1,6 @@
 package me.killje.servercaster.core.converter;
 
+import java.util.Collection;
 import mkremins.fanciful.FancyMessage;
 import org.bukkit.entity.Player;
 
@@ -10,9 +11,9 @@ import org.bukkit.entity.Player;
 public class Builder {
 
     private Converter converter;
-    private final Player[] players;
+    private final Collection<Player> players;
 
-    public Builder(Player[] players) {
+    public Builder(Collection<Player> players) {
         this.players = players;
     }
 

@@ -1,6 +1,7 @@
 package me.killje.servercaster.core.converter;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -19,9 +20,9 @@ public class CodeConverter extends Converter {
     private final ArrayList<CodeAction> emptyCodes = new ArrayList<>();
     private boolean nextChar = false;
     private boolean inBracket = false;
-    private final Player[] players;
+    private final Collection<Player> players;
 
-    CodeConverter(FancyMessage fm, Player[] players) {
+    CodeConverter(FancyMessage fm, Collection<Player> players) {
         super(fm);
         for (Map.Entry<String, CodeAction> entry : codes.entrySet()) {
             CodeAction codeAction = entry.getValue();

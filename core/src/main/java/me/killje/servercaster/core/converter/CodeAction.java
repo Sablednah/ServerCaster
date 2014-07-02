@@ -1,5 +1,6 @@
 package me.killje.servercaster.core.converter;
 
+import java.util.Collection;
 import mkremins.fanciful.FancyMessage;
 import org.bukkit.entity.Player;
 
@@ -62,7 +63,7 @@ public abstract class CodeAction {
         }
     }
 
-    void setBuilders(FancyMessage fm, Player[] players) {
+    void setBuilders(FancyMessage fm, Collection<Player> players) {
         this.fm = fm;
     }
 

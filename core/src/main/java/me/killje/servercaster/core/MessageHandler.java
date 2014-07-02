@@ -1,11 +1,12 @@
 package me.killje.servercaster.core;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import me.killje.servercaster.core.event.PreCastPlayerEvent;
-import me.killje.servercaster.core.event.PreCastEvent;
 import me.killje.servercaster.core.event.CastListener;
+import me.killje.servercaster.core.event.PreCastEvent;
+import me.killje.servercaster.core.event.PreCastPlayerEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -27,7 +28,7 @@ class MessageHandler {
         _listeners.remove(listener);
     }
 
-    void sendMessages(Player[] players, ArrayList<String> messages) {
+    void sendMessages(Collection<Player> players, ArrayList<String> messages) {
         this.messages = messages;
         this.old = messages;
         if (firePreServer(players)) {
@@ -42,7 +43,7 @@ class MessageHandler {
         }
     }
 
-    private synchronized boolean firePreServer(Player[] players) {
+    private synchronized boolean firePreServer(Collection<Player> players) {
         PreCastEvent event = new PreCastEvent(messages, players, this);
         Iterator i = _listeners.iterator();
         while (i.hasNext()) {
