@@ -6,7 +6,7 @@
         <artifactId>ServerCaster</artifactId>
         <version>1.9-SNAPSHOT</version>
     </parent>
-    <artifactId>example</artifactId>
+    <artifactId>Example</artifactId>
     <packaging>jar</packaging>
     
     <build>
