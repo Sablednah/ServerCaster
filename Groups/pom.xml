@@ -6,8 +6,15 @@
         <artifactId>ServerCaster</artifactId>
         <version>1.9-SNAPSHOT</version>
     </parent>
-    <artifactId>groups</artifactId>
+    <artifactId>Groups</artifactId>
     <packaging>jar</packaging>
+    
+    <properties>
+        <project.callname>ServerCasterGroups</project.callname>
+        <project.description>add extra utility to autocaster's groups</project.description>
+        <project.main>${project.groupId}.groups.Groups</project.main>
+        <project.depend>[ServerCaster]</project.depend>
+    </properties>
     
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -25,7 +32,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.1</version>
                 <configuration>                    
                     <source>1.7</source>
                     <target>1.7</target>

@@ -6,8 +6,15 @@
         <artifactId>ServerCaster</artifactId>
         <version>1.9-SNAPSHOT</version>
     </parent>
-    <artifactId>autocaster</artifactId>
+    <artifactId>AutoCaster</artifactId>
     <packaging>jar</packaging>
+    
+    <properties>
+        <project.callname>ServerCasterAutoCaster</project.callname>
+        <project.description>A auto caster that can send messages at specified interval</project.description>
+        <project.main>${project.groupId}.autocaster.AutoCaster</project.main>
+        <project.depend>[ServerCaster]</project.depend>
+    </properties>
     
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -25,7 +32,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.1</version>
                 <configuration>                    
                     <source>1.7</source>
                     <target>1.7</target>

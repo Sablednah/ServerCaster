@@ -1,9 +1,9 @@
-name: AutoCaster
-author: [killje, Flexo013]
-description: A auto caster that can send messages at specified interval
-version: 1.9-SNAPSHOT
-main: me.killje.servercaster.autocaster.AutoCaster
-depend: [ServerCaster]
+name: ${project.callname}
+author: ${project.authors}
+description: ${project.description}
+version: ${project.version}
+main: ${project.main}
+depend: ${project.depend}
 commands:
    cast:
       description: Broadcast the next message to all groups.
