@@ -63,7 +63,7 @@ public abstract class CodeAction {
         }
     }
 
-    void setBuilders(FancyMessage fm, Collection<Player> players) {
+    void setBuilders(FancyMessage fm, Collection<? extends Player> players) {
         this.fm = fm;
     }
 
@@ -78,7 +78,7 @@ public abstract class CodeAction {
     protected FancyMessage getJSONSaver() {
         return fm;
     }
-    
+
     /**
      *
      * @return The players where this message is going to be send to.

@@ -17,7 +17,7 @@ class VersionVariable implements CastListener {
 
     public VersionVariable(JavaPlugin instance) {
         this.instance = instance;
-        ServerCaster.addMessageListener(instance, this);
+        ServerCaster.addMessageListener(this);
     }
 
     @Override

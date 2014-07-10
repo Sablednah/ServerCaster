@@ -20,9 +20,9 @@ public class CodeConverter extends Converter {
     private final ArrayList<CodeAction> emptyCodes = new ArrayList<>();
     private boolean nextChar = false;
     private boolean inBracket = false;
-    private final Collection<Player> players;
+    private final Collection<? extends Player> players;
 
-    CodeConverter(FancyMessage fm, Collection<Player> players) {
+    CodeConverter(FancyMessage fm, Collection<? extends Player> players) {
         super(fm);
         for (Map.Entry<String, CodeAction> entry : codes.entrySet()) {
             CodeAction codeAction = entry.getValue();
@@ -87,11 +87,31 @@ public class CodeConverter extends Converter {
         }
     }
 
-    public static void addCodeAction(CodeAction ca) {
-        codes.put(ca.getCode(), ca);
+    /**
+     *
+     * @param codeAction The CodeAction you want to add.
+     */
+    public static void addCodeAction(CodeAction codeAction) {
+        codes.put(codeAction.getCode(), codeAction);
     }
 
-    public static void removeCodeAction(CodeAction ca) {
-        codes.remove(ca.getCode());
+    /**
+     *
+     * @param codeActions The CodeActions you want to add.
+     */
+    public static void addCodeActions(Collection<CodeAction> codeActions) {
+        Map<String, CodeAction> ca = new HashMap<>(codeActions.size());
+        for (CodeAction codeAction : codeActions) {
+            ca.put(codeAction.getCode(), codeAction);
+        }
+        codes.putAll(ca);
+    }
+
+    /**
+     *
+     * @param codeAction The CodeAction you want to remove.
+     */
+    public static void removeCodeAction(CodeAction codeAction) {
+        codes.remove(codeAction.getCode());
     }
 }

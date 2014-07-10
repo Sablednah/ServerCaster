@@ -53,13 +53,13 @@ public class PreCastPlayerEvent extends EventObject {
     public void setMessages(ArrayList<String> messages) {
         this.messages = messages;
     }
-    
-    public void setCancelled(Boolean cancelled){
+
+    public void setCancelled(Boolean cancelled) {
         this.cancelled = cancelled;
     }
 
     public Boolean isCancelled() {
         return cancelled;
     }
-    
+
 }

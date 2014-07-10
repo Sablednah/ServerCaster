@@ -5,9 +5,9 @@ import org.bukkit.ChatColor;
 
 /**
  *
- * @author Patrick Beuks (killje) And Floris Huizinga(Flexo013)
+ * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class ColorAction extends CodeAction{
+public class ColorAction extends CodeAction {
 
     private final String name;
     private final ChatColor color;
@@ -27,6 +27,5 @@ public class ColorAction extends CodeAction{
     public void doAction(String argument) {
         getJSONSaver().color(color);
     }
-    
-    
+
 }

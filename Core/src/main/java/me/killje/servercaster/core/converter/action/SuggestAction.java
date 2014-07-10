@@ -10,8 +10,8 @@ public class SuggestAction extends CodeAction {
 
     public SuggestAction() {
         super(1);
-    }    
-    
+    }
+
     @Override
     protected String getKeyword() {
         return "SUGGEST";

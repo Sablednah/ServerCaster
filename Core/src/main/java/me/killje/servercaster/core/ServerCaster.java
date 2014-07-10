@@ -1,5 +1,6 @@
 package me.killje.servercaster.core;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import me.killje.servercaster.core.converter.CodeAction;
 import me.killje.servercaster.core.converter.CodeConverter;
@@ -36,62 +37,57 @@ public class ServerCaster extends JavaPlugin {
         saveDefaultConfig();
         announcer = new Caster(messageHandler, reloadHandler);
         getCommand("reloadservercaster").setExecutor(announcer);
-        addCodeAction(new CommandAction());
-        addCodeAction(new UrlAction());
-        addCodeAction(new SuggestAction());
-        addCodeAction(new ColorAction("AQUA", ChatColor.AQUA));
-        addCodeAction(new ColorAction("BLACK", ChatColor.BLACK));
-        addCodeAction(new ColorAction("BLUE", ChatColor.BLUE));
-        addCodeAction(new ColorAction("DARK_AQUA", ChatColor.DARK_AQUA));
-        addCodeAction(new ColorAction("DARK_BLUE", ChatColor.DARK_BLUE));
-        addCodeAction(new ColorAction("DARK_GRAY", ChatColor.DARK_GRAY));
-        addCodeAction(new ColorAction("DARK_GREEN", ChatColor.DARK_GREEN));
-        addCodeAction(new ColorAction("DARK_PURPLE", ChatColor.DARK_PURPLE));
-        addCodeAction(new ColorAction("DARK_RED", ChatColor.DARK_RED));
-        addCodeAction(new ColorAction("GOLD", ChatColor.GOLD));
-        addCodeAction(new ColorAction("GRAY", ChatColor.GRAY));
-        addCodeAction(new ColorAction("GREEN", ChatColor.GREEN));
-        addCodeAction(new ColorAction("LIGHT_PURPLE", ChatColor.LIGHT_PURPLE));
-        addCodeAction(new ColorAction("RED", ChatColor.RED));
-        addCodeAction(new ColorAction("WHITE", ChatColor.WHITE));
-        addCodeAction(new ColorAction("YELLOW", ChatColor.YELLOW));
+        Collection<CodeAction> codeActions = new ArrayList<>();
+        codeActions.add(new CommandAction());
+        codeActions.add(new UrlAction());
+        codeActions.add(new SuggestAction());
+        codeActions.add(new ColorAction("AQUA", ChatColor.AQUA));
+        codeActions.add(new ColorAction("BLACK", ChatColor.BLACK));
+        codeActions.add(new ColorAction("BLUE", ChatColor.BLUE));
+        codeActions.add(new ColorAction("DARK_AQUA", ChatColor.DARK_AQUA));
+        codeActions.add(new ColorAction("DARK_BLUE", ChatColor.DARK_BLUE));
+        codeActions.add(new ColorAction("DARK_GRAY", ChatColor.DARK_GRAY));
+        codeActions.add(new ColorAction("DARK_GREEN", ChatColor.DARK_GREEN));
+        codeActions.add(new ColorAction("DARK_PURPLE", ChatColor.DARK_PURPLE));
+        codeActions.add(new ColorAction("DARK_RED", ChatColor.DARK_RED));
+        codeActions.add(new ColorAction("GOLD", ChatColor.GOLD));
+        codeActions.add(new ColorAction("GRAY", ChatColor.GRAY));
+        codeActions.add(new ColorAction("GREEN", ChatColor.GREEN));
+        codeActions.add(new ColorAction("LIGHT_PURPLE", ChatColor.LIGHT_PURPLE));
+        codeActions.add(new ColorAction("RED", ChatColor.RED));
+        codeActions.add(new ColorAction("WHITE", ChatColor.WHITE));
+        codeActions.add(new ColorAction("YELLOW", ChatColor.YELLOW));
 
-        addCodeAction(new ColorAction("0", ChatColor.BLACK));
-        addCodeAction(new ColorAction("1", ChatColor.DARK_BLUE));
-        addCodeAction(new ColorAction("2", ChatColor.DARK_GREEN));
-        addCodeAction(new ColorAction("3", ChatColor.DARK_AQUA));
-        addCodeAction(new ColorAction("4", ChatColor.DARK_RED));
-        addCodeAction(new ColorAction("5", ChatColor.DARK_PURPLE));
-        addCodeAction(new ColorAction("6", ChatColor.GOLD));
-        addCodeAction(new ColorAction("7", ChatColor.GRAY));
-        addCodeAction(new ColorAction("8", ChatColor.DARK_GRAY));
-        addCodeAction(new ColorAction("9", ChatColor.BLUE));
-        addCodeAction(new ColorAction("a", ChatColor.GREEN));
-        addCodeAction(new ColorAction("b", ChatColor.AQUA));
-        addCodeAction(new ColorAction("c", ChatColor.RED));
-        addCodeAction(new ColorAction("d", ChatColor.LIGHT_PURPLE));
-        addCodeAction(new ColorAction("e", ChatColor.YELLOW));
-        addCodeAction(new ColorAction("f", ChatColor.WHITE));
+        codeActions.add(new ColorAction("0", ChatColor.BLACK));
+        codeActions.add(new ColorAction("1", ChatColor.DARK_BLUE));
+        codeActions.add(new ColorAction("2", ChatColor.DARK_GREEN));
+        codeActions.add(new ColorAction("3", ChatColor.DARK_AQUA));
+        codeActions.add(new ColorAction("4", ChatColor.DARK_RED));
+        codeActions.add(new ColorAction("5", ChatColor.DARK_PURPLE));
+        codeActions.add(new ColorAction("6", ChatColor.GOLD));
+        codeActions.add(new ColorAction("7", ChatColor.GRAY));
+        codeActions.add(new ColorAction("8", ChatColor.DARK_GRAY));
+        codeActions.add(new ColorAction("9", ChatColor.BLUE));
+        codeActions.add(new ColorAction("a", ChatColor.GREEN));
+        codeActions.add(new ColorAction("b", ChatColor.AQUA));
+        codeActions.add(new ColorAction("c", ChatColor.RED));
+        codeActions.add(new ColorAction("d", ChatColor.LIGHT_PURPLE));
+        codeActions.add(new ColorAction("e", ChatColor.YELLOW));
+        codeActions.add(new ColorAction("f", ChatColor.WHITE));
 
-        addCodeAction(new StyleAction("MAGIC", ChatColor.MAGIC));
-        addCodeAction(new StyleAction("BOLD", ChatColor.BOLD));
-        addCodeAction(new StyleAction("STRIKE", ChatColor.STRIKETHROUGH));
-        addCodeAction(new StyleAction("UNDERLINE", ChatColor.UNDERLINE));
-        addCodeAction(new StyleAction("ITALIC", ChatColor.ITALIC));
+        codeActions.add(new StyleAction("MAGIC", ChatColor.MAGIC));
+        codeActions.add(new StyleAction("BOLD", ChatColor.BOLD));
+        codeActions.add(new StyleAction("STRIKE", ChatColor.STRIKETHROUGH));
+        codeActions.add(new StyleAction("UNDERLINE", ChatColor.UNDERLINE));
+        codeActions.add(new StyleAction("ITALIC", ChatColor.ITALIC));
 
-        addCodeAction(new StyleAction("k", ChatColor.MAGIC));
-        addCodeAction(new StyleAction("l", ChatColor.BOLD));
-        addCodeAction(new StyleAction("m", ChatColor.STRIKETHROUGH));
-        addCodeAction(new StyleAction("n", ChatColor.UNDERLINE));
-        addCodeAction(new StyleAction("o", ChatColor.ITALIC));
-    }
+        codeActions.add(new StyleAction("k", ChatColor.MAGIC));
+        codeActions.add(new StyleAction("l", ChatColor.BOLD));
+        codeActions.add(new StyleAction("m", ChatColor.STRIKETHROUGH));
+        codeActions.add(new StyleAction("n", ChatColor.UNDERLINE));
+        codeActions.add(new StyleAction("o", ChatColor.ITALIC));
 
-    void addCodeAction(CodeAction ca) {
-        CodeConverter.addCodeAction(ca);
-    }
-
-    void removeCodeAction(CodeAction ca) {
-        CodeConverter.removeCodeAction(ca);
+        CodeConverter.addCodeActions(codeActions);
     }
 
     MessageHandler getMessageHandler() {
@@ -106,43 +102,99 @@ public class ServerCaster extends JavaPlugin {
         return announcer;
     }
 
+    /**
+     *
+     * converts a string to a ServerCast message.
+     *
+     * @param plugin The JavaPlugin creating the message.
+     * @param message The message you want to convert.
+     * @param prefix [optional] The string you want in front of every message
+     * and after new line's. This will be converted to a ServerCast message.
+     * When not specified the one inside ServerCast config is used.
+     * @param players [optional] The players you want to send the message to.
+     * When not specified the message will be send to all online players.
+     */
     public static void castMessage(JavaPlugin plugin, String message) {
-        ServerCaster.castMessage(plugin, message, (Collection<Player>) Bukkit.getOnlinePlayers());
+        ServerCaster.castMessage(plugin, message, Bukkit.getOnlinePlayers());
     }
 
+    /**
+     *
+     * converts a string to a ServerCast message.
+     *
+     * @param plugin The JavaPlugin creating the message.
+     * @param message The message you want to convert.
+     * @param prefix [optional] The string you want in front of every message
+     * and after new line's. This will be converted to a ServerCast message.
+     * When not specified the one inside ServerCast config is used.
+     * @param players [optional] The players you want to send the message to.
+     * When not specified the message will be send to all online players.
+     */
     public static void castMessage(JavaPlugin plugin, String message, String prefix) {
-        ServerCaster.castMessage(plugin, message, prefix, (Collection<Player>) Bukkit.getOnlinePlayers());
+        ServerCaster.castMessage(plugin, message, prefix, Bukkit.getOnlinePlayers());
     }
 
-    public static void castMessage(JavaPlugin plugin, String message, Collection<Player> players) {
+    /**
+     *
+     * converts a string to a ServerCast message.
+     *
+     * @param plugin The JavaPlugin creating the message.
+     * @param message The message you want to convert.
+     * @param prefix [optional] The string you want in front of every message
+     * and after new line's. This will be converted to a ServerCast message.
+     * When not specified the one inside ServerCast config is used.
+     * @param players [optional] The players you want to send the message to.
+     * When not specified the message will be send to all online players.
+     */
+    public static void castMessage(JavaPlugin plugin, String message, Collection<? extends Player> players) {
         ServerCaster.castMessage(plugin, message, instance.getConfig().getString("Prefix"), players);
     }
 
-    public static void castMessage(JavaPlugin plugin, String message, String prefix, Collection<Player> players) {
+    /**
+     *
+     * converts a string to a ServerCast message.
+     *
+     * @param plugin The JavaPlugin creating the message.
+     * @param message The message you want to convert.
+     * @param prefix [optional] The string you want in front of every message
+     * and after new line's. This will be converted to a ServerCast message.
+     * When not specified the one inside ServerCast config is used.
+     * @param players [optional] The players you want to send the message to.
+     * When not specified the message will be send to all online players.
+     */
+    public static void castMessage(JavaPlugin plugin, String message, String prefix, Collection<? extends Player> players) {
         instance.getCaster().sendMessage(Caster.ToJsonString(prefix, message, players), players);
     }
 
-    public static void addAction(JavaPlugin plugin, CodeAction ca) {
-        instance.addCodeAction(ca);
-    }
-
-    public static void removeAction(JavaPlugin plugin, CodeAction ca) {
-        instance.removeCodeAction(ca);
-    }
-
-    public static void addMessageListener(JavaPlugin plugin, CastListener listener) {
+    /**
+     *
+     * @param listener The message listener you want to add.
+     */
+    public static void addMessageListener(CastListener listener) {
         instance.getMessageHandler().addEventListener(listener);
     }
 
-    public static void removeMessageListener(JavaPlugin plugin, CastListener listener) {
+    /**
+     *
+     * @param listener The message listener you want to remove.
+     */
+    public static void removeMessageListener(CastListener listener) {
         instance.getMessageHandler().removeEventListener(listener);
     }
 
-    public static void addReloadListener(JavaPlugin plugin, CastReloadListener listener) {
+    /**
+     *
+     * @param listener The reload listener you want to add.
+     */
+    public static void addReloadListener(CastReloadListener listener) {
         instance.getReloadHandler().addEventListener(listener);
     }
 
-    public static void removeReloadListener(JavaPlugin plugin, CastReloadListener listener) {
+    /**
+     *
+     * @param listener The reload listener you want to remove.
+     */
+    public static void removeReloadListener(CastReloadListener listener) {
         instance.getReloadHandler().removeEventListener(listener);
     }
 }
