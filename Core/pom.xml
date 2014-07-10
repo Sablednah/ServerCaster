@@ -9,6 +9,12 @@
     <artifactId>Core</artifactId>
     <packaging>jar</packaging>
     
+    <properties>
+        <project.callname>ServerCaster</project.callname>
+        <project.description>A broadcaster that can send clickable links and commands in chat as well as other chat effects</project.description>
+        <project.main>${project.groupId}.core.ServerCaster</project.main>
+    </properties>
+    
     <build>
         <plugins>
             <plugin>
@@ -22,7 +28,6 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>../target</outputDirectory>
                             <finalName>ServerCaster-${project.version}</finalName>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <minimizeJar>false</minimizeJar>

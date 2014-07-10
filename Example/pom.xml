@@ -9,6 +9,13 @@
     <artifactId>Example</artifactId>
     <packaging>jar</packaging>
     
+    <properties>
+        <project.callname>ServerCasterExample</project.callname>
+        <project.description>examples of how to use the ServerCaster API</project.description>
+        <project.main>${project.groupId}.example.Example</project.main>
+        <project.depend>[ServerCaster]</project.depend>
+    </properties>
+    
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
@@ -24,7 +31,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.1</version>
                 <configuration>                    
                     <source>1.7</source>
                     <target>1.7</target>

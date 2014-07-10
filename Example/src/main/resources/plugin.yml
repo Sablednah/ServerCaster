@@ -1,6 +1,6 @@
-name: ServerCasterExample
-author: [killje, Flexo013]
-description: examples of how to use the ServerCaster API
-version: 1.9-SNAPSHOT
-main: me.killje.servercaster.example.Example
-depend: [ServerCaster]
+name: ${project.callname}
+author: ${project.authors}
+description: ${project.description}
+version: ${project.version}
+main: ${project.main}
+depend: ${project.depend}

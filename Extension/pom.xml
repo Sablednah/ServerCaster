@@ -9,6 +9,13 @@
     <artifactId>Extension</artifactId>
     <packaging>jar</packaging>
     
+    <properties>
+        <project.callname>ServerCasterExtension</project.callname>
+        <project.description>This plugin adds a few extra commands to ServerCaster 1.8+</project.description>
+        <project.main>${project.groupId}.extension.ServerExtension</project.main>
+        <project.depend>[ServerCaster]</project.depend>
+    </properties>
+    
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
@@ -25,7 +32,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.1</version>
                 <configuration>                    
                     <source>1.7</source>
                     <target>1.7</target>
