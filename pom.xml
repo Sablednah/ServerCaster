@@ -8,10 +8,10 @@
     
     <modules>
         <module>Core</module>
-        <module>Example</module>
-        <module>Extension</module>
         <module>AutoCaster</module>
         <module>Groups</module>
+        <module>Extension</module>
+        <module>Example</module>
     </modules>
     
     <properties>

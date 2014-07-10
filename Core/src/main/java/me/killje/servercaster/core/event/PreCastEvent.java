@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 public class PreCastEvent extends EventObject {
 
     private ArrayList<String> messages;
-    private final Collection<Player> players;
+    private final Collection<? extends Player> players;
     private Boolean cancelled = false;
 
     /**
@@ -21,7 +21,7 @@ public class PreCastEvent extends EventObject {
      * @param players the players that will receive the messages
      * @param source source class of the event
      */
-    public PreCastEvent(ArrayList<String> messages, Collection<Player> players, Object source) {
+    public PreCastEvent(ArrayList<String> messages, Collection<? extends Player> players, Object source) {
         super(source);
         this.messages = messages;
         this.players = players;
@@ -35,12 +35,12 @@ public class PreCastEvent extends EventObject {
     public ArrayList<String> getMessages() {
         return messages;
     }
-    
+
     /**
      *
      * @return players that these messages are going to receive
      */
-    public Collection<Player> getPlayers() {
+    public Collection<? extends Player> getPlayers() {
         return players;
     }
 
@@ -53,8 +53,8 @@ public class PreCastEvent extends EventObject {
     public void setMessages(ArrayList<String> messages) {
         this.messages = messages;
     }
-        
-    public void setCancelled(Boolean cancelled){
+
+    public void setCancelled(Boolean cancelled) {
         this.cancelled = cancelled;
     }
 

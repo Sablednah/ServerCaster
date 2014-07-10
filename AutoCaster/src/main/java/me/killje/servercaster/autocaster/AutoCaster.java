@@ -20,7 +20,7 @@ public class AutoCaster extends JavaPlugin {
         getCommand("cast").setExecutor(ach);
         getCommand("startAutoCaster").setExecutor(ach);
         getCommand("stopAutoCaster").setExecutor(ach);
-        ServerCaster.addReloadListener(this, ach);
+        ServerCaster.addReloadListener(ach);
     }
 
     public static JavaPlugin getInstance() {

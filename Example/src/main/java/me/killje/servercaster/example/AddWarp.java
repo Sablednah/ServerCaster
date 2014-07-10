@@ -1,6 +1,6 @@
 package me.killje.servercaster.example;
 
-import me.killje.servercaster.core.ServerCaster;
+import me.killje.servercaster.core.converter.CodeConverter;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -10,6 +10,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class AddWarp {
 
     public AddWarp(JavaPlugin instance) {
-        ServerCaster.addAction(instance, new WarpAction());
+        CodeConverter.addCodeAction(new WarpAction());
     }
 }

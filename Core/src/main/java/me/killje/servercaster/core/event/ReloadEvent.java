@@ -7,7 +7,8 @@ import org.bukkit.command.CommandSender;
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class ReloadEvent extends EventObject{
+public class ReloadEvent extends EventObject {
+
     private Boolean cancelled = false;
     private final CommandSender commandSender;
 
@@ -16,7 +17,7 @@ public class ReloadEvent extends EventObject{
         this.commandSender = commandSender;
     }
 
-    public void setCancelled(Boolean cancelled){
+    public void setCancelled(Boolean cancelled) {
         this.cancelled = cancelled;
     }
 
@@ -27,5 +28,5 @@ public class ReloadEvent extends EventObject{
     public CommandSender getCommandSender() {
         return commandSender;
     }
-    
+
 }

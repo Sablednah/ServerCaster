@@ -8,9 +8,9 @@ import me.killje.servercaster.core.event.ReloadEvent;
 import org.bukkit.command.CommandSender;
 
 /**
-*
-* @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
-*/
+ *
+ * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
+ */
 class ReloadHandler {
 
     private final List _listeners = new ArrayList();

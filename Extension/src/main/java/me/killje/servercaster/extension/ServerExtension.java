@@ -12,6 +12,6 @@ public class ServerExtension extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        ServerCaster.addMessageListener(this, new Variables(this));
+        ServerCaster.addMessageListener(new Variables(this));
     }
 }

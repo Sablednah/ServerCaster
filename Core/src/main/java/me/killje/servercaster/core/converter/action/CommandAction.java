@@ -10,8 +10,8 @@ public class CommandAction extends CodeAction {
 
     public CommandAction() {
         super(1);
-    }    
-    
+    }
+
     @Override
     protected String getKeyword() {
         return "COMMAND";
