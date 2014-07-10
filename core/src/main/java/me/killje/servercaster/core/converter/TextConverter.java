@@ -10,9 +10,9 @@ import org.bukkit.entity.Player;
  */
 class TextConverter extends Converter {
     
-    private final Collection<? extends Player> players;
+    private final Collection<Player> players;
 
-    TextConverter(FancyMessage fm, Collection<? extends Player> players) {
+    TextConverter(FancyMessage fm, Collection<Player> players) {
         super(fm);
         this.players = players;
     }

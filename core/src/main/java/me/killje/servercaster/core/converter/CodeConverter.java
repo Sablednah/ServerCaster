@@ -20,9 +20,9 @@ public class CodeConverter extends Converter {
     private final ArrayList<CodeAction> emptyCodes = new ArrayList<>();
     private boolean nextChar = false;
     private boolean inBracket = false;
-    private final Collection<? extends Player> players;
+    private final Collection<Player> players;
 
-    CodeConverter(FancyMessage fm, Collection<? extends Player> players) {
+    CodeConverter(FancyMessage fm, Collection<Player> players) {
         super(fm);
         for (Map.Entry<String, CodeAction> entry : codes.entrySet()) {
             CodeAction codeAction = entry.getValue();

@@ -12,9 +12,9 @@ import org.bukkit.entity.Player;
 class BracketConverter extends Converter {
 
     private final ArrayList<CodeAction> emptyCodes;
-    private final Collection<? extends Player> players;
+    private final Collection<Player> players;
     
-    BracketConverter(FancyMessage fm, ArrayList<CodeAction> emptyCodes, Collection<? extends Player> players) {
+    BracketConverter(FancyMessage fm, ArrayList<CodeAction> emptyCodes, Collection<Player> players) {
         super(fm);
         this.emptyCodes = emptyCodes;
         this.players = players;

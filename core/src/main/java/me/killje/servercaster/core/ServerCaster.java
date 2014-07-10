@@ -107,18 +107,18 @@ public class ServerCaster extends JavaPlugin {
     }
 
     public static void castMessage(JavaPlugin plugin, String message) {
-        ServerCaster.castMessage(plugin, message, Bukkit.getOnlinePlayers());
+        ServerCaster.castMessage(plugin, message, (Collection<Player>) Bukkit.getOnlinePlayers());
     }
 
     public static void castMessage(JavaPlugin plugin, String message, String prefix) {
-        ServerCaster.castMessage(plugin, message, prefix, Bukkit.getOnlinePlayers());
+        ServerCaster.castMessage(plugin, message, prefix, (Collection<Player>) Bukkit.getOnlinePlayers());
     }
 
-    public static void castMessage(JavaPlugin plugin, String message, Collection<? extends Player> players) {
+    public static void castMessage(JavaPlugin plugin, String message, Collection<Player> players) {
         ServerCaster.castMessage(plugin, message, instance.getConfig().getString("Prefix"), players);
     }
 
-    public static void castMessage(JavaPlugin plugin, String message, String prefix, Collection<? extends Player> players) {
+    public static void castMessage(JavaPlugin plugin, String message, String prefix, Collection<Player> players) {
         instance.getCaster().sendMessage(Caster.ToJsonString(prefix, message, players), players);
     }
 
