@@ -93,6 +93,7 @@ public class AutoCastHelper implements Listener, Runnable, CommandExecutor, Cast
         stop();
         firstRun = true;
         senders.clear();
+        init();
         addToScheduler();
     }
 

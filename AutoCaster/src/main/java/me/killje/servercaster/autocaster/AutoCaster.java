@@ -10,12 +10,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class AutoCaster extends JavaPlugin {
 
     private static JavaPlugin instance;
-    private static final AutoCastHelper ach = new AutoCastHelper();
+    private static AutoCastHelper ach;
 
     @Override
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
+        ach = new AutoCastHelper();
         getServer().getPluginManager().registerEvents(ach, this);
         getCommand("cast").setExecutor(ach);
         getCommand("startAutoCaster").setExecutor(ach);

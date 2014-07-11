@@ -35,7 +35,7 @@ public class Variables implements CastListener {
                 }
                 string = string.replaceAll("(?i)%PLING%", "");
             }
-            if (onlinePlayers.isEmpty()) {
+            if (!onlinePlayers.isEmpty()) {
                 string = string.replaceAll("(?i)%RDMPLAYER%", onlinePlayers.get(rand.nextInt(onlinePlayers.size())).getName());
             }
             string = string.replaceAll("(?i)%SLOTS%", instance.getServer().getMaxPlayers() + "");
