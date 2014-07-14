@@ -9,8 +9,10 @@ import me.killje.servercaster.groups.Groups;
 import me.killje.servercaster.groups.GroupsGroupSender;
 import net.minecraft.util.org.apache.commons.lang3.tuple.Pair;
 import org.anjocaido.groupmanager.GroupManager;
+import org.anjocaido.groupmanager.events.GMUserEvent;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 
 /**
  *
@@ -22,6 +24,7 @@ public class GroupManagerHelper extends AutoCastHelper {
 
     public GroupManagerHelper() {
         initWorlds();
+        Groups.getInstance().getServer().getPluginManager().registerEvents(this, Groups.getInstance());
     }
 
     @Override
@@ -59,6 +62,12 @@ public class GroupManagerHelper extends AutoCastHelper {
 
     @Override
     public void init() {
+    }
+
+    @EventHandler
+    public void userChangeEvent(GMUserEvent e) {
+        removePlayer(e.getUser().getBukkitPlayer());
+        addPlayer(e.getUser().getBukkitPlayer());
     }
 
 }

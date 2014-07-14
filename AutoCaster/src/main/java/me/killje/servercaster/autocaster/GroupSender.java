@@ -14,12 +14,16 @@ public class GroupSender {
     protected int lineIndex = 0;
     private final JavaPlugin instance = AutoCaster.getInstance();
     protected final String path;
-    protected final int totalMessages;
+    protected int totalMessages;
     protected final ArrayList<Player> players = new ArrayList<>();
 
     public GroupSender(String path) {
-        totalMessages = instance.getConfig().getStringList(path).size();
         this.path = path;
+        init();
+    }
+
+    protected void init() {
+        totalMessages = instance.getConfig().getStringList(path).size();
     }
 
     public boolean addPlayer(Player player) {

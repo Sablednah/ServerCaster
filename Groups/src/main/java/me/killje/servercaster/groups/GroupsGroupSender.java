@@ -16,6 +16,11 @@ public class GroupsGroupSender extends GroupSender {
     }
 
     @Override
+    protected void init() {
+        totalMessages = Groups.getInstance().getConfig().getStringList(path).size();
+    }
+
+    @Override
     public void run() {
         if (totalMessages <= lineIndex) {
             lineIndex = 0;
