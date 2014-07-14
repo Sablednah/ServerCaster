@@ -13,7 +13,7 @@
         <project.callname>ServerCasterGroups</project.callname>
         <project.description>add extra utility to autocaster's groups</project.description>
         <project.main>${project.groupId}.groups.Groups</project.main>
-        <project.depend>[ServerCaster]</project.depend>
+        <project.depend>[ServerCaster, ServerCasterAutoCaster, GroupManager]</project.depend>
     </properties>
     
     <build>
@@ -45,6 +45,11 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>AutoCaster</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

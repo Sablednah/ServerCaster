@@ -11,11 +11,11 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class GroupSender {
 
-    private int lineIndex = 0;
+    protected int lineIndex = 0;
     private final JavaPlugin instance = AutoCaster.getInstance();
-    private final String path;
-    private final int totalMessages;
-    private final ArrayList<Player> players = new ArrayList<>();
+    protected final String path;
+    protected final int totalMessages;
+    protected final ArrayList<Player> players = new ArrayList<>();
 
     public GroupSender(String path) {
         totalMessages = instance.getConfig().getStringList(path).size();
@@ -39,11 +39,30 @@ public class GroupSender {
         return path;
     }
 
-    public void removePlayer(Player player) {
-        players.remove(player);
+    public boolean removePlayer(Player player) {
+        return players.remove(player);
     }
 
     public void setLineIndex(int line) {
         lineIndex = line;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof GroupSender) {
+            return super.equals(obj);
+        } else if (obj instanceof String) {
+            if (((String) obj).equals(path)) {
+                return true;
+            }
+        }
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
 }

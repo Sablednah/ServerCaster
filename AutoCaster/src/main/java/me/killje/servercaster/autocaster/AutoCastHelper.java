@@ -2,7 +2,6 @@ package me.killje.servercaster.autocaster;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import me.killje.servercaster.core.event.CastReloadListener;
 import me.killje.servercaster.core.event.ReloadEvent;
 import org.bukkit.ChatColor;
@@ -25,22 +24,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class AutoCastHelper implements Listener, Runnable, CommandExecutor, CastReloadListener {
 
     private final JavaPlugin instance = AutoCaster.getInstance();
-    private final List<GroupSender> senders = new LinkedList<>();
+    protected final List<GroupSender> senders = new LinkedList<>();
     private boolean firstRun = true;
 
     public AutoCastHelper() {
-        init();
     }
 
-    private void init() {
-        if (instance.getConfig().getBoolean("UseGroups")) {
-            Set<String> groups = instance.getConfig().getConfigurationSection("Messages").getKeys(false);
-            for (String string : groups) {
-                senders.add(new GroupSender("Messages." + string));
-            }
-        } else {
-            senders.add(new GroupSender("Messages"));
-        }
+    public void init() {
+        senders.add(new GroupSender("Messages"));
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -61,7 +52,7 @@ public class AutoCastHelper implements Listener, Runnable, CommandExecutor, Cast
         removePlayer(e.getPlayer());
     }
 
-    private void addPlayer(Player player) {
+    protected void addPlayer(Player player) {
         for (GroupSender groupSender : senders) {
             if (player.hasPermission("ServerCaster." + groupSender.getGroup())) {
                 groupSender.addPlayer(player);
@@ -69,7 +60,7 @@ public class AutoCastHelper implements Listener, Runnable, CommandExecutor, Cast
         }
     }
 
-    private void removePlayer(Player player) {
+    protected void removePlayer(Player player) {
         for (GroupSender groupSender : senders) {
             groupSender.removePlayer(player);
         }
