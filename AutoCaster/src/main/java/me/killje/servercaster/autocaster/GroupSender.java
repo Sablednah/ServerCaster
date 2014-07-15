@@ -26,8 +26,11 @@ public class GroupSender {
         totalMessages = instance.getConfig().getStringList(path).size();
     }
 
-    public boolean addPlayer(Player player) {
-        return players.add(player);
+    public synchronized boolean addPlayer(Player player) {
+        if (!players.contains(player)) {
+            return players.add(player);
+        }
+        return false;
     }
 
     public void run() {
@@ -43,7 +46,7 @@ public class GroupSender {
         return path;
     }
 
-    public boolean removePlayer(Player player) {
+    public synchronized boolean removePlayer(Player player) {
         return players.remove(player);
     }
 
@@ -51,22 +54,12 @@ public class GroupSender {
         lineIndex = line;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof GroupSender) {
-            return super.equals(obj);
-        } else if (obj instanceof String) {
-            if (((String) obj).equals(path)) {
-                return true;
-            }
-        }
-        return super.equals(obj);
+    public boolean hasPlayers() {
+        return !players.isEmpty();
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        return hash;
+    public String getPath() {
+        return path;
     }
 
 }

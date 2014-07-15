@@ -25,7 +25,7 @@ public class AutoCastHelper implements Listener, Runnable, CommandExecutor, Cast
 
     private final JavaPlugin instance = AutoCaster.getInstance();
     protected final List<GroupSender> senders = new LinkedList<>();
-    private boolean firstRun = true;
+    protected boolean firstRun = true;
 
     public AutoCastHelper() {
     }

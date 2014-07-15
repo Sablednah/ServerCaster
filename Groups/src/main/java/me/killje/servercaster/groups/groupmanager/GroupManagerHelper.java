@@ -1,6 +1,7 @@
 package me.killje.servercaster.groups.groupmanager;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import me.killje.servercaster.autocaster.AutoCastHelper;
@@ -13,6 +14,7 @@ import org.anjocaido.groupmanager.events.GMUserEvent;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 /**
  *
@@ -28,7 +30,7 @@ public class GroupManagerHelper extends AutoCastHelper {
     }
 
     @Override
-    protected void addPlayer(Player player) {
+    protected synchronized void addPlayer(Player player) {
         GroupManager gm = (GroupManager) Groups.getInstance().getServer().getPluginManager().getPlugin("GroupManager");
         String groupName = gm.getWorldsHolder().getWorldData(player).getUser(player.getName()).getGroup().getLastName();
         String permission;
@@ -38,7 +40,13 @@ public class GroupManagerHelper extends AutoCastHelper {
         } else {
             permission = topPermission.getValue();
             permission = permission.replaceFirst("ServerCaster\\.", "");
-            if (!senders.contains(permission)) {
+            boolean hasGroup = false;
+            for (GroupSender groupSender : senders) {
+                if (groupSender.getPath().equals(permission)) {
+                    hasGroup = true;
+                }
+            }
+            if (!hasGroup) {
                 GroupSender gs = new GroupsGroupSender(permission);
                 gs.addPlayer(player);
                 senders.add(gs);
@@ -48,6 +56,16 @@ public class GroupManagerHelper extends AutoCastHelper {
                 if (player.hasPermission("ServerCaster." + groupSender.getGroup())) {
                     groupSender.addPlayer(player);
                 }
+            }
+        }
+    }
+
+    @Override
+    protected synchronized void removePlayer(Player player) {
+        for (Iterator<GroupSender> it = senders.iterator(); it.hasNext();) {
+            GroupSender groupSender = it.next();
+            if (groupSender.removePlayer(player) && !groupSender.hasPlayers()) {
+                it.remove();
             }
         }
     }
@@ -66,8 +84,17 @@ public class GroupManagerHelper extends AutoCastHelper {
 
     @EventHandler
     public void userChangeEvent(GMUserEvent e) {
-        removePlayer(e.getUser().getBukkitPlayer());
-        addPlayer(e.getUser().getBukkitPlayer());
+        if (!firstRun) {
+            removePlayer(e.getUser().getBukkitPlayer());
+            addPlayer(e.getUser().getBukkitPlayer());
+        }
+    }
+    
+    public void userChangeWorldEvent(PlayerChangedWorldEvent e){
+        if (!firstRun) {
+            removePlayer(e.getPlayer());
+            addPlayer(e.getPlayer());
+        }
     }
 
 }

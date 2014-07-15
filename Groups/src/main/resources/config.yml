@@ -1,5 +1,5 @@
 # +----------------------------------------------------------------------------+
-# | BroadCaster Config                                                         |
+# | ServerCast Groups Config                                                   |
 # +----------------------------------------------------------------------------+
 # |Created by: Killje and Flexo013                                             |
 # +----------------------------------------------------------------------------+
@@ -9,25 +9,20 @@
 # |When using links make sure to use " "!                                      |
 # +----------------------------------------------------------------------------+
 
+# To use this plugin you need to give players the right permission inside the groups!
+# Personal permissions will not work!
 
-# When Using groups make a extra layer
-# you will get something like:
-# Messages:
-# Group1:
-# - 'message for Group1'
-# Group2:
-# - 'message for Group2'
+# Currently the only groups plugin supported is: GroupManager (by Essentials)
+# The permission for GroupManger is ServerCaster.Messages.{group name}
+# Where {group name} is the name of the group listed below here.
+# Capitals matter!!!!!!
 
-# Permissions without groups looks like ServerCaster.Messages
-# With groups they look like - ServerCaster.Messages.Group1
-# When using inherenting groups make sure you remove the person from the previous group
-# You can do this by adding - -ServerCaster.Messages.Group1 to the desired group
 Messages:
-    dev:
+    group1:
         - 'Colors are very easy to add. &GREEN;{Here is some green text!}'
         - 'You can also have broadcasts continue on the next line. &NEWLINE;Notice how the prefix &RED;{[Broadcast]:} was reprinted.'
         - 'You can have players execute commands by clicking chat! &GREEN;&UNDERLINE;&COMMAND;{say I love commands!}{Click here} to activate a test command!'
-    lol:
+    group2:
         - 'You can even use embedded links! &AQUA;&UNDERLINE;&URL;{"http://www.google.com/"}{Click here} to go to a website!'
         - 'You can have broadcasts suggest text and commands. &LIGHT_PURPLE;&SUGGEST;{/say Hello world!}{Click here.}'
         - 'You can use &COMMAND;{reloadservercaster}{/reloadservercaster} to reload the config file &NEWLINE;and use &COMMAND;{cast}{/cast} to cast the next message directly!'

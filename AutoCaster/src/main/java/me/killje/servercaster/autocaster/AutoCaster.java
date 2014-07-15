@@ -22,6 +22,9 @@ public class AutoCaster extends JavaPlugin {
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
+        if (!getConfig().isSet("Version") || !getConfig().getString("Version").equals("2.0")) {
+            new VersionUpdater(this);
+        }
         ach = new AutoCastHelper();
         ach.init();
         getServer().getPluginManager().registerEvents(ach, this);

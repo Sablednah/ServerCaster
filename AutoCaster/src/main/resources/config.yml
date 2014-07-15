@@ -8,24 +8,14 @@
 # | need to escape it with a second (')                                        |
 # |When using links make sure to use " "!                                      |
 # +----------------------------------------------------------------------------+
+# DO NOT EDIT VERSION!
+Version: 2.0 
+# ---------------------------------------
+
 Interval: 20
 InSeconds: false
 Debug: false
 
-
-# When Using groups make a extra layer
-# you will get something like:
-# Messages:
-# Group1:
-# - 'message for Group1'
-# Group2:
-# - 'message for Group2'
-
-# Permissions without groups looks like ServerCaster.Messages
-# With groups they look like - ServerCaster.Messages.Group1
-# When using inherenting groups make sure you remove the person from the previous group
-# You can do this by adding - -ServerCaster.Messages.Group1 to the desired group
-UseGroups: false
 Messages:
     - 'Colors are very easy to add. &GREEN;{Here is some green text!}'
     - 'You can also have broadcasts continue on the next line. &NEWLINE;Notice how the prefix &RED;{[Broadcast]:} was reprinted.'

@@ -4,7 +4,7 @@
     <parent>
         <groupId>me.killje.servercaster</groupId>
         <artifactId>ServerCaster</artifactId>
-        <version>1.9-SNAPSHOT</version>
+        <version>1.9</version>
     </parent>
     <artifactId>Core</artifactId>
     <packaging>jar</packaging>
@@ -30,7 +30,7 @@
                         <configuration>
                             <finalName>ServerCaster-${project.version}</finalName>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <minimizeJar>false</minimizeJar>
+                            <minimizeJar>true</minimizeJar>
                             <artifactSet>
                                 <includes>
                                     <include>mkremins:fanciful</include>

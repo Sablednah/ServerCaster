@@ -4,7 +4,7 @@
     <parent>
         <groupId>me.killje.servercaster</groupId>
         <artifactId>ServerCaster</artifactId>
-        <version>1.9-SNAPSHOT</version>
+        <version>1.9</version>
     </parent>
     <artifactId>Example</artifactId>
     <packaging>jar</packaging>
