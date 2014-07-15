@@ -14,7 +14,6 @@ public abstract class CodeAction {
     private FancyMessage fm;
     private int arguments;
     private int argumentsLeft;
-    private Player[] players;
 
     /**
      *
@@ -78,14 +77,6 @@ public abstract class CodeAction {
      */
     protected FancyMessage getJSONSaver() {
         return fm;
-    }
-
-    /**
-     *
-     * @return The players where this message is going to be send to.
-     */
-    protected Player[] getPlayers() {
-        return players;
     }
 
     /**
