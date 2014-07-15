@@ -26,7 +26,7 @@ public class CodeConverter extends Converter {
         super(fm);
         for (Map.Entry<String, CodeAction> entry : codes.entrySet()) {
             CodeAction codeAction = entry.getValue();
-            codeAction.setBuilders(fm, players);
+            codeAction.setBuilders(fm);
         }
         this.players = players;
     }
@@ -63,7 +63,7 @@ public class CodeConverter extends Converter {
         }
         if (inBracket) {
             if (actionCode.get(0).isEndChar(c)) {
-                if (actionCode.get(0).isEnd(getSavedString())) {
+                if (actionCode.get(0).isEnd(getSavedString(),(Collection<Player>) players)) {
                     actionCode.remove(0);
                     inBracket = false;
                 }

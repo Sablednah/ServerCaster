@@ -1,6 +1,8 @@
 package me.killje.servercaster.example;
 
+import java.util.Collection;
 import me.killje.servercaster.core.converter.CodeAction;
+import org.bukkit.entity.Player;
 
 /**
  *
@@ -18,7 +20,7 @@ public class WarpAction extends CodeAction {
     }
 
     @Override
-    public void doAction(String argument) {
+    public void doAction(String argument, Collection<Player> players) {
         getJSONSaver().command("/warp " + argument);
     }
 

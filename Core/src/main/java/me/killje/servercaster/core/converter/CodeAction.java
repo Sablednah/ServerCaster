@@ -39,8 +39,9 @@ public abstract class CodeAction {
      *
      * @param argument The text inside a bracket (is KeyWord found when
      * arguments are 0)
+     * @param players The players where the message is send to.
      */
-    public abstract void doAction(String argument);
+    public abstract void doAction(String argument, Collection<Player> players);
 
     String getCode() {
         return getKeyword().toLowerCase();
@@ -50,8 +51,8 @@ public abstract class CodeAction {
         return argumentsLeft != 0;
     }
 
-    boolean isEnd(String argument) {
-        doAction(argument);
+    boolean isEnd(String argument, Collection<Player> players) {
+        doAction(argument, players);
         argumentsLeft--;
         if (!hasArgumentsLeft()) {
             if (!reset()) {
@@ -63,7 +64,7 @@ public abstract class CodeAction {
         }
     }
 
-    void setBuilders(FancyMessage fm, Collection<? extends Player> players) {
+    void setBuilders(FancyMessage fm) {
         this.fm = fm;
     }
 

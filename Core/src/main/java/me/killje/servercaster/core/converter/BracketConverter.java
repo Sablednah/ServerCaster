@@ -28,7 +28,7 @@ class BracketConverter extends Converter {
     @Override
     Converter end() {
         for (CodeAction codeAction : emptyCodes) {
-            codeAction.doAction(getSavedString());
+            codeAction.doAction(getSavedString(), (Collection<Player>) players);
         }
         fm.text(getSavedString());
         fm.then();

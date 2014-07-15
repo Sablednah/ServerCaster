@@ -1,7 +1,9 @@
 package me.killje.servercaster.core.converter.action;
 
+import java.util.Collection;
 import me.killje.servercaster.core.converter.CodeAction;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 /**
  *
@@ -24,7 +26,7 @@ public class ColorAction extends CodeAction {
     }
 
     @Override
-    public void doAction(String argument) {
+    public void doAction(String argument, Collection<Player> players) {
         getJSONSaver().color(color);
     }
 
