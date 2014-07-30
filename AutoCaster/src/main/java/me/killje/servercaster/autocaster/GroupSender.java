@@ -38,7 +38,7 @@ public class GroupSender {
             lineIndex = 0;
         }
         ArrayList<String> storedMessages = new ArrayList<>(instance.getConfig().getStringList(path));
-        ServerCaster.castMessage(instance, storedMessages.get(lineIndex), players);
+        ServerCaster.castMessage(storedMessages.get(lineIndex), players);
         lineIndex++;
     }
 

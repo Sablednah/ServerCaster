@@ -30,7 +30,7 @@ public class GroupsGroupSender extends GroupSender {
             Groups.getInstance().getLogger().log(Level.INFO, "{0} contains no messages", path);
             return;
         }
-        ServerCaster.castMessage(Groups.getInstance(), storedMessages.get(lineIndex), players);
+        ServerCaster.castMessage(storedMessages.get(lineIndex), players);
         lineIndex++;
     }
 

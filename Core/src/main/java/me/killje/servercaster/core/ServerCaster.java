@@ -106,7 +106,6 @@ public class ServerCaster extends JavaPlugin {
      *
      * converts a string to a ServerCast message.
      *
-     * @param plugin The JavaPlugin creating the message.
      * @param message The message you want to convert.
      * @param prefix [optional] The string you want in front of every message
      * and after new line's. This will be converted to a ServerCast message.
@@ -114,15 +113,14 @@ public class ServerCaster extends JavaPlugin {
      * @param players [optional] The players you want to send the message to.
      * When not specified the message will be send to all online players.
      */
-    public static void castMessage(JavaPlugin plugin, String message) {
-        ServerCaster.castMessage(plugin, message, Bukkit.getOnlinePlayers());
+    public static void castMessage(String message) {
+        ServerCaster.castMessage(message, Bukkit.getOnlinePlayers());
     }
 
     /**
      *
      * converts a string to a ServerCast message.
      *
-     * @param plugin The JavaPlugin creating the message.
      * @param message The message you want to convert.
      * @param prefix [optional] The string you want in front of every message
      * and after new line's. This will be converted to a ServerCast message.
@@ -130,15 +128,14 @@ public class ServerCaster extends JavaPlugin {
      * @param players [optional] The players you want to send the message to.
      * When not specified the message will be send to all online players.
      */
-    public static void castMessage(JavaPlugin plugin, String message, String prefix) {
-        ServerCaster.castMessage(plugin, message, prefix, Bukkit.getOnlinePlayers());
+    public static void castMessage(String message, String prefix) {
+        ServerCaster.castMessage(message, prefix, Bukkit.getOnlinePlayers());
     }
 
     /**
      *
      * converts a string to a ServerCast message.
      *
-     * @param plugin The JavaPlugin creating the message.
      * @param message The message you want to convert.
      * @param prefix [optional] The string you want in front of every message
      * and after new line's. This will be converted to a ServerCast message.
@@ -146,15 +143,14 @@ public class ServerCaster extends JavaPlugin {
      * @param players [optional] The players you want to send the message to.
      * When not specified the message will be send to all online players.
      */
-    public static void castMessage(JavaPlugin plugin, String message, Collection<? extends Player> players) {
-        ServerCaster.castMessage(plugin, message, instance.getConfig().getString("Prefix"), players);
+    public static void castMessage(String message, Collection<? extends Player> players) {
+        ServerCaster.castMessage(message, instance.getConfig().getString("Prefix"), players);
     }
 
     /**
      *
      * converts a string to a ServerCast message.
      *
-     * @param plugin The JavaPlugin creating the message.
      * @param message The message you want to convert.
      * @param prefix [optional] The string you want in front of every message
      * and after new line's. This will be converted to a ServerCast message.
@@ -162,7 +158,7 @@ public class ServerCaster extends JavaPlugin {
      * @param players [optional] The players you want to send the message to.
      * When not specified the message will be send to all online players.
      */
-    public static void castMessage(JavaPlugin plugin, String message, String prefix, Collection<? extends Player> players) {
+    public static void castMessage(String message, String prefix, Collection<? extends Player> players) {
         instance.getCaster().sendMessage(Caster.ToJsonString(prefix, message, players), players);
     }
 

@@ -1,4 +1,4 @@
-package me.killje.servercaster.groups.groupmanager;
+package me.killje.servercaster.groups.permissionsex;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,32 +9,54 @@ import me.killje.servercaster.autocaster.GroupSender;
 import me.killje.servercaster.groups.Groups;
 import me.killje.servercaster.groups.GroupsGroupSender;
 import net.minecraft.util.org.apache.commons.lang3.tuple.Pair;
-import org.anjocaido.groupmanager.GroupManager;
-import org.anjocaido.groupmanager.events.GMUserEvent;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import ru.tehkode.permissions.PermissionEntity;
+import ru.tehkode.permissions.PermissionGroup;
+import ru.tehkode.permissions.PermissionUser;
+import ru.tehkode.permissions.bukkit.PermissionsEx;
+import ru.tehkode.permissions.events.PermissionEntityEvent;
 
 /**
  *
  * @author Patrick Beuks (killje) and Floris Huizinga (Flexo013)
  */
-public class GroupManagerHelper extends AutoCastHelper {
+public class PermissionsExHelper extends AutoCastHelper {
 
-    private final Map<World, GroupTree> wg = new HashMap<>();
+    private final Map<World, PexTree> wg = new HashMap<>();
 
-    public GroupManagerHelper() {
-        initWorlds();
-        Groups.getInstance().getServer().getPluginManager().registerEvents(this, Groups.getInstance());
+    public PermissionsExHelper() {
+        PermissionsEx pex = (PermissionsEx) Groups.getInstance().getServer().getPluginManager().getPlugin("PermissionsEx");
+        initWorlds(pex);
+    }
+
+    private void initWorlds(PermissionsEx pex) {
+        List<PermissionGroup> pgl = pex.getPermissionsManager().getGroupList();
+        List<World> worlds = Groups.getInstance().getServer().getWorlds();
+        for (World world : worlds) {
+            wg.put(world, new PexTree(world.toString(), pgl));
+        }
+    }
+
+    @Override
+    public void init() {
     }
 
     @Override
     protected synchronized void addPlayer(Player player) {
-        GroupManager gm = (GroupManager) Groups.getInstance().getServer().getPluginManager().getPlugin("GroupManager");
-        String groupName = gm.getWorldsHolder().getWorldData(player).getUser(player.getName()).getGroup().getLastName();
+        PermissionsEx pex = (PermissionsEx) Groups.getInstance().getServer().getPluginManager().getPlugin("PermissionsEx");
+        List<PermissionGroup> pgl = pex.getPermissionsManager().getUser(player.getUniqueId()).getParents();
+        
         String permission;
-        Pair<Integer, String> topPermission = wg.get(player.getWorld()).getTopPermission(groupName, 0);
+        Pair<Integer, String> topPermission = null;
+        for (PermissionGroup permissionGroup : pgl) {
+            Pair<Integer, String> newPermission = wg.get(player.getWorld()).getTopPermission(permissionGroup.getName(), 0);
+            if (topPermission == null || newPermission.getKey() < topPermission.getKey()){
+                topPermission = newPermission;
+            }
+        }
         if (topPermission == null) {
             Groups.getInstance().getLogger().info("This player does not have a permission to view messages");
         } else {
@@ -70,32 +92,22 @@ public class GroupManagerHelper extends AutoCastHelper {
         }
     }
 
-    private void initWorlds() {
-        List<World> worlds = Groups.getInstance().getServer().getWorlds();
-        GroupManager gm = (GroupManager) Groups.getInstance().getServer().getPluginManager().getPlugin("GroupManager");
-        for (World world : worlds) {
-            wg.put(world, new GroupTree(world.toString(), gm));
-        }
-    }
-
-    @Override
-    public void init() {
-    }
-
     @EventHandler
-    public void userChangeEvent(GMUserEvent e) {
+    public void userChangeEvent(PermissionEntityEvent e) {
         if (!firstRun) {
-            removePlayer(e.getUser().getBukkitPlayer());
-            addPlayer(e.getUser().getBukkitPlayer());
+            if (e.getType() == PermissionEntity.Type.USER) {
+                PermissionUser user = (PermissionUser) e.getEntity();
+                removePlayer(user.getPlayer());
+                addPlayer(user.getPlayer());
+            }
         }
     }
-    
+
     @EventHandler
-    public void userChangeWorldEvent(PlayerChangedWorldEvent e){
+    public void userChangeWorldEvent(PlayerChangedWorldEvent e) {
         if (!firstRun) {
             removePlayer(e.getPlayer());
             addPlayer(e.getPlayer());
         }
     }
-
 }

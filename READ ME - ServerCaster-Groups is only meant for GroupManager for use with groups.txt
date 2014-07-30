@@ -1,0 +1,4 @@
+ServerCaster-Groups needs to have GroupManager installed.
+only use this Plugin if you want to use the ability to send individule groups messages.
+
+if you want all players to recive messages (or only ones with a permision) do not use this extra plugin.

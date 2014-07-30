@@ -4,3 +4,4 @@ description: ${project.description}
 version: ${project.version}
 main: ${project.main}
 depend: ${project.depend}
+softdepend: ${project.softdepend}
