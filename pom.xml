@@ -66,11 +66,4 @@
             <url>http://repo.bukkit.org/content/groups/public/</url>
         </repository>
     </repositories>
-    
-    <distributionManagement>
-        <repository>
-            <id>gh-pages</id>
-            <url>file:///${basedir}/../ServerCaster-pages/repository/</url>
-        </repository>
-    </distributionManagement>
 </project>
