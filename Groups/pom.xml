@@ -72,12 +72,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>me.kalicat</groupId>
-            <artifactId>Accentials</artifactId>
-            <version>3.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>ru.tehkode</groupId>
             <artifactId>PermissionsEx</artifactId>
             <version>1.22</version>
