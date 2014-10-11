@@ -58,13 +58,11 @@ public class CodeConverter extends Converter {
 
     @Override
     Converter nextChar(char c) {
-        if (fm == null) {
-            throw new NullPointerException("FancyMessage not declared");
-        }
         if (inBracket) {
             if (actionCode.get(0).isEndChar(c)) {
-                if (actionCode.get(0).isEnd(getSavedString(),(Collection<Player>) players)) {
+                if (actionCode.get(0).isEnd(getSavedString(), (Collection<Player>) players)) {
                     actionCode.remove(0);
+                    clearSavedString();
                     inBracket = false;
                 }
             }

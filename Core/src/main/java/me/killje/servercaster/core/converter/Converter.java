@@ -12,6 +12,9 @@ abstract class Converter {
     protected final FancyMessage fm;
 
     Converter(FancyMessage fm) {
+        if (fm == null) {
+            throw new NullPointerException("FancyMessage not declared");
+        }
         this.fm = fm;
     }
 
@@ -20,9 +23,6 @@ abstract class Converter {
     abstract boolean isEndChar(char c);
 
     Converter nextChar(char c) {
-        if (fm == null) {
-            throw new NullPointerException("FancyMessage not declared");
-        }
         if (isEndChar(c)) {
             return end();
         } else {

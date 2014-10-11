@@ -15,14 +15,14 @@ public class PexTree {
 
     private final Map<String, PexNode> pexNodes = new HashMap<>();
     private final String worldName;
-    
-    public PexTree(String worldName, List<PermissionGroup> groups){
+
+    public PexTree(String worldName, List<PermissionGroup> groups) {
         this.worldName = worldName;
         for (PermissionGroup group : groups) {
             String groupName = group.getName();
-            pexNodes.put(groupName, new PexNode(group));
+            pexNodes.put(groupName.toLowerCase(), new PexNode(group));
         }
-        
+
         for (Map.Entry<String, PexNode> entry : pexNodes.entrySet()) {
             PexNode groupNode = entry.getValue();
             List<PermissionGroup> childs = groupNode.getGroup().getChildGroups();
@@ -33,13 +33,13 @@ public class PexTree {
                 }
             }
         }
-        
+
         for (Map.Entry<String, PexNode> entry : pexNodes.entrySet()) {
             PexNode group = entry.getValue();
             group.removeDubbleGroups(null);
         }
     }
-    
+
     public Pair<Integer, String> getTopPermission(String groupName, int iterations) {
         PexNode gn = pexNodes.get(groupName.toLowerCase());
         PermissionGroup g = gn.getGroup();
